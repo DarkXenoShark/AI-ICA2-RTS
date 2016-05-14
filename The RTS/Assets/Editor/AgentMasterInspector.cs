@@ -11,10 +11,17 @@ public class AgentMasterInspector : Editor
 
 		//if (Application.isEditor)
 		if (Application.isPlaying)
-		if (GUILayout.Button ("Make File"))
 		{
-			AgentMaster quick_self = (AgentMaster) target;
-			AgentMaster.Write_Problem(quick_self.test_domain_name);
+			if (GUILayout.Button ("Make File"))
+			{
+				AgentMaster quick_self = (AgentMaster) target;
+				AgentMaster.Write_Problem(quick_self.test_domain_name);
+			}
+			if (GUILayout.Button ("Start Task Planner"))
+			{
+				AgentMaster quick_self = (AgentMaster) target;
+				quick_self.gameObject.GetComponent<TaskPlannerProcess>().CallStart();
+			}
 		}
 	}
 }
