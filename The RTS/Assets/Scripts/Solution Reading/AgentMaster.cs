@@ -8,8 +8,6 @@ public class AgentMaster : MonoBehaviour
 	public static AgentMaster self;
 
 	public string test_domain_name;
-	public string test_string1;
-	public string test_string2;
 
 	private List<Agent> my_active_agents;
 	private TaskPlannerProcess my_planner;
@@ -58,12 +56,15 @@ public class AgentMaster : MonoBehaviour
 	/// </summary>
 	public static void Write_Problem(string its_file)
 	{
-		using (StreamWriter quick_writer = File.CreateText(Application.dataPath + "/Resources/" + its_file))
+		using (StreamWriter quick_writer = File.CreateText(Application.dataPath + "/Resources/" + its_file + "-problem.pddl"))
 		{
-			self.Problem_Writing_Intro(quick_writer,self.test_string1,self.test_string2);
+			self.Problem_Writing_Intro(quick_writer,its_file,"prob1");
+			self.Problem_Writing_Objects(quick_writer);
+			self.Problem_Writing_Initialising(quick_writer);
+			self.Problem_Writing_Goal(quick_writer);
 			self.Problem_Writing_Outro(quick_writer);
 
-			Debug.Log ("File " + Application.dataPath + "/Resources/" + its_file + " created");
+			Debug.Log ("File " + Application.dataPath + "/Resources/" + its_file + ".pddl" + " created");
 		}
 	}
 
@@ -72,12 +73,62 @@ public class AgentMaster : MonoBehaviour
 	/// </summary>
 	/// <param name="its_stream">The given stream to write to.</param>
 	/// <param name="its_problem_name">The problem name that's on top of the files.</param>
-	private void Problem_Writing_Intro(StreamWriter its_stream, string its_name1, string its_name2)
+	private void Problem_Writing_Intro(StreamWriter its_stream, string its_file_name, string its_problem_name)
 	{
 		//First the top line
-		its_stream.WriteLine("(define (problem " + its_name1 + ")");
-		its_stream.WriteLine("  (:domain " + its_name2 + ")");
+		its_stream.WriteLine("(define (problem " + its_file_name + "-" + its_problem_name + ")");
+		its_stream.WriteLine("\t(:domain " + its_file_name + ")");
 		its_stream.WriteLine("");
+	}
+	
+	/// <summary>
+	/// Writes the static header for problem files to the stream
+	/// </summary>
+	/// <param name="its_stream">The given stream to write to.</param>
+	/// <param name="its_problem_name">The problem name that's on top of the files.</param>
+	private void Problem_Writing_Objects(StreamWriter its_stream)
+	{
+		its_stream.WriteLine("\t(:objects");
+
+		//Looping through people, blah blah blah
+
+		//Looping through mining resources, blah blah blah
+
+		its_stream.WriteLine("\t\t)");
+		its_stream.WriteLine("");
+	}
+	
+	/// <summary>
+	/// Writes the static header for problem files to the stream
+	/// </summary>
+	/// <param name="its_stream">The given stream to write to.</param>
+	/// <param name="its_problem_name">The problem name that's on top of the files.</param>
+	private void Problem_Writing_Initialising(StreamWriter its_stream)
+	{
+		its_stream.WriteLine("\t(:init");
+
+		//Looping through people locations, blah blah blah
+
+		//Looping through mining resources hold what, blah blah blah
+
+		its_stream.WriteLine("\t\t)");
+		its_stream.WriteLine("");
+	}
+	
+	/// <summary>
+	/// Writes the static header for problem files to the stream
+	/// </summary>
+	/// <param name="its_stream">The given stream to write to.</param>
+	/// <param name="its_problem_name">The problem name that's on top of the files.</param>
+	private void Problem_Writing_Goal(StreamWriter its_stream)
+	{
+		its_stream.WriteLine("\t(:goal");
+
+		//This will probably hold a list of conditions
+
+		its_stream.WriteLine("\t\t)");
+		its_stream.WriteLine("");
+
 	}
 
 	/// <summary>
