@@ -45,6 +45,6 @@ public class AgentMaster : MonoBehaviour
 
 	public string Read_Solution(string its_filename)
 	{
-
+		return "";
 	}
 }

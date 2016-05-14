@@ -30,7 +30,12 @@ public class MapParser
 	public MapParser ()
 	{ }
 
-	public void LoadFromFile (string fileName, string fileExtension = ".txt", string relativeLocation = "Resources")
+	public void LoadFromFile (string fileName)
+	{
+		LoadFromFile (fileName, ".txt",  "Resources");
+	}
+
+	public void LoadFromFile (string fileName, string fileExtension, string relativeLocation)
 	{
 		string location 		= Application.dataPath + "/Resources/";
 		string fullDirectory 	= string.Concat(location, fileName, fileExtension);

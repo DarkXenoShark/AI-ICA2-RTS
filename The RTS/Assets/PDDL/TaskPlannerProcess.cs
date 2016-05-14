@@ -50,7 +50,7 @@ public class TaskPlannerProcess : MonoBehaviour {
 
 		InstantiatePlanner();
 		ProcessStart();
-        Debug.Log ("SOLUTION FOUND");
+		UnityEngine.Debug.Log ("SOLUTION FOUND");
 
 		// (sorry I couldn't resist to add this):
 		// using Linq, extract all the lines containing ':', 
@@ -65,7 +65,7 @@ public class TaskPlannerProcess : MonoBehaviour {
 
 		// delete the solution file, so you don't get to read it again next time you generate a new solution
 		File.Delete (solutionFilename);
-		Debug.Log ("FILE DELETED");
+		UnityEngine.Debug.Log ("FILE DELETED");
 	}
 	
 	// Update is called once per frame
