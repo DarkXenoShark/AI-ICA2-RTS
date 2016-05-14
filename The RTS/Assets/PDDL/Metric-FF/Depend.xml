@@ -2,38 +2,20 @@
 <Durative-FF-Depend>
 <Operator>
 <Name>
-(PICK ALEX TREE1)</Name>
+(MOVE LABOURER0 TREE2 TREE1)</Name>
 
 </Operator>
 
 <Operator>
 <Name>
-(FLY ALEX TREE1 TREE2)</Name>
+(CUTTREE LABOURER0 TREE1)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(PICK ALEX TREE1)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(PICK ALEX TREE2)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(FLY ALEX TREE1 TREE2)
+(MOVE LABOURER0 TREE2 TREE1)
 </Name>
 
 </On_Operator>
