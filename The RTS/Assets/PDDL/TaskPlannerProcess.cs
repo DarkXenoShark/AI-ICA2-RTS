@@ -45,27 +45,31 @@ public class TaskPlannerProcess : MonoBehaviour {
 		PProcessPlanner.WaitForExit();
 	}
 
-	// Use this for initialization
-	void Start () {
-
+	public void BeginPlanner()
+	{
 		InstantiatePlanner();
 		ProcessStart();
 		UnityEngine.Debug.Log ("SOLUTION FOUND");
-
+		
 		// (sorry I couldn't resist to add this):
 		// using Linq, extract all the lines containing ':', 
 		// ie all the lines specifying the actions in the solution generated
 		var result = File.ReadAllLines (solutionFilename).Where(s => s.Contains(":"));
-
+		
 		// just to show how many actions have been found (*debug*)
 		actionsFound = result.Count();
-
+		
 		// show the first action parsed in the editor window
 		parsedSolution = result.ToList ()[0].ToString ();
-
+		
 		// delete the solution file, so you don't get to read it again next time you generate a new solution
 		File.Delete (solutionFilename);
 		UnityEngine.Debug.Log ("FILE DELETED");
+	}
+
+	// Use this for initialization
+	void Start () {
+
 	}
 	
 	// Update is called once per frame
