@@ -2,8 +2,44 @@
 <Durative-FF-Depend>
 <Operator>
 <Name>
+(SIMPLETRAIN LABOURER0 LABOURER0 TREE2)</Name>
+
+</Operator>
+
+<Operator>
+<Name>
+(TRAINLUMBERJACK LABOURER0)</Name>
+
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLETRAIN LABOURER0 LABOURER0 TREE2)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
+</Operator>
+
+<Operator>
+<Name>
 (MOVE LABOURER0 TREE2 TREE1)</Name>
 
+<Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLETRAIN LABOURER0 LABOURER0 TREE2)
+</Name>
+
+</On_Operator>
+ 
+</Depend>
+ 
 </Operator>
 
 <Operator>
@@ -11,6 +47,14 @@
 (CUTTREE LABOURER0 TREE1)</Name>
 
 <Depend>
+ 
+<On_Operator>
+ 
+<Name>
+(TRAINLUMBERJACK LABOURER0)
+</Name>
+
+</On_Operator>
  
 <On_Operator>
  
