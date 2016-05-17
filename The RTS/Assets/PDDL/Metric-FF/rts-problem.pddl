@@ -6,25 +6,30 @@
 	labourer1 - person
 	labourer2 - person
 	
-	tree1 tree2 - forest)
+	tree1 tree2 - forest
+	stone1 - stone
+	locationOre1 locationCoal1 - miningResource
+	
+	location1 location2 location3 - location)
 
   (:init 	
-			;(is-lumberjack labourer0)
+			(is-labourer labourer0)
+			(is-labourer labourer1)
 			(has-timber tree1)
 			(at labourer0 tree2)
 			(at labourer1 tree1)
-			;(is-carpenter labourer1)
-			;(is-blacksmith labourer2)
-			
-			;(at labourer2 tree1)
-			;(at labourer2 tree1)
+			(at labourer2 tree1)
+			(has-stone stone1)
+			(has-ore locationOre1)
+			(has-coal locationCoal1)
+			(=(labourCost) 0)
 	)
   
   (:goal 	
   ;; dont forget the (and ) block to enclose everything together
 		(and
-			(got-timber labourer0) 
-			
+			(has-storage location1) 
+			;(got-baby labourer0 labourer1)
 			;(got-mine tree2) 
 			)
 	)
