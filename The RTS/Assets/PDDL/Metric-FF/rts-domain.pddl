@@ -18,6 +18,7 @@
 		(ore)
 		(coal)
 		(iron)
+		(population)
 	)
 	
    (:predicates
@@ -92,9 +93,9 @@
 			:effect (and(has-skill ?student) (increase (labourCost) 100)))
 			
 	(:action schooltrain
-			:parameters (?teacher - person ?student - person ?place - building)
+			:parameters (?teacher - person ?student - person ?place - location)
 			:precondition (and (at ?teacher ?place) (at ?student ?place) (is-teacher ?teacher) (has-school ?place) (not (has-skill ?student))(not(= ?teacher ?student)))
-			:effect (has-skill ?student))
+			:effect (and(has-skill ?student)(increase (labourCost) 50)))
 	
 	(:action trainCarpenter
 			:parameters (?person - person)
@@ -122,9 +123,9 @@
 			:effect (and(is-teacher ?person) (not(has-skill ?person))))
 	
 	(:action trainRifleman
-			:parameters (?person - person ?place - building)
+			:parameters (?person - person ?place - location)
 			:precondition(and (has-skill ?person) (has-barracks ?place) (not (has-riflemanSkill ?person)))
-			:effect (and(has-riflemanSkill ?person)(not(has-skill ?person))))
+			:effect (and(has-riflemanSkill ?person)(not(has-skill ?person))(increase (labourCost) 30)))
 	
 	
 	
@@ -142,78 +143,78 @@
 	(:action cuttree
 			:parameters (?person - person ?place - forest)
 			:precondition (and (is-lumberjack ?person)(at ?person ?place) (has-timber ?place))
-			:effect (and (got-timber ?person) (not (has-timber ?place))))
+			:effect (and (got-timber ?person) (not (has-timber ?place))(increase (labourCost) 5)))
 	
 	(:action simpleMineOre
 			:parameters (?person - person ?place - miningResource)
 			:precondition (and (is-labourer ?person)(at ?person ?place) (has-ore ?place) (not(got-ore ?person)))
-			:effect (and (got-ore ?person)))	
+			:effect (and (got-ore ?person)(increase (labourCost) 100)))	
 			
 	(:action simpleMineCoal
 			:parameters (?person - person ?place - miningResource)
 			:precondition (and (is-labourer ?person)(at ?person ?place) (has-coal ?place) (not(got-coal ?person)))
-			:effect (and (got-coal ?person)))
+			:effect (and (got-coal ?person)(increase (labourCost) 100)))
 			
 	(:action mineMinableWithMineOre
 			:parameters (?person - person ?place - miningResource)
 			:precondition (and (is-miner ?person) (at ?person ?place) (has-oreMine ?place))
-			:effect (got-ore ?person))
+			:effect (and(got-ore ?person)(increase (labourCost) 25)))
 			
 	(:action mineMinableWithMineCoal
 			:parameters (?person - person ?place - miningResource)
 			:precondition (and (is-miner ?person) (at ?person ?place) (has-coalMine ?place))
-			:effect (got-coal ?person))
+			:effect (and(got-coal ?person)(increase (labourCost) 25)))
 
 	(:action quarryQuarribleStone
 			:parameters (?person - person ?place - stone)
 			:precondition (and (is-labourer ?person) (at ?person ?place) (has-quary ?place))
-			:effect (got-stone ?person))
+			:effect (and(got-stone ?person)(increase (labourCost) 25)))
 			
 	(:action sawTimberatSawmill
 			:parameters (?person - person ?place - location)
 			:precondition (and (at ?person ?place) (has-sawmill ?place) (is-labourer ?person) (got-timber ?person))
-			:effect (and (got-wood ?person)(not (got-timber ?person))))
+			:effect (and (got-wood ?person)(not (got-timber ?person))(increase (labourCost) 50)))
 			
 	(:action smeltOreatSmelter
 			:parameters (?person - person ?place - location)
 			:precondition (and (at ?person ?place) (has-smelter ?place) (is-labourer ?person) (got-ore ?person) (got-coal ?person))
-			:effect (and (got-iron ?person)(not (got-ore ?person))(not (got-coal ?person))))
+			:effect (and (got-iron ?person)(not (got-ore ?person))(not (got-coal ?person))(increase (labourCost) 50)))
 
 			
 	(:action multiplySingle
 			:parameters (?person1 - person ?person2 - person ?location - location)
 			:precondition (and (at ?person1 ?location) (at ?person2 ?location) (has-turfhut ?location) (not(= ?person1 ?person2)))
-			:effect (got-baby ?person1 ?person2))
+			:effect (and(got-baby ?person1 ?person2)(increase (labourCost) 10)(increase (population) 1)))
 			
 	(:action multiplyDouble
 			:parameters (?person1 - person ?person2 - person ?location - location)
 			:precondition (and (at ?person1 ?location) (at ?person2 ?location) (has-house ?location)(not(= ?person1 ?person2)))
-			:effect (got-baby ?person1 ?person2))		
+			:effect (and(got-baby ?person1 ?person2)(increase (labourCost) 50)(increase (population) 2)))
 	
 	(:action storeWood
 			:parameters (?person - person ?location - location)
 			:precondition (and (at ?person ?location) (got-wood ?person) (has-storage ?location))
-			:effect (and(got-swood ?location)(not (got-wood ?person))))
+			:effect (and(got-swood ?location)(not (got-wood ?person))(increase (wood) 1)))
 			
 	(:action storeTimber
 			:parameters (?person - person ?location - location)
 			:precondition (and (at ?person ?location) (got-timber ?person) (has-storage ?location))
-			:effect (and(got-stimber ?location)(not (got-timber ?person))))
+			:effect (and(got-stimber ?location)(not (got-timber ?person))(increase (timber) 1)))
 	
 	(:action storeStone
 			:parameters (?person - person ?location - location)
 			:precondition (and (at ?person ?location) (got-stone ?person) (has-storage ?location))
-			:effect (and(got-sstone ?location)(not (got-stone ?person))))
+			:effect (and(got-sstone ?location)(not (got-stone ?person))(increase (stone) 1)))
 			
 	(:action storeOre
 			:parameters (?person - person ?location - location)
 			:precondition (and (at ?person ?location) (got-ore ?person) (has-storage ?location))
-			:effect (and(got-sore ?location)(not (got-ore ?person))))
+			:effect (and(got-sore ?location)(not (got-ore ?person))(increase (ore) 1)))
 			
 	(:action storeIron
 			:parameters (?person - person ?location - location)
 			:precondition (and (at ?person ?location) (got-iron ?person) (has-storage ?location))
-			:effect (and(got-siron ?location)(not (got-iron ?person))))
+			:effect (and(got-siron ?location)(not (got-iron ?person))(increase (iron) 1)))
 			
 
 	
@@ -226,46 +227,38 @@
    	(:action buildTurfHut
 			:parameters (?person - person ?location - location)
 			:precondition (and (at ?person ?location) (is-labourer ?person) (not (has-turfhut ?location)) (not (has-building ?location)))
-			:effect (and (has-turfhut ?location) (has-building ?location)))
+			:effect (and (has-turfhut ?location) (has-building ?location)(increase (labourCost) 10)))
 			
 	(:action buildHouse
-			:parameters (?person1 - person ?person2 - person ?location - location)
+			:parameters (?person1 ?person2 - person ?location - location)
 			:precondition (and (at ?person1 ?location)(at ?person2 ?location) (is-carpenter ?person1) (is-labourer ?person2) 
-						 (or(got-wood ?person1)(got-wood ?person2))
-						 (or(got-stone ?person1)(got-stone ?person2))
-						 (not (has-house ?location))(not (has-building ?location))(not(= ?person1 ?person2)))
+						 (>= (wood)1) (>= (stone)1)
+						 (not (has-building ?location))(not(= ?person1 ?person2)))
 			:effect (and(has-building ?location)(has-house ?location)
-					(not(got-wood ?person1))(not(got-wood ?person2))
-					(not(got-stone ?person1))(not(got-stone ?person2))))
+					(increase (labourCost) 15)(decrease (wood) 1)(decrease (stone) 1)))
 			
 	(:action buildSchool
-			:parameters (?person1 - person ?person2 - person ?location - location)
+			:parameters (?person1 ?person2 - person  ?location - location)
 			:precondition (and (at ?person1 ?location)(at ?person2 ?location) (is-carpenter ?person1)(is-labourer ?person2)
-						 (or(got-wood ?person1)(got-wood ?person2))
-						 (or(got-stone ?person1)(got-stone ?person2))
-						 (or(got-iron ?person1)(got-iron ?person2))
-						 (not(has-school ?location))(not (has-building ?location))(not(= ?person1 ?person2)))
+						 (>= (wood)1) (>= (stone)1) (>= (iron)1)
+						 (not (has-building ?location))(not(= ?person1 ?person2)))
 			:effect (and(has-building ?location)(has-school ?location)
-				    (not(got-wood ?person1))(not(got-wood ?person2))
-					(not(got-stone ?person1))(not(got-stone ?person2))
-					(not(got-iron ?person1))(not(got-iron ?person2))))
+				    (increase (labourCost) 30)(decrease (wood) 1)(decrease (stone) 1)))
 			
 	(:action buildBarracks
-			:parameters (?person1 - person ?person2 - person ?location - location)
+			:parameters (?person1 ?person2 - person ?location - location)
 			:precondition (and (at ?person1 ?location)(at ?person2 ?location) (is-carpenter ?person1)(is-labourer ?person2)
-						 (or(got-wood ?person1)(got-wood ?person2))
-						 (or(got-stone ?person1)(got-stone ?person2))
-						 (not(has-barracks ?location))(not (has-building ?location))(not(= ?person1 ?person2)))
+						 (>= (wood)1) (>= (stone)1)
+						 (not (has-building ?location))(not(= ?person1 ?person2)))
 			:effect (and (has-building ?location)(has-barracks ?location)
-					(not(got-wood ?person1))(not(got-wood ?person2))
-					(not(got-stone ?person1))(not(got-stone ?person2))))
+					(increase (labourCost) 30)(decrease (wood) 1)(decrease (stone) 1)))
 			
 	(:action buildStorage
 			:parameters (?person1 - person ?person2 - person ?location - location)
 			:precondition (and (at ?person1 ?location)(at ?person2 ?location) (is-carpenter ?person1)(is-labourer ?person2)
-						 (or(got-wood ?person1)(got-wood ?person2))
+						 (or(got-timber ?person1)(got-timber ?person2))
 						 (or(got-stone ?person1)(got-stone ?person2))
-						 (not(has-storage ?location))(not (has-building ?location))(not(= ?person1 ?person2)))
+						 (not (has-building ?location))(not(= ?person1 ?person2)))
 			:effect (and (has-building ?location)(has-storage ?location)
 					(not(got-wood ?person1))(not(got-wood ?person2))
 					(not(got-stone ?person1))(not(got-stone ?person2))))
@@ -273,50 +266,46 @@
 	(:action buildCoalMine
 			:parameters (?person1 ?person2 ?person3 - person ?place - miningResource)
 			:precondition (and (is-labourer ?person1) (is-carpenter ?person2) (is-blacksmith ?person3) (at ?person1 ?place) (at ?person2 ?place) (at ?person3 ?place) (has-coal ?place)
-						 (or(got-wood ?person1)(got-wood ?person2))
-						 (or(got-iron ?person1)(got-iron ?person2))
-						 (not(has-coalMine ?place))(not (has-building ?place))(not(= ?person1 ?person2)))
+						 (>= (wood)1) (>= (iron)1)
+						 (not (has-building ?place))(not(= ?person1 ?person2)))
 			:effect (and (has-building ?place)(has-coalMine ?place)
-					(not(got-wood ?person1))(not(got-wood ?person2))
-					(not(got-iron ?person1))(not(got-iron ?person2))))
+					(increase (labourCost) 25)(decrease (wood) 1)(decrease (iron) 1)))
 			
 	(:action buildOreMine
 			:parameters (?person1 ?person2 ?person3 - person ?place - miningResource)
-			:precondition (and (is-labourer ?person1) (is-carpenter ?person2) (is-blacksmith ?person3) (at ?person1 ?place) (at ?person2 ?place) (at ?person3 ?place) (has-ore ?place) 
-						 (or(got-wood ?person1)(got-wood ?person2))
-						 (or(got-iron ?person1)(got-iron ?person2))
-						 (not(has-oreMine ?place))(not (has-building ?place))(not(= ?person1 ?person2)))
+			:precondition (and (is-labourer ?person1) (is-carpenter ?person2) (is-blacksmith ?person3) (at ?person1 ?place) (at ?person2 ?place) (at ?person3 ?place) 
+						 (>= (wood)1) (>= (iron)1)
+						 (not (has-building ?place))(not(= ?person1 ?person2)))
 			:effect (and (has-building ?place)(has-oreMine ?place)
-					(not(got-wood ?person1))(not(got-wood ?person2))
-					(not(got-iron ?person1))(not(got-iron ?person2))))
+					(increase (labourCost) 25)(decrease (wood) 1)(decrease (iron) 1)))
 			
 	(:action buildSmelter
 			:parameters (?person - person ?location - location)
-			:precondition (and (is-labourer ?person) (got-stone ?person) (at ?person ?location) (not(has-smelter ?location))(not (has-building ?location)))
-			:effect (and (has-building ?location)(has-smelter ?location)(not(got-stone ?person))))
+			:precondition (and (is-labourer ?person) (>=(stone)1) (at ?person ?location) (not (has-building ?location)))
+			:effect (and (has-building ?location)(has-smelter ?location)(increase (labourCost) 20)(decrease (stone) 1)(not(got-stone ?person))))
 	
 	(:action buildQuarry
 			:parameters (?person - person ?place - stone)
-			:precondition (and (is-labourer ?person) (at ?person ?place) (has-stone ?place) (not(has-quary ?place))(not (has-building ?place)))
-			:effect (and (has-building ?place)(has-quary ?place)))
+			:precondition (and (is-labourer ?person) (at ?person ?place) (has-stone ?place) (not (has-building ?place)))
+			:effect (and (has-building ?place)(has-quary ?place)(increase (labourCost) 10)))
 			
 	(:action buildSawmill
 			:parameters (?person - person ?location - location)
-			:precondition (and (is-labourer ?person) (got-stone ?person) (got-iron ?person) (at ?person ?location)(got-timber ?person) (not(has-sawmill ?location))(not (has-building ?location)))
+			:precondition (and (is-labourer ?person) (>=(stone)1) (>= (iron)1)(>= (timber)1) (at ?person ?location) (not (has-building ?location)))
 			:effect (and (has-building ?location)(has-sawmill ?location)
-					(not(got-stone ?person)) (not(got-iron ?person))))
+					(decrease (stone) 1)(decrease (iron) 1)(decrease (timber) 1)(increase (labourCost) 10)))
 			
 	(:action buildRefinery ;;blacksmith
 			:parameters (?person - person ?location - location)
-			:precondition (and (is-labourer ?person) (got-stone ?person) (got-iron ?person) (at ?person ?location) (got-timber ?person) (not(has-refinery ?location))(not (has-building ?location)))
+			:precondition (and (is-labourer ?person) (at ?person ?location)(>=(stone)1) (>= (iron)1)(>= (timber)1)(not (has-building ?location)))
 			:effect (and (has-building ?location)(has-refinery ?location)
-					(not(got-stone ?person)) (not(got-iron ?person)) (not(got-timber ?person))))
+					(decrease (stone) 1)(decrease (iron) 1)(decrease (timber) 1)(increase (labourCost) 10) (not(got-timber ?person))))
 			
-	(:action buildMarket
-			:parameters (?person - person ?location - location)
-			:precondition (and (is-labourer ?person) (got-wood ?person) (at ?person ?location)(not(has-marketStall ?location))(not (has-building ?location)))
-			:effect (and (has-building ?location)(has-marketStall ?location)
-					(not(got-wood ?person))))
+	;(:action buildMarket
+		;	:parameters (?person - person ?location - location)
+			;:precondition (and (is-labourer ?person) (got-wood ?person) (at ?person ?location)(not(has-marketStall ?location))(not (has-building ?location)))
+			;:effect (and (has-building ?location)(has-marketStall ?location)
+			;		(not(got-wood ?person))))
 			
 	)
   
