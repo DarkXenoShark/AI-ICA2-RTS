@@ -1,24 +1,63 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System;
 
 public class AgentMaster : MonoBehaviour
 {
 	public static AgentMaster self;
 
-	public int my_person_incriment;
-	public int my_building_incriment;
+	[SerializeField] private string my_domain_name;
 
-	public string serialised_domain_name;
+	[SerializeField] private List<Person> my_people;
+	[SerializeField] private List<Building> my_buildings;
 
-	public List<string> serialised_person_names;
-	public List<EJob> serialised_person_jobs;
-	public List<string> serialised_person_locations;
+	[SerializeField] private int my_resource_timber;
+	[SerializeField] private int my_resource_wood;
+	[SerializeField] private int my_resource_stone;
+	[SerializeField] private int my_resource_ore;
+	[SerializeField] private int my_resource_coal;
+	[SerializeField] private int my_resource_iron;
 
-	public List<string> serialised_building_names;
-	public List<EBuilding> serialised_building_types;
-	public List<EResource> serialised_building_resources;
+	[SerializeField] private EBuilding serialized_goal_building;
+	[SerializeField] private string serialized_goal_destination;
+
+	public string Domain
+	{
+		get
+		{
+			return my_domain_name;
+		}
+	}
+
+	public enum EGoal
+	{
+		None,
+		GetError,
+		GetBuilding
+	}
+
+	public interface Goal
+	{
+		string[] Write_Goal();
+	}
+
+	[Serializable]
+	public class BuildingGoal: Goal
+	{
+		public EBuilding TheBuilding;
+		public string TheDestination;
+
+		public string[] Write_Goal()
+		{
+			string[] returner = new string[1];
+
+			returner[0] = ("has-" + Building_To_String(TheBuilding) + " " + TheDestination);
+			return returner;
+		}
+	}
 
 	/// <summary>
 	/// Converts the serialised information into a struct array for reading
@@ -28,15 +67,7 @@ public class AgentMaster : MonoBehaviour
 	{
 		get
 		{
-			Person[] returner = new Person[serialised_person_jobs.Count];
-			for (int rep_person = 0; rep_person < serialised_person_jobs.Count; rep_person++)
-			{
-				returner[rep_person].TheName = serialised_person_names[rep_person];
-				returner[rep_person].TheJob = serialised_person_jobs[rep_person];
-				returner[rep_person].TheLocation = serialised_person_locations[rep_person];
-			}
-
-			return returner;
+			return my_people.ToArray();
 		}
 	}
 
@@ -48,65 +79,22 @@ public class AgentMaster : MonoBehaviour
 	{
 		get
 		{
-			Building[] returner = new Building[serialised_building_names.Count];
-			for (int rep_building = 0; rep_building < serialised_building_names.Count; rep_building++)
-			{
-				returner[rep_building].TheName = serialised_building_names[rep_building];
-				returner[rep_building].TheType = serialised_building_types[rep_building];
-				returner[rep_building].TheResource = serialised_building_resources[rep_building];
-			}
-			
-			return returner;
+			return my_buildings.ToArray();
 		}
 	}
-
-	public void Add_Person()
-	{
-		serialised_person_names.Add("Labourer" + (my_person_incriment++).ToString());
-		serialised_person_jobs.Add(EJob.Unknown);
-		serialised_person_locations.Add((serialised_building_names.Count >0)?
-		                                serialised_building_names[0]:
-		                                "");
-	}
-
-	public void Add_Building()
-	{
-		serialised_building_names.Add("Building" + (my_building_incriment++).ToString());
-		serialised_building_types.Add(EBuilding.Unknown);
-		serialised_building_resources.Add(EResource.None);
-	}
-	
-	public void Pop_Person()
-	{
-		if (serialised_person_names.Count >0 )
-		{
-			serialised_person_names.RemoveAt(serialised_person_names.Count-1);
-			serialised_person_jobs.RemoveAt(serialised_person_jobs.Count-1);
-			serialised_person_locations.RemoveAt(serialised_person_locations.Count-1);
-		}
-	}
-
-	public void Pop_Building()
-	{
-		if (serialised_building_names.Count >0 )
-		{
-			serialised_building_names.RemoveAt(serialised_building_names.Count-1);
-			serialised_building_types.RemoveAt(serialised_building_types.Count-1);
-			serialised_building_resources.RemoveAt(serialised_building_resources.Count-1);
-		}
-	}
-
 
 	private List<Agent> my_active_agents;
 	private TaskPlannerProcess my_planner;
-	
+
+	[Serializable]
 	public struct Person
 	{
 		public string TheName;
 		public EJob TheJob;
 		public string TheLocation;
 	}
-	
+
+	[Serializable]
 	public struct Building
 	{
 		public string TheName;
@@ -128,13 +116,14 @@ public class AgentMaster : MonoBehaviour
 
 	public enum EBuilding
 	{
-		Unknown,
+		None,
 		Turfhut,
 		House,
 		School,
 		Barracks,
 		Storage,
-		Mine,
+		Coalmine,
+		Oremine,
 		Smelter,
 		Quary,
 		Sawmill,
@@ -145,8 +134,10 @@ public class AgentMaster : MonoBehaviour
 	public enum EResource
 	{
 		None,
-		Wood,
-		Mineral
+		Timber,
+		Coal,
+		Ore,
+		Stone
 	}
 
 	/// <summary>
@@ -154,7 +145,7 @@ public class AgentMaster : MonoBehaviour
 	/// </summary>
 	/// <returns>A string of the given EJob</returns>
 	/// <param name="its_job">The job type to be converted to a string</param>
-	public string Job_To_String(EJob its_job)
+	public static string Job_To_String(EJob its_job)
 	{
 		switch (its_job)
 		{
@@ -182,7 +173,7 @@ public class AgentMaster : MonoBehaviour
 	/// </summary>
 	/// <returns>A string of the given EBuilding</returns>
 	/// <param name="its_job">The building type to be converted to a string</param>
-	public string Building_To_String(EBuilding its_building)
+	public static string Building_To_String(EBuilding its_building)
 	{
 		switch (its_building)
 		{
@@ -196,8 +187,10 @@ public class AgentMaster : MonoBehaviour
 			return "barracks";
 		case EBuilding.Storage:
 			return "storage";
-		case EBuilding.Mine:
-			return "mine";
+		case EBuilding.Coalmine:
+			return "coalMine";
+		case EBuilding.Oremine:
+			return "oreMine";
 		case EBuilding.Smelter:
 			return "smelter";
 		case EBuilding.Quary:
@@ -214,7 +207,42 @@ public class AgentMaster : MonoBehaviour
 		return "errorbuilding";
 	}
 	
+	public static string Resource_To_String(EResource its_resource)
+	{
+		switch (its_resource)
+		{
+		case EResource.Timber:
+			return "timber";
+		case EResource.Coal:
+			return "coal";
+		case EResource.Ore:
+			return "ore";
+		case EResource.Stone:
+			return "stone";
+		}
 
+		//It should not reach this point
+		return "location";
+	}
+
+	public static string Location_To_String(EResource its_resource)
+	{
+		switch (its_resource)
+		{
+		case EResource.Timber:
+			return "forest";
+		case EResource.Coal:
+			return "miningResource";
+		case EResource.Ore:
+			return "miningResource";
+		case EResource.Stone:
+			return "stone";
+		}
+
+		//It should not reach this point
+		return "location";
+	}
+	
 	//private MapParser my_raw_solution;
 
 	//public 
@@ -231,10 +259,10 @@ public class AgentMaster : MonoBehaviour
 		
 		serialised_building_names = new List<string>();
 		serialised_building_types = new List<EBuilding>();
-		serialised_building_resources = new List<EResource>();*/
+		serialised_building_resources = new List<EResource>();
 
 		my_person_incriment = 0;
-		my_building_incriment = 0;
+		my_building_incriment = 0;*/
 	}
 
 	// Use this for initialization
@@ -269,14 +297,15 @@ public class AgentMaster : MonoBehaviour
 	///  It adds together several splits between the phases of writing a problem and
 	/// combines them into a string to save as a separate file.
 	/// </summary>
-	public static void Write_Problem(string its_file, Person[] its_scoped_people, Building[] its_scoped_buildings)
+	public static void Write_Problem(string its_file, Person[] its_scoped_people, Building[] its_scoped_buildings, Goal its_goal)
 	{
-		using (StreamWriter quick_writer = File.CreateText(Application.dataPath + "/Resources/" + its_file + "-problem.pddl"))
+		//using (StreamWriter quick_writer = File.CreateText(Application.dataPath + "/Resources/" + its_file + "-problem.pddl"))
+		using (StreamWriter quick_writer = File.CreateText(Application.dataPath + "/PDDL/Metric-FF/" + its_file + "-problem.pddl"))
 		{
 			self.Problem_Writing_Intro(quick_writer, its_file, "prob1");
 			self.Problem_Writing_Objects(quick_writer, its_scoped_people, its_scoped_buildings);
 			self.Problem_Writing_Initialising(quick_writer, its_scoped_people, its_scoped_buildings);
-			self.Problem_Writing_Goal(quick_writer);
+			self.Problem_Writing_Goal(quick_writer, its_goal);
 			self.Problem_Writing_Outro(quick_writer);
 
 			Debug.Log ("File " + Application.dataPath + "/Resources/" + its_file + ".pddl" + " created");
@@ -314,7 +343,8 @@ public class AgentMaster : MonoBehaviour
 		//Go through each location listed in the list of locations
 		for (int rep_building = 0; rep_building < its_scoped_buildings.Length; rep_building++)
 		{
-			its_stream.WriteLine("\t\t" + its_scoped_buildings[rep_building].TheName + " - location");
+			//its_stream.WriteLine("\t\t" + its_scoped_buildings[rep_building].TheName + " - " + Resource_To_String(its_scoped_buildings[rep_building].TheResource));
+			its_stream.WriteLine("\t\t" + its_scoped_buildings[rep_building].TheName + " - " + Location_To_String(its_scoped_buildings[rep_building].TheResource));
 		}
 
 		its_stream.WriteLine("\t\t)");
@@ -340,9 +370,24 @@ public class AgentMaster : MonoBehaviour
 		//Looping through each building and assigning their resource
 		for (int rep_building = 0; rep_building < its_scoped_buildings.Length; rep_building++)
 		{
-			its_stream.WriteLine("\t\t(has-" + Building_To_String(its_scoped_buildings[rep_building].TheType) + " " + its_scoped_buildings[rep_building].TheName + ")");
+			if (its_scoped_buildings[rep_building].TheType != EBuilding.None)
+				its_stream.WriteLine("\t\t(has-" + Building_To_String(its_scoped_buildings[rep_building].TheType) + " " + its_scoped_buildings[rep_building].TheName + ")");
+
+			if (its_scoped_buildings[rep_building].TheResource != EResource.None)
+				its_stream.WriteLine("\t\t(has-" + Resource_To_String(its_scoped_buildings[rep_building].TheResource) + " " + its_scoped_buildings[rep_building].TheName + ")");
 		}
 
+		//Set the number of each resource
+		its_stream.WriteLine("\t\t(=(labourCost) " + "0" + ")");
+		its_stream.WriteLine("\t\t(=(timber) " + my_resource_timber.ToString() + ")");
+		its_stream.WriteLine("\t\t(=(wood) " + my_resource_wood.ToString() + ")");
+		its_stream.WriteLine("\t\t(=(stone) " + my_resource_stone.ToString() + ")");
+		its_stream.WriteLine("\t\t(=(coal) " + my_resource_coal.ToString() + ")");
+		its_stream.WriteLine("\t\t(=(ore) " + my_resource_ore.ToString() + ")");
+		its_stream.WriteLine("\t\t(=(iron) " + my_resource_iron.ToString() + ")");
+		its_stream.WriteLine("\t\t(=(population) " + its_scoped_people.Length.ToString() + ")");
+
+		//End the resource writing
 		its_stream.WriteLine("\t\t)");
 		its_stream.WriteLine("");
 	}
@@ -352,11 +397,16 @@ public class AgentMaster : MonoBehaviour
 	/// </summary>
 	/// <param name="its_stream">The given stream to write to.</param>
 	/// <param name="its_problem_name">The problem name that's on top of the files.</param>
-	private void Problem_Writing_Goal(StreamWriter its_stream)
+	private void Problem_Writing_Goal(StreamWriter its_stream, Goal its_goal)
 	{
 		its_stream.WriteLine("\t(:goal");
+		its_stream.WriteLine("\t\t(and");
 
 		//This will probably hold a list of conditions
+		foreach (string rep_line in its_goal.Write_Goal())
+		{
+			its_stream.WriteLine("\t\t(" + rep_line + ")");
+		}
 
 		its_stream.WriteLine("\t\t)");
 		its_stream.WriteLine("");
