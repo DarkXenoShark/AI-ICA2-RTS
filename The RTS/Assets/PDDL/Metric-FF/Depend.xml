@@ -2,26 +2,26 @@
 <Durative-FF-Depend>
 <Operator>
 <Name>
-(SIMPLETRAIN LABOURER2 LABOURER1 TREE1)</Name>
+(SIMPLETRAIN OFFICERGUY THEGUY LOCATION1)</Name>
 
 </Operator>
 
 <Operator>
 <Name>
-(SIMPLETRAIN LABOURER1 LABOURER2 TREE1)</Name>
+(SIMPLETRAIN THEGUY OFFICERGUY LOCATION1)</Name>
 
 </Operator>
 
 <Operator>
 <Name>
-(MOVE LABOURER1 TREE1 STONE1)</Name>
+(MOVE OFFICERGUY LOCATION1 TREE2)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(SIMPLETRAIN LABOURER2 LABOURER1 TREE1)
+(SIMPLETRAIN OFFICERGUY THEGUY LOCATION1)
 </Name>
 
 </On_Operator>
@@ -29,7 +29,7 @@
 <On_Operator>
  
 <Name>
-(SIMPLETRAIN LABOURER1 LABOURER2 TREE1)
+(SIMPLETRAIN THEGUY OFFICERGUY LOCATION1)
 </Name>
 
 </On_Operator>
@@ -40,14 +40,22 @@
 
 <Operator>
 <Name>
-(BUILDQUARRY LABOURER1 STONE1)</Name>
+(MOVE THEGUY LOCATION1 STONELOCATION)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE LABOURER1 TREE1 STONE1)
+(SIMPLETRAIN OFFICERGUY THEGUY LOCATION1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLETRAIN THEGUY OFFICERGUY LOCATION1)
 </Name>
 
 </On_Operator>
@@ -58,22 +66,14 @@
 
 <Operator>
 <Name>
-(MOVE LABOURER2 TREE1 STONE1)</Name>
+(BUILDQUARRY THEGUY STONELOCATION)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(SIMPLETRAIN LABOURER2 LABOURER1 TREE1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(SIMPLETRAIN LABOURER1 LABOURER2 TREE1)
+(MOVE THEGUY LOCATION1 STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -84,22 +84,14 @@
 
 <Operator>
 <Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)</Name>
+(MOVE OFFICERGUY TREE2 STONELOCATION)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(BUILDQUARRY LABOURER1 STONE1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 TREE1 STONE1)
+(MOVE OFFICERGUY LOCATION1 TREE2)
 </Name>
 
 </On_Operator>
@@ -110,14 +102,14 @@
 
 <Operator>
 <Name>
-(MOVE LABOURER2 STONE1 TREE4)</Name>
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 TREE1 STONE1)
+(BUILDQUARRY THEGUY STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -125,7 +117,7 @@
 <On_Operator>
  
 <Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)
+(MOVE OFFICERGUY TREE2 STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -136,14 +128,22 @@
 
 <Operator>
 <Name>
-(MOVE LABOURER2 TREE4 LOCATIONORE1)</Name>
+(MOVE OFFICERGUY STONELOCATION TREE2)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 TREE4)
+(MOVE OFFICERGUY TREE2 STONELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -154,14 +154,14 @@
 
 <Operator>
 <Name>
-(SIMPLEMINEORE LABOURER2 LOCATIONORE1)</Name>
+(TRAINLUMBERJACK OFFICERGUY)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 TREE4 LOCATIONORE1)
+(SIMPLETRAIN THEGUY OFFICERGUY LOCATION1)
 </Name>
 
 </On_Operator>
@@ -172,14 +172,14 @@
 
 <Operator>
 <Name>
-(MOVE LABOURER2 LOCATIONORE1 TREE4)</Name>
+(CUTTREE OFFICERGUY TREE2)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 TREE4 LOCATIONORE1)
+(MOVE OFFICERGUY LOCATION1 TREE2)
 </Name>
 
 </On_Operator>
@@ -187,7 +187,23 @@
 <On_Operator>
  
 <Name>
-(SIMPLEMINEORE LABOURER2 LOCATIONORE1)
+(MOVE OFFICERGUY TREE2 STONELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY STONELOCATION TREE2)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(TRAINLUMBERJACK OFFICERGUY)
 </Name>
 
 </On_Operator>
@@ -198,14 +214,38 @@
 
 <Operator>
 <Name>
-(TRAINLUMBERJACK LABOURER2)</Name>
+(MOVE OFFICERGUY TREE2 COAL1)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(SIMPLETRAIN LABOURER1 LABOURER2 TREE1)
+(MOVE OFFICERGUY LOCATION1 TREE2)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY TREE2 STONELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY STONELOCATION TREE2)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE OFFICERGUY TREE2)
 </Name>
 
 </On_Operator>
@@ -216,38 +256,14 @@
 
 <Operator>
 <Name>
-(CUTTREE LABOURER2 TREE4)</Name>
+(SIMPLEMINECOAL OFFICERGUY COAL1)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 TREE4)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 TREE4 LOCATIONORE1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 LOCATIONORE1 TREE4)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(TRAINLUMBERJACK LABOURER2)
+(MOVE OFFICERGUY TREE2 COAL1)
 </Name>
 
 </On_Operator>
@@ -258,14 +274,14 @@
 
 <Operator>
 <Name>
-(MOVE LABOURER2 TREE4 LOCATIONCOAL1)</Name>
+(MOVE THEGUY STONELOCATION ORELOCATION)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 TREE4)
+(MOVE THEGUY LOCATION1 STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -273,23 +289,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 TREE4 LOCATIONORE1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 LOCATIONORE1 TREE4)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(CUTTREE LABOURER2 TREE4)
+(BUILDQUARRY THEGUY STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -300,14 +300,22 @@
 
 <Operator>
 <Name>
-(SIMPLEMINECOAL LABOURER2 LOCATIONCOAL1)</Name>
+(MOVE OFFICERGUY COAL1 ORELOCATION)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 TREE4 LOCATIONCOAL1)
+(MOVE OFFICERGUY TREE2 COAL1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEMINECOAL OFFICERGUY COAL1)
 </Name>
 
 </On_Operator>
@@ -318,22 +326,14 @@
 
 <Operator>
 <Name>
-(MOVE LABOURER1 STONE1 LOCATION3)</Name>
+(TRAINCARPENTER THEGUY)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE LABOURER1 TREE1 STONE1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDQUARRY LABOURER1 STONE1)
+(SIMPLETRAIN OFFICERGUY THEGUY LOCATION1)
 </Name>
 
 </On_Operator>
@@ -344,14 +344,14 @@
 
 <Operator>
 <Name>
-(MOVE LABOURER2 LOCATIONCOAL1 LOCATION3)</Name>
+(BUILDSTORAGE THEGUY OFFICERGUY ORELOCATION)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 TREE4 LOCATIONCOAL1)
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -359,7 +359,31 @@
 <On_Operator>
  
 <Name>
-(SIMPLEMINECOAL LABOURER2 LOCATIONCOAL1)
+(CUTTREE OFFICERGUY TREE2)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE THEGUY STONELOCATION ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY COAL1 ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(TRAINCARPENTER THEGUY)
 </Name>
 
 </On_Operator>
@@ -370,14 +394,38 @@
 
 <Operator>
 <Name>
-(TRAINCARPENTER LABOURER1)</Name>
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(SIMPLETRAIN LABOURER2 LABOURER1 TREE1)
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY STONELOCATION TREE2)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY COAL1 ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDSTORAGE THEGUY OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -388,14 +436,14 @@
 
 <Operator>
 <Name>
-(BUILDSTORAGE LABOURER1 LABOURER2 LOCATION3)</Name>
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)
+(BUILDQUARRY THEGUY STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -403,7 +451,7 @@
 <On_Operator>
  
 <Name>
-(CUTTREE LABOURER2 TREE4)
+(MOVE OFFICERGUY TREE2 STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -411,7 +459,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER1 STONE1 LOCATION3)
+(MOVE OFFICERGUY STONELOCATION TREE2)
 </Name>
 
 </On_Operator>
@@ -419,7 +467,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATIONCOAL1 LOCATION3)
+(BUILDSTORAGE THEGUY OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -427,7 +475,7 @@
 <On_Operator>
  
 <Name>
-(TRAINCARPENTER LABOURER1)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -438,14 +486,14 @@
 
 <Operator>
 <Name>
-(MOVE LABOURER2 LOCATION3 STONE1)</Name>
+(MOVE OFFICERGUY STONELOCATION LOCATION3)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)
+(MOVE OFFICERGUY TREE2 STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -453,7 +501,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 TREE4)
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -461,7 +509,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATIONCOAL1 LOCATION3)
+(MOVE OFFICERGUY STONELOCATION TREE2)
 </Name>
 
 </On_Operator>
@@ -469,7 +517,15 @@
 <On_Operator>
  
 <Name>
-(BUILDSTORAGE LABOURER1 LABOURER2 LOCATION3)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -480,14 +536,14 @@
 
 <Operator>
 <Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)</Name>
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(BUILDQUARRY LABOURER1 STONE1)
+(BUILDSTORAGE THEGUY OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -495,7 +551,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 TREE1 STONE1)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -503,23 +559,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 TREE4)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSTORAGE LABOURER1 LABOURER2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 LOCATION3 STONE1)
+(MOVE OFFICERGUY STONELOCATION LOCATION3)
 </Name>
 
 </On_Operator>
@@ -530,14 +570,14 @@
 
 <Operator>
 <Name>
-(MOVE LABOURER2 STONE1 LOCATION2)</Name>
+(STORESTONE OFFICERGUY ORELOCATION)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 TREE1 STONE1)
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -545,7 +585,7 @@
 <On_Operator>
  
 <Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)
+(MOVE OFFICERGUY COAL1 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -553,7 +593,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 TREE4)
+(BUILDSTORAGE THEGUY OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -561,7 +601,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 STONE1)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -569,7 +609,15 @@
 <On_Operator>
  
 <Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -580,14 +628,14 @@
 
 <Operator>
 <Name>
-(MOVE LABOURER2 LOCATION2 LOCATION3)</Name>
+(SIMPLEMINEORE OFFICERGUY ORELOCATION)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(BUILDSTORAGE LABOURER1 LABOURER2 LOCATION3)
+(MOVE OFFICERGUY COAL1 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -595,7 +643,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 STONE1)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -603,7 +651,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 LOCATION2)
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -614,54 +662,14 @@
 
 <Operator>
 <Name>
-(STORESTONE LABOURER2 LOCATION3)</Name>
+(BUILDSMELTER TEST LOCATION3)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 LOCATIONCOAL1 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSTORAGE LABOURER1 LABOURER2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 LOCATION3 STONE1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 LOCATION2 LOCATION3)
+(STORESTONE OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -672,14 +680,14 @@
 
 <Operator>
 <Name>
-(MOVE LABOURER2 LOCATION3 LOCATION2)</Name>
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATIONCOAL1 LOCATION3)
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -687,7 +695,7 @@
 <On_Operator>
  
 <Name>
-(BUILDSTORAGE LABOURER1 LABOURER2 LOCATION3)
+(MOVE OFFICERGUY STONELOCATION TREE2)
 </Name>
 
 </On_Operator>
@@ -695,7 +703,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 STONE1)
+(MOVE OFFICERGUY COAL1 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -703,7 +711,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION2 LOCATION3)
+(BUILDSTORAGE THEGUY OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -711,7 +719,47 @@
 <On_Operator>
  
 <Name>
-(STORESTONE LABOURER2 LOCATION3)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY STONELOCATION LOCATION3)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(STORESTONE OFFICERGUY ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEMINEORE OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -722,14 +770,14 @@
 
 <Operator>
 <Name>
-(BUILDSMELTER LABOURER2 LOCATION2)</Name>
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(BUILDSTORAGE LABOURER1 LABOURER2 LOCATION3)
+(BUILDQUARRY THEGUY STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -737,7 +785,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 LOCATION2)
+(MOVE OFFICERGUY TREE2 STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -745,7 +793,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION2 LOCATION3)
+(MOVE OFFICERGUY STONELOCATION TREE2)
 </Name>
 
 </On_Operator>
@@ -753,7 +801,7 @@
 <On_Operator>
  
 <Name>
-(STORESTONE LABOURER2 LOCATION3)
+(BUILDSTORAGE THEGUY OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -761,7 +809,31 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 LOCATION2)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY STONELOCATION LOCATION3)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(STORESTONE OFFICERGUY ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -772,14 +844,14 @@
 
 <Operator>
 <Name>
-(SMELTOREATSMELTER LABOURER2 LOCATION2)</Name>
+(MOVE OFFICERGUY STONELOCATION LOCATION3)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(SIMPLEMINEORE LABOURER2 LOCATIONORE1)
+(MOVE OFFICERGUY TREE2 STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -787,7 +859,7 @@
 <On_Operator>
  
 <Name>
-(SIMPLEMINECOAL LABOURER2 LOCATIONCOAL1)
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -795,7 +867,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 LOCATION2)
+(MOVE OFFICERGUY STONELOCATION TREE2)
 </Name>
 
 </On_Operator>
@@ -803,7 +875,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION2 LOCATION3)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -811,7 +883,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 LOCATION2)
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -819,7 +891,31 @@
 <On_Operator>
  
 <Name>
-(BUILDSMELTER LABOURER2 LOCATION2)
+(MOVE OFFICERGUY STONELOCATION LOCATION3)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -830,14 +926,14 @@
 
 <Operator>
 <Name>
-(MOVE LABOURER2 LOCATION2 STONE1)</Name>
+(SMELTOREATSMELTER OFFICERGUY LOCATION3)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)
+(SIMPLEMINECOAL OFFICERGUY COAL1)
 </Name>
 
 </On_Operator>
@@ -845,7 +941,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 TREE4)
+(MOVE OFFICERGUY STONELOCATION LOCATION3)
 </Name>
 
 </On_Operator>
@@ -853,7 +949,7 @@
 <On_Operator>
  
 <Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -861,7 +957,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 LOCATION2)
+(SIMPLEMINEORE OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -869,7 +965,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION2 LOCATION3)
+(BUILDSMELTER TEST LOCATION3)
 </Name>
 
 </On_Operator>
@@ -877,23 +973,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 LOCATION2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSMELTER LABOURER2 LOCATION2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(SMELTOREATSMELTER LABOURER2 LOCATION2)
+(MOVE OFFICERGUY STONELOCATION LOCATION3)
 </Name>
 
 </On_Operator>
@@ -904,14 +984,14 @@
 
 <Operator>
 <Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)</Name>
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(BUILDQUARRY LABOURER1 STONE1)
+(BUILDSTORAGE THEGUY OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -919,7 +999,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 TREE1 STONE1)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -927,7 +1007,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 TREE4)
+(MOVE OFFICERGUY STONELOCATION LOCATION3)
 </Name>
 
 </On_Operator>
@@ -935,7 +1015,7 @@
 <On_Operator>
  
 <Name>
-(BUILDSTORAGE LABOURER1 LABOURER2 LOCATION3)
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -943,7 +1023,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 STONE1)
+(STORESTONE OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -951,7 +1031,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 LOCATION2)
+(SIMPLEMINEORE OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -959,7 +1039,7 @@
 <On_Operator>
  
 <Name>
-(STORESTONE LABOURER2 LOCATION3)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -967,7 +1047,15 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION2 STONE1)
+(MOVE OFFICERGUY STONELOCATION LOCATION3)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SMELTOREATSMELTER OFFICERGUY LOCATION3)
 </Name>
 
 </On_Operator>
@@ -978,14 +1066,14 @@
 
 <Operator>
 <Name>
-(MOVE LABOURER2 STONE1 LOCATION3)</Name>
+(STOREIRON OFFICERGUY ORELOCATION)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 TREE1 STONE1)
+(MOVE OFFICERGUY COAL1 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -993,7 +1081,7 @@
 <On_Operator>
  
 <Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)
+(BUILDSTORAGE THEGUY OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1001,7 +1089,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 TREE4)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -1009,7 +1097,7 @@
 <On_Operator>
  
 <Name>
-(BUILDSTORAGE LABOURER1 LABOURER2 LOCATION3)
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1017,7 +1105,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 STONE1)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -1025,7 +1113,7 @@
 <On_Operator>
  
 <Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)
+(SMELTOREATSMELTER OFFICERGUY LOCATION3)
 </Name>
 
 </On_Operator>
@@ -1033,39 +1121,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 LOCATION2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STORESTONE LABOURER2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 LOCATION3 LOCATION2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 LOCATION2 STONE1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1076,14 +1132,14 @@
 
 <Operator>
 <Name>
-(STOREIRON LABOURER2 LOCATION3)</Name>
+(STORESTONE OFFICERGUY ORELOCATION)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATIONCOAL1 LOCATION3)
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -1091,7 +1147,7 @@
 <On_Operator>
  
 <Name>
-(BUILDSTORAGE LABOURER1 LABOURER2 LOCATION3)
+(MOVE OFFICERGUY COAL1 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1099,7 +1155,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 STONE1)
+(BUILDSTORAGE THEGUY OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1107,7 +1163,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION2 LOCATION3)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -1115,7 +1171,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 LOCATION2)
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -1123,7 +1179,7 @@
 <On_Operator>
  
 <Name>
-(SMELTOREATSMELTER LABOURER2 LOCATION2)
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1131,7 +1187,39 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 LOCATION3)
+(STORESTONE OFFICERGUY ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDSMELTER TEST LOCATION3)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1142,14 +1230,14 @@
 
 <Operator>
 <Name>
-(STORESTONE LABOURER2 LOCATION3)</Name>
+(STORETIMBER OFFICERGUY ORELOCATION)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)
+(CUTTREE OFFICERGUY TREE2)
 </Name>
 
 </On_Operator>
@@ -1157,7 +1245,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATIONCOAL1 LOCATION3)
+(MOVE OFFICERGUY COAL1 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1165,7 +1253,7 @@
 <On_Operator>
  
 <Name>
-(BUILDSTORAGE LABOURER1 LABOURER2 LOCATION3)
+(BUILDSTORAGE THEGUY OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1173,7 +1261,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 STONE1)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -1181,7 +1269,7 @@
 <On_Operator>
  
 <Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1189,7 +1277,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION2 LOCATION3)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -1197,39 +1285,7 @@
 <On_Operator>
  
 <Name>
-(STORESTONE LABOURER2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 LOCATION3 LOCATION2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSMELTER LABOURER2 LOCATION2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 STONE1 LOCATION3)
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1240,14 +1296,14 @@
 
 <Operator>
 <Name>
-(STORETIMBER LABOURER2 LOCATION3)</Name>
+(MOVE OFFICERGUY ORELOCATION TREE1)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(CUTTREE LABOURER2 TREE4)
+(MOVE OFFICERGUY COAL1 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1255,7 +1311,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATIONCOAL1 LOCATION3)
+(BUILDSTORAGE THEGUY OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1263,7 +1319,7 @@
 <On_Operator>
  
 <Name>
-(BUILDSTORAGE LABOURER1 LABOURER2 LOCATION3)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -1271,7 +1327,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 STONE1)
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1279,7 +1335,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION2 LOCATION3)
+(STORESTONE OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1287,7 +1343,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 LOCATION2)
+(SIMPLEMINEORE OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1295,7 +1351,39 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 LOCATION3)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(STOREIRON OFFICERGUY ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(STORESTONE OFFICERGUY ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(STORETIMBER OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1306,14 +1394,14 @@
 
 <Operator>
 <Name>
-(MOVE LABOURER2 LOCATION3 TREE3)</Name>
+(CUTTREE OFFICERGUY TREE1)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATIONCOAL1 LOCATION3)
+(TRAINLUMBERJACK OFFICERGUY)
 </Name>
 
 </On_Operator>
@@ -1321,7 +1409,7 @@
 <On_Operator>
  
 <Name>
-(BUILDSTORAGE LABOURER1 LABOURER2 LOCATION3)
+(BUILDSTORAGE THEGUY OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1329,7 +1417,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 STONE1)
+(STORETIMBER OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1337,55 +1425,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STORESTONE LABOURER2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 LOCATION3 LOCATION2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 STONE1 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STOREIRON LABOURER2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STORESTONE LABOURER2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STORETIMBER LABOURER2 LOCATION3)
+(MOVE OFFICERGUY ORELOCATION TREE1)
 </Name>
 
 </On_Operator>
@@ -1396,14 +1436,14 @@
 
 <Operator>
 <Name>
-(CUTTREE LABOURER2 TREE3)</Name>
+(MOVE OFFICERGUY TREE1 ORELOCATION)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(TRAINLUMBERJACK LABOURER2)
+(BUILDSTORAGE THEGUY OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1411,7 +1451,7 @@
 <On_Operator>
  
 <Name>
-(BUILDSTORAGE LABOURER1 LABOURER2 LOCATION3)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -1419,7 +1459,7 @@
 <On_Operator>
  
 <Name>
-(STORETIMBER LABOURER2 LOCATION3)
+(STORESTONE OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1427,7 +1467,55 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 TREE3)
+(SIMPLEMINEORE OFFICERGUY ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(STOREIRON OFFICERGUY ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(STORESTONE OFFICERGUY ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(STORETIMBER OFFICERGUY ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY ORELOCATION TREE1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(CUTTREE OFFICERGUY TREE1)
 </Name>
 
 </On_Operator>
@@ -1438,14 +1526,14 @@
 
 <Operator>
 <Name>
-(MOVE LABOURER2 TREE3 LOCATION3)</Name>
+(BUILDSAWMILL GUY LOCATION1)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(BUILDSTORAGE LABOURER1 LABOURER2 LOCATION3)
+(STORESTONE OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1453,7 +1541,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 STONE1)
+(BUILDSMELTER TEST LOCATION3)
 </Name>
 
 </On_Operator>
@@ -1461,7 +1549,7 @@
 <On_Operator>
  
 <Name>
-(STORESTONE LABOURER2 LOCATION3)
+(STOREIRON OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1469,7 +1557,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 LOCATION2)
+(STORESTONE OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1477,39 +1565,7 @@
 <On_Operator>
  
 <Name>
-(STOREIRON LABOURER2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STORESTONE LABOURER2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STORETIMBER LABOURER2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 LOCATION3 TREE3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(CUTTREE LABOURER2 TREE3)
+(STORETIMBER OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1520,14 +1576,14 @@
 
 <Operator>
 <Name>
-(MOVE LABOURER2 LOCATION3 TREE2)</Name>
+(SIMPLEMINEORE OFFICERGUY ORELOCATION)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATIONCOAL1 LOCATION3)
+(MOVE OFFICERGUY COAL1 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1535,7 +1591,7 @@
 <On_Operator>
  
 <Name>
-(BUILDSTORAGE LABOURER1 LABOURER2 LOCATION3)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -1543,7 +1599,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 STONE1)
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1551,7 +1607,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION2 LOCATION3)
+(SIMPLEMINEORE OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1559,7 +1615,7 @@
 <On_Operator>
  
 <Name>
-(STORESTONE LABOURER2 LOCATION3)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -1567,7 +1623,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 LOCATION2)
+(SMELTOREATSMELTER OFFICERGUY LOCATION3)
 </Name>
 
 </On_Operator>
@@ -1575,7 +1631,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 LOCATION3)
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1583,7 +1639,7 @@
 <On_Operator>
  
 <Name>
-(STOREIRON LABOURER2 LOCATION3)
+(MOVE OFFICERGUY ORELOCATION TREE1)
 </Name>
 
 </On_Operator>
@@ -1591,31 +1647,7 @@
 <On_Operator>
  
 <Name>
-(STORESTONE LABOURER2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STORETIMBER LABOURER2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 LOCATION3 TREE3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 TREE3 LOCATION3)
+(MOVE OFFICERGUY TREE1 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1626,14 +1658,14 @@
 
 <Operator>
 <Name>
-(BUILDSAWMILL LABOURER2 TREE2)</Name>
+(MOVE OFFICERGUY ORELOCATION COAL1)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(STORESTONE LABOURER2 LOCATION3)
+(SIMPLEMINECOAL OFFICERGUY COAL1)
 </Name>
 
 </On_Operator>
@@ -1641,7 +1673,7 @@
 <On_Operator>
  
 <Name>
-(BUILDSMELTER LABOURER2 LOCATION2)
+(MOVE OFFICERGUY COAL1 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1649,7 +1681,7 @@
 <On_Operator>
  
 <Name>
-(STOREIRON LABOURER2 LOCATION3)
+(BUILDSTORAGE THEGUY OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1657,7 +1689,7 @@
 <On_Operator>
  
 <Name>
-(STORESTONE LABOURER2 LOCATION3)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -1665,7 +1697,7 @@
 <On_Operator>
  
 <Name>
-(STORETIMBER LABOURER2 LOCATION3)
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1673,7 +1705,79 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 TREE2)
+(STORESTONE OFFICERGUY ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEMINEORE OFFICERGUY ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(STOREIRON OFFICERGUY ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(STORESTONE OFFICERGUY ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(STORETIMBER OFFICERGUY ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY ORELOCATION TREE1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY TREE1 ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEMINEORE OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1684,14 +1788,14 @@
 
 <Operator>
 <Name>
-(SAWTIMBERATSAWMILL LABOURER2 TREE2)</Name>
+(SIMPLEMINECOAL OFFICERGUY COAL1)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(CUTTREE LABOURER2 TREE4)
+(MOVE OFFICERGUY TREE2 COAL1)
 </Name>
 
 </On_Operator>
@@ -1699,7 +1803,7 @@
 <On_Operator>
  
 <Name>
-(BUILDSTORAGE LABOURER1 LABOURER2 LOCATION3)
+(SIMPLEMINECOAL OFFICERGUY COAL1)
 </Name>
 
 </On_Operator>
@@ -1707,7 +1811,7 @@
 <On_Operator>
  
 <Name>
-(STORETIMBER LABOURER2 LOCATION3)
+(MOVE OFFICERGUY COAL1 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1715,7 +1819,7 @@
 <On_Operator>
  
 <Name>
-(CUTTREE LABOURER2 TREE3)
+(SMELTOREATSMELTER OFFICERGUY LOCATION3)
 </Name>
 
 </On_Operator>
@@ -1723,15 +1827,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 TREE2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSAWMILL LABOURER2 TREE2)
+(MOVE OFFICERGUY ORELOCATION COAL1)
 </Name>
 
 </On_Operator>
@@ -1742,14 +1838,14 @@
 
 <Operator>
 <Name>
-(MOVE LABOURER2 TREE2 LOCATIONORE1)</Name>
+(MOVE OFFICERGUY COAL1 LOCATION1)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(SIMPLEMINEORE LABOURER2 LOCATIONORE1)
+(SIMPLETRAIN OFFICERGUY THEGUY LOCATION1)
 </Name>
 
 </On_Operator>
@@ -1757,7 +1853,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATIONORE1 TREE4)
+(SIMPLETRAIN THEGUY OFFICERGUY LOCATION1)
 </Name>
 
 </On_Operator>
@@ -1765,7 +1861,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 TREE2)
+(MOVE OFFICERGUY LOCATION1 TREE2)
 </Name>
 
 </On_Operator>
@@ -1773,7 +1869,7 @@
 <On_Operator>
  
 <Name>
-(BUILDSAWMILL LABOURER2 TREE2)
+(MOVE OFFICERGUY TREE2 COAL1)
 </Name>
 
 </On_Operator>
@@ -1781,7 +1877,31 @@
 <On_Operator>
  
 <Name>
-(SAWTIMBERATSAWMILL LABOURER2 TREE2)
+(SIMPLEMINECOAL OFFICERGUY COAL1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY COAL1 ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY ORELOCATION COAL1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEMINECOAL OFFICERGUY COAL1)
 </Name>
 
 </On_Operator>
@@ -1792,14 +1912,14 @@
 
 <Operator>
 <Name>
-(SIMPLEMINEORE LABOURER2 LOCATIONORE1)</Name>
+(SAWTIMBERATSAWMILL OFFICERGUY LOCATION1)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 TREE4 LOCATIONORE1)
+(MOVE OFFICERGUY LOCATION1 TREE2)
 </Name>
 
 </On_Operator>
@@ -1807,7 +1927,7 @@
 <On_Operator>
  
 <Name>
-(SIMPLEMINEORE LABOURER2 LOCATIONORE1)
+(CUTTREE OFFICERGUY TREE2)
 </Name>
 
 </On_Operator>
@@ -1815,7 +1935,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATIONORE1 TREE4)
+(BUILDSTORAGE THEGUY OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1823,7 +1943,7 @@
 <On_Operator>
  
 <Name>
-(SMELTOREATSMELTER LABOURER2 LOCATION2)
+(STORETIMBER OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1831,7 +1951,23 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 TREE2 LOCATIONORE1)
+(CUTTREE OFFICERGUY TREE1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(BUILDSAWMILL GUY LOCATION1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY COAL1 LOCATION1)
 </Name>
 
 </On_Operator>
@@ -1842,14 +1978,14 @@
 
 <Operator>
 <Name>
-(MOVE LABOURER2 LOCATIONORE1 LOCATIONCOAL1)</Name>
+(MOVE OFFICERGUY LOCATION1 STONELOCATION)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 TREE4 LOCATIONORE1)
+(SIMPLETRAIN OFFICERGUY THEGUY LOCATION1)
 </Name>
 
 </On_Operator>
@@ -1857,7 +1993,7 @@
 <On_Operator>
  
 <Name>
-(SIMPLEMINEORE LABOURER2 LOCATIONORE1)
+(SIMPLETRAIN THEGUY OFFICERGUY LOCATION1)
 </Name>
 
 </On_Operator>
@@ -1865,7 +2001,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATIONORE1 TREE4)
+(MOVE OFFICERGUY LOCATION1 TREE2)
 </Name>
 
 </On_Operator>
@@ -1873,7 +2009,7 @@
 <On_Operator>
  
 <Name>
-(SIMPLEMINECOAL LABOURER2 LOCATIONCOAL1)
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -1881,7 +2017,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATIONCOAL1 LOCATION3)
+(MOVE OFFICERGUY STONELOCATION TREE2)
 </Name>
 
 </On_Operator>
@@ -1889,7 +2025,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 TREE2 LOCATIONORE1)
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -1897,7 +2033,39 @@
 <On_Operator>
  
 <Name>
-(SIMPLEMINEORE LABOURER2 LOCATIONORE1)
+(MOVE OFFICERGUY STONELOCATION LOCATION3)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY STONELOCATION LOCATION3)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY COAL1 LOCATION1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SAWTIMBERATSAWMILL OFFICERGUY LOCATION1)
 </Name>
 
 </On_Operator>
@@ -1908,14 +2076,14 @@
 
 <Operator>
 <Name>
-(SIMPLEMINECOAL LABOURER2 LOCATIONCOAL1)</Name>
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 TREE4 LOCATIONCOAL1)
+(BUILDQUARRY THEGUY STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -1923,7 +2091,7 @@
 <On_Operator>
  
 <Name>
-(SIMPLEMINECOAL LABOURER2 LOCATIONCOAL1)
+(MOVE OFFICERGUY TREE2 STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -1931,7 +2099,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATIONCOAL1 LOCATION3)
+(MOVE OFFICERGUY STONELOCATION TREE2)
 </Name>
 
 </On_Operator>
@@ -1939,7 +2107,7 @@
 <On_Operator>
  
 <Name>
-(SMELTOREATSMELTER LABOURER2 LOCATION2)
+(BUILDSTORAGE THEGUY OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -1947,7 +2115,55 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATIONORE1 LOCATIONCOAL1)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY STONELOCATION LOCATION3)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(STORESTONE OFFICERGUY ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY STONELOCATION LOCATION3)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(STORESTONE OFFICERGUY ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY LOCATION1 STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -1958,14 +2174,14 @@
 
 <Operator>
 <Name>
-(MOVE LABOURER2 LOCATIONCOAL1 STONE1)</Name>
+(MOVE OFFICERGUY STONELOCATION LOCATION3)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)
+(MOVE OFFICERGUY TREE2 STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -1973,7 +2189,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 TREE4)
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -1981,7 +2197,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 TREE4 LOCATIONCOAL1)
+(MOVE OFFICERGUY STONELOCATION TREE2)
 </Name>
 
 </On_Operator>
@@ -1989,7 +2205,7 @@
 <On_Operator>
  
 <Name>
-(SIMPLEMINECOAL LABOURER2 LOCATIONCOAL1)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -1997,7 +2213,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATIONCOAL1 LOCATION3)
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -2005,7 +2221,7 @@
 <On_Operator>
  
 <Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)
+(MOVE OFFICERGUY STONELOCATION LOCATION3)
 </Name>
 
 </On_Operator>
@@ -2013,7 +2229,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 LOCATION2)
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2021,7 +2237,7 @@
 <On_Operator>
  
 <Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -2029,7 +2245,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 LOCATION3)
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -2037,7 +2253,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATIONORE1 LOCATIONCOAL1)
+(MOVE OFFICERGUY STONELOCATION LOCATION3)
 </Name>
 
 </On_Operator>
@@ -2045,7 +2261,31 @@
 <On_Operator>
  
 <Name>
-(SIMPLEMINECOAL LABOURER2 LOCATIONCOAL1)
+(SMELTOREATSMELTER OFFICERGUY LOCATION3)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY LOCATION1 STONELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -2056,14 +2296,14 @@
 
 <Operator>
 <Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)</Name>
+(SMELTOREATSMELTER OFFICERGUY LOCATION3)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(BUILDQUARRY LABOURER1 STONE1)
+(SIMPLEMINECOAL OFFICERGUY COAL1)
 </Name>
 
 </On_Operator>
@@ -2071,7 +2311,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 TREE1 STONE1)
+(MOVE OFFICERGUY STONELOCATION LOCATION3)
 </Name>
 
 </On_Operator>
@@ -2079,7 +2319,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 TREE4)
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2087,7 +2327,7 @@
 <On_Operator>
  
 <Name>
-(BUILDSTORAGE LABOURER1 LABOURER2 LOCATION3)
+(SIMPLEMINEORE OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2095,7 +2335,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 STONE1)
+(BUILDSMELTER TEST LOCATION3)
 </Name>
 
 </On_Operator>
@@ -2103,7 +2343,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 LOCATION2)
+(MOVE OFFICERGUY STONELOCATION LOCATION3)
 </Name>
 
 </On_Operator>
@@ -2111,7 +2351,7 @@
 <On_Operator>
  
 <Name>
-(STORESTONE LABOURER2 LOCATION3)
+(SMELTOREATSMELTER OFFICERGUY LOCATION3)
 </Name>
 
 </On_Operator>
@@ -2119,7 +2359,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION2 STONE1)
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2127,7 +2367,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 LOCATION3)
+(STOREIRON OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2135,7 +2375,7 @@
 <On_Operator>
  
 <Name>
-(STORESTONE LABOURER2 LOCATION3)
+(SIMPLEMINEORE OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2143,7 +2383,15 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATIONCOAL1 STONE1)
+(SIMPLEMINECOAL OFFICERGUY COAL1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY STONELOCATION LOCATION3)
 </Name>
 
 </On_Operator>
@@ -2154,14 +2402,14 @@
 
 <Operator>
 <Name>
-(MOVE LABOURER2 STONE1 LOCATION2)</Name>
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 TREE1 STONE1)
+(BUILDSTORAGE THEGUY OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2169,7 +2417,7 @@
 <On_Operator>
  
 <Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -2177,7 +2425,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 TREE4)
+(MOVE OFFICERGUY STONELOCATION LOCATION3)
 </Name>
 
 </On_Operator>
@@ -2185,7 +2433,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 STONE1)
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2193,7 +2441,7 @@
 <On_Operator>
  
 <Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)
+(STORESTONE OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2201,7 +2449,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 LOCATION2)
+(SIMPLEMINEORE OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2209,7 +2457,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION2 LOCATION3)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -2217,7 +2465,7 @@
 <On_Operator>
  
 <Name>
-(BUILDSMELTER LABOURER2 LOCATION2)
+(MOVE OFFICERGUY STONELOCATION LOCATION3)
 </Name>
 
 </On_Operator>
@@ -2225,7 +2473,7 @@
 <On_Operator>
  
 <Name>
-(SMELTOREATSMELTER LABOURER2 LOCATION2)
+(SMELTOREATSMELTER OFFICERGUY LOCATION3)
 </Name>
 
 </On_Operator>
@@ -2233,7 +2481,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION2 STONE1)
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2241,7 +2489,7 @@
 <On_Operator>
  
 <Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)
+(STOREIRON OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2249,7 +2497,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 LOCATION3)
+(STORESTONE OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2257,7 +2505,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATIONCOAL1 STONE1)
+(STORETIMBER OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2265,7 +2513,39 @@
 <On_Operator>
  
 <Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)
+(MOVE OFFICERGUY ORELOCATION TREE1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEMINEORE OFFICERGUY ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY ORELOCATION COAL1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY STONELOCATION LOCATION3)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SMELTOREATSMELTER OFFICERGUY LOCATION3)
 </Name>
 
 </On_Operator>
@@ -2276,14 +2556,14 @@
 
 <Operator>
 <Name>
-(SMELTOREATSMELTER LABOURER2 LOCATION2)</Name>
+(STOREIRON OFFICERGUY ORELOCATION)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(SIMPLEMINEORE LABOURER2 LOCATIONORE1)
+(MOVE OFFICERGUY COAL1 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2291,7 +2571,7 @@
 <On_Operator>
  
 <Name>
-(SIMPLEMINECOAL LABOURER2 LOCATIONCOAL1)
+(BUILDSTORAGE THEGUY OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2299,7 +2579,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 LOCATION2)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -2307,7 +2587,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION2 LOCATION3)
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2315,7 +2595,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 LOCATION2)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -2323,7 +2603,7 @@
 <On_Operator>
  
 <Name>
-(BUILDSMELTER LABOURER2 LOCATION2)
+(SMELTOREATSMELTER OFFICERGUY LOCATION3)
 </Name>
 
 </On_Operator>
@@ -2331,7 +2611,7 @@
 <On_Operator>
  
 <Name>
-(SMELTOREATSMELTER LABOURER2 LOCATION2)
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2339,7 +2619,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION2 STONE1)
+(STOREIRON OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2347,7 +2627,7 @@
 <On_Operator>
  
 <Name>
-(STOREIRON LABOURER2 LOCATION3)
+(MOVE OFFICERGUY ORELOCATION TREE1)
 </Name>
 
 </On_Operator>
@@ -2355,7 +2635,7 @@
 <On_Operator>
  
 <Name>
-(SIMPLEMINEORE LABOURER2 LOCATIONORE1)
+(MOVE OFFICERGUY TREE1 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2363,7 +2643,7 @@
 <On_Operator>
  
 <Name>
-(SIMPLEMINECOAL LABOURER2 LOCATIONCOAL1)
+(BUILDSAWMILL GUY LOCATION1)
 </Name>
 
 </On_Operator>
@@ -2371,7 +2651,23 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 LOCATION2)
+(MOVE OFFICERGUY ORELOCATION COAL1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SMELTOREATSMELTER OFFICERGUY LOCATION3)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2382,14 +2678,14 @@
 
 <Operator>
 <Name>
-(MOVE LABOURER2 LOCATION2 LOCATION3)</Name>
+(STORESTONE OFFICERGUY ORELOCATION)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(BUILDSTORAGE LABOURER1 LABOURER2 LOCATION3)
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -2397,7 +2693,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 STONE1)
+(MOVE OFFICERGUY COAL1 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2405,7 +2701,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 LOCATION2)
+(BUILDSTORAGE THEGUY OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2413,7 +2709,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION2 LOCATION3)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -2421,7 +2717,7 @@
 <On_Operator>
  
 <Name>
-(STORESTONE LABOURER2 LOCATION3)
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -2429,7 +2725,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 LOCATION2)
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2437,7 +2733,7 @@
 <On_Operator>
  
 <Name>
-(BUILDSMELTER LABOURER2 LOCATION2)
+(STORESTONE OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2445,7 +2741,7 @@
 <On_Operator>
  
 <Name>
-(SMELTOREATSMELTER LABOURER2 LOCATION2)
+(BUILDSMELTER TEST LOCATION3)
 </Name>
 
 </On_Operator>
@@ -2453,7 +2749,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION2 STONE1)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -2461,7 +2757,7 @@
 <On_Operator>
  
 <Name>
-(STOREIRON LABOURER2 LOCATION3)
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -2469,7 +2765,7 @@
 <On_Operator>
  
 <Name>
-(STORESTONE LABOURER2 LOCATION3)
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2477,7 +2773,7 @@
 <On_Operator>
  
 <Name>
-(STORETIMBER LABOURER2 LOCATION3)
+(STORESTONE OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2485,7 +2781,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 TREE3)
+(MOVE OFFICERGUY ORELOCATION TREE1)
 </Name>
 
 </On_Operator>
@@ -2493,7 +2789,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 TREE2)
+(MOVE OFFICERGUY TREE1 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2501,7 +2797,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 LOCATION2)
+(BUILDSAWMILL GUY LOCATION1)
 </Name>
 
 </On_Operator>
@@ -2509,7 +2805,23 @@
 <On_Operator>
  
 <Name>
-(SMELTOREATSMELTER LABOURER2 LOCATION2)
+(MOVE OFFICERGUY ORELOCATION COAL1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(QUARRYQUARRIBLESTONE OFFICERGUY STONELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2520,14 +2832,14 @@
 
 <Operator>
 <Name>
-(STOREIRON LABOURER2 LOCATION3)</Name>
+(STOREWOOD OFFICERGUY ORELOCATION)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATIONCOAL1 LOCATION3)
+(MOVE OFFICERGUY COAL1 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2535,7 +2847,7 @@
 <On_Operator>
  
 <Name>
-(BUILDSTORAGE LABOURER1 LABOURER2 LOCATION3)
+(BUILDSTORAGE THEGUY OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2543,7 +2855,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 STONE1)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -2551,7 +2863,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION2 LOCATION3)
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2559,7 +2871,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 LOCATION2)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -2567,7 +2879,7 @@
 <On_Operator>
  
 <Name>
-(SMELTOREATSMELTER LABOURER2 LOCATION2)
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2575,7 +2887,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 LOCATION3)
+(MOVE OFFICERGUY ORELOCATION TREE1)
 </Name>
 
 </On_Operator>
@@ -2583,7 +2895,7 @@
 <On_Operator>
  
 <Name>
-(STOREIRON LABOURER2 LOCATION3)
+(MOVE OFFICERGUY TREE1 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2591,7 +2903,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 TREE3)
+(MOVE OFFICERGUY ORELOCATION COAL1)
 </Name>
 
 </On_Operator>
@@ -2599,7 +2911,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 TREE3 LOCATION3)
+(SAWTIMBERATSAWMILL OFFICERGUY LOCATION1)
 </Name>
 
 </On_Operator>
@@ -2607,31 +2919,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 TREE2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSAWMILL LABOURER2 TREE2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(SMELTOREATSMELTER LABOURER2 LOCATION2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 LOCATION2 LOCATION3)
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2642,14 +2930,14 @@
 
 <Operator>
 <Name>
-(STORESTONE LABOURER2 LOCATION3)</Name>
+(MOVE THEGUY ORELOCATION LOCATION2)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)
+(MOVE THEGUY STONELOCATION ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2657,135 +2945,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATIONCOAL1 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSTORAGE LABOURER1 LABOURER2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 LOCATION3 STONE1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 LOCATION2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STORESTONE LABOURER2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 LOCATION3 LOCATION2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSMELTER LABOURER2 LOCATION2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 STONE1 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STORESTONE LABOURER2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 LOCATION3 TREE3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 TREE3 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 LOCATION3 TREE2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSAWMILL LABOURER2 TREE2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(QUARRYQUARRIBLESTONE LABOURER2 STONE1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 LOCATION2 LOCATION3)
+(BUILDSTORAGE THEGUY OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2796,14 +2956,14 @@
 
 <Operator>
 <Name>
-(STOREWOOD LABOURER2 LOCATION3)</Name>
+(MOVE OFFICERGUY ORELOCATION LOCATION2)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATIONCOAL1 LOCATION3)
+(MOVE OFFICERGUY COAL1 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2811,7 +2971,7 @@
 <On_Operator>
  
 <Name>
-(BUILDSTORAGE LABOURER1 LABOURER2 LOCATION3)
+(BUILDSTORAGE THEGUY OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2819,7 +2979,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 STONE1)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -2827,7 +2987,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION2 LOCATION3)
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2835,7 +2995,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 LOCATION2)
+(STORESTONE OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2843,7 +3003,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 LOCATION3)
+(SIMPLEMINEORE OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2851,7 +3011,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 TREE3)
+(MOVE OFFICERGUY ORELOCATION STONELOCATION)
 </Name>
 
 </On_Operator>
@@ -2859,7 +3019,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 TREE3 LOCATION3)
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2867,7 +3027,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 TREE2)
+(STOREIRON OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2875,7 +3035,7 @@
 <On_Operator>
  
 <Name>
-(SAWTIMBERATSAWMILL LABOURER2 TREE2)
+(STORESTONE OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2883,7 +3043,71 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION2 LOCATION3)
+(STORETIMBER OFFICERGUY ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY ORELOCATION TREE1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY TREE1 ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(SIMPLEMINEORE OFFICERGUY ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY ORELOCATION COAL1)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(MOVE OFFICERGUY LOCATION3 ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(STOREIRON OFFICERGUY ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(STORESTONE OFFICERGUY ORELOCATION)
+</Name>
+
+</On_Operator>
+ 
+<On_Operator>
+ 
+<Name>
+(STOREWOOD OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2894,14 +3118,14 @@
 
 <Operator>
 <Name>
-(MOVE LABOURER1 LOCATION3 LOCATION1)</Name>
+(BUILDSCHOOL THEGUY OFFICERGUY LOCATION2)</Name>
 
 <Depend>
  
 <On_Operator>
  
 <Name>
-(MOVE LABOURER1 STONE1 LOCATION3)
+(TRAINCARPENTER THEGUY)
 </Name>
 
 </On_Operator>
@@ -2909,25 +3133,7 @@
 <On_Operator>
  
 <Name>
-(BUILDSTORAGE LABOURER1 LABOURER2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(MOVE LABOURER2 LOCATION3 LOCATION1)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 LOCATIONCOAL1 LOCATION3)
+(STORESTONE OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2935,7 +3141,7 @@
 <On_Operator>
  
 <Name>
-(BUILDSTORAGE LABOURER1 LABOURER2 LOCATION3)
+(BUILDSMELTER TEST LOCATION3)
 </Name>
 
 </On_Operator>
@@ -2943,7 +3149,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 STONE1)
+(STOREIRON OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2951,7 +3157,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION2 LOCATION3)
+(STORESTONE OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2959,7 +3165,7 @@
 <On_Operator>
  
 <Name>
-(STORESTONE LABOURER2 LOCATION3)
+(BUILDSAWMILL GUY LOCATION1)
 </Name>
 
 </On_Operator>
@@ -2967,7 +3173,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 LOCATION3 LOCATION2)
+(STOREIRON OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2975,7 +3181,7 @@
 <On_Operator>
  
 <Name>
-(MOVE LABOURER2 STONE1 LOCATION3)
+(STORESTONE OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2983,7 +3189,7 @@
 <On_Operator>
  
 <Name>
-(STOREIRON LABOURER2 LOCATION3)
+(STOREWOOD OFFICERGUY ORELOCATION)
 </Name>
 
 </On_Operator>
@@ -2991,7 +3197,7 @@
 <On_Operator>
  
 <Name>
-(STORESTONE LABOURER2 LOCATION3)
+(MOVE THEGUY ORELOCATION LOCATION2)
 </Name>
 
 </On_Operator>
@@ -2999,161 +3205,7 @@
 <On_Operator>
  
 <Name>
-(STORETIMBER LABOURER2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 LOCATION3 TREE3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 TREE3 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 LOCATION3 TREE2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 LOCATION2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STOREIRON LABOURER2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STORESTONE LABOURER2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STOREWOOD LABOURER2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-</Depend>
- 
-</Operator>
-
-<Operator>
-<Name>
-(BUILDSCHOOL LABOURER1 LABOURER2 LOCATION1)</Name>
-
-<Depend>
- 
-<On_Operator>
- 
-<Name>
-(TRAINCARPENTER LABOURER1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STORESTONE LABOURER2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSMELTER LABOURER2 LOCATION2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STOREIRON LABOURER2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STORESTONE LABOURER2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(BUILDSAWMILL LABOURER2 TREE2)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STOREIRON LABOURER2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STORESTONE LABOURER2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(STOREWOOD LABOURER2 LOCATION3)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER1 LOCATION3 LOCATION1)
-</Name>
-
-</On_Operator>
- 
-<On_Operator>
- 
-<Name>
-(MOVE LABOURER2 LOCATION3 LOCATION1)
+(MOVE OFFICERGUY ORELOCATION LOCATION2)
 </Name>
 
 </On_Operator>
