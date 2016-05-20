@@ -160,6 +160,10 @@ public class AgentMasterInspector : Editor
 			if (GUILayout.Button ("Start Task Planner"))
 			{
 				self.gameObject.GetComponent<TaskPlannerProcess>().CallStart();
+				foreach (string rep_string in self.gameObject.GetComponent<TaskPlannerProcess>().todoList)
+				{
+					Debug.Log (rep_string);
+				}
 			}
 		}
 
