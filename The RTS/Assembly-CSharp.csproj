@@ -50,10 +50,11 @@
      <Compile Include="Assets\Game\PlayerBehaviour.cs" />
      <Compile Include="Assets\PDDL\TaskPlannerProcess.cs" />
      <Compile Include="Assets\Scripts\Solution Reading\Agent.cs" />
+     <Compile Include="Assets\Scripts\Solution Reading\AgentCommandCompilation.cs" />
      <Compile Include="Assets\Scripts\Solution Reading\AgentMaster.cs" />
-     <Compile Include="Assets\Scripts\Utilities\GameMaster.cs" />
-     <Compile Include="Assets\Scripts\Utilities\Location.cs" />
-     <Compile Include="Assets\Scripts\Utilities\Person.cs" />
+     <Compile Include="Assets\Scripts\Solution Reading\GameMaster.cs" />
+     <Compile Include="Assets\Scripts\Solution Reading\Location.cs" />
+     <Compile Include="Assets\Scripts\Solution Reading\Player.cs" />
      <Compile Include="Assets\Scripts\Utilities\Utility.cs" />
      <Compile Include="Assets\TileMap\Enumerators.cs" />
      <Compile Include="Assets\TileMap\FileParser.cs" />

@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Agent
+public struct Agent
 {
-	public delegate void Event_Mission_Action(params string[] its_actions);
-	public delegate bool Event_Mission_Check(params string[] its_actions);
+	public delegate void Event_Mission_Action(string[] its_actions);
+	public delegate bool Event_Mission_Check(string[] its_actions);
 
 	private Event_Mission_Action my_mission_start;
 	private Event_Mission_Action my_mission_action;
@@ -14,7 +14,7 @@ public class Agent
 
 
 
-	public string[] my_agent_actions;
+	public string[] TheActions;
 
 	public void Set_Agent(Event_Mission_Action its_start_action,
 	                      Event_Mission_Action its_during_action,
@@ -39,22 +39,29 @@ public class Agent
 
 	public void Call_Start()
 	{
-		my_mission_start(my_agent_actions);
+        my_mission_start(TheActions);
 	}
 	
-	public void Call_Update()
+    /// <summary>
+    /// A standard update of the agent, consistently calling the frame check
+    /// </summary>
+    /// <returns>If the agent is completed this frame</returns>
+	public bool Call_Update()
 	{
-		my_mission_action(my_agent_actions);
-		if (my_mission_check(my_agent_actions))
-			Abort_Agent();
+        my_mission_action(TheActions);
+        if (my_mission_check(TheActions))
+        {
+            //Abort_Agent();
+            Call_End();
+            return true;
+        }
+
+        return false;
 	}
 	
 	public void Call_End()
 	{
-		my_mission_complete(my_agent_actions);
+        my_mission_complete(TheActions);
 	}
 
-	public Agent()
-	{
-	}
 }

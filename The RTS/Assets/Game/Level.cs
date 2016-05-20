@@ -9,6 +9,16 @@ using SandTiger;
 
 public class Level : MonoBehaviour
 {
+    private static Level self;
+
+    public static Level Self
+    {
+        get
+        {
+            return self;
+        }
+    }
+
 	[SerializeField] private string _map = "";
 
 	private TileEnumMapper <TileType> _tiles;
@@ -16,6 +26,8 @@ public class Level : MonoBehaviour
 
 	[UsedImplicitly] private void Awake ()
 	{
+        self = this;
+
 		// Parse and load a map into cache.
 		FileParser.LoadFromFile (_map);
 		// Find the tilemap game object and cache the behaviour.
@@ -69,11 +81,6 @@ public class Level : MonoBehaviour
 
 		watch.Stop();
 		Debug.Log (watch.ElapsedMilliseconds / 1000f);
-
-		// Move player.
-		PlayerBehaviour playerBehaviour = GameObject.Find ("Player").GetComponent<PlayerBehaviour>();
-		playerBehaviour.SetTilePosition (IVector2.one);
-		playerBehaviour.GetComponent<Renderer>().sortingOrder = 1;
 
 		Renderer R = _tileMap.GetComponentInChildren<TileMesh>().GetComponent<Renderer>();
 		if (R != null) R.sortingOrder = 0;

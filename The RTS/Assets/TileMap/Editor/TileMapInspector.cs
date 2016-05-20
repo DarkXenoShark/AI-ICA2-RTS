@@ -42,11 +42,17 @@ namespace BlackTip
 			_tileResolution	= meshSettings.TileResolution;
 			_tileSize		= meshSettings.TileSize;
 			_meshMode		= meshSettings.MeshMode;
+
+            if (Application.isPlaying)
 			_textureFormat	= meshSettings.TextureFormat;
 		}
 
 		public override void OnInspectorGUI ()
 		{
+            //base.OnInspectorGUI();
+
+            serializedObject.Update();
+
 			_showTileGrid = EditorGUILayout.Toggle ("TileMap Grid", _showTileGrid);
 			// Forcefully update the scene view.
 			if (_showTileGrid) SceneView.RepaintAll();
@@ -72,38 +78,6 @@ namespace BlackTip
 				{
 					_textureFormat = (TextureFormat)EditorGUILayout.EnumPopup ("Texture Format", _textureFormat);
 					_textureFilterMode = (FilterMode)EditorGUILayout.EnumPopup ("Filter Mode", _textureFilterMode);
-				}
-
-				//if (GUILayout.Button ("Create/Recreate Mesh"))
-				//{
-				//	bool canDelete = true;
-				//
-				//	if (_tileResolution != _tileMap.MeshSettings.TileResolution)
-				//	{
-				//		canDelete = ShowTileDeletionWarning();
-				//	}
-				//
-				//	if (canDelete)
-				//	{
-				//		_tileMap.MeshSettings = new TileMeshSettings (_tiles, _tileResolution, _tileSize, _meshMode, _textureFormat);
-				//
-				//		// if settings didn't change the mesh wouldn't be created, force creation
-				//		if (!_tileMap.HasMesh) _tileMap.CreateMesh();
-				//	}
-				//}
-
-				if (GUILayout.Button("Destroy Mesh (keep data)"))
-				{
-					_tileMap.DestroyMesh();
-				}
-
-				if (GUILayout.Button("Clear"))
-				{
-					if (ShowTileDeletionWarning())
-					{
-						_tileMap.DestroyMesh();
-						_tileMap.ClearTiles();
-					}
 				}
 			}
 
@@ -136,7 +110,9 @@ namespace BlackTip
 			}
 
 			EditorUtility.SetDirty (this);
-		}
+
+            serializedObject.ApplyModifiedProperties();
+        }
 
 		private bool ShowTileDeletionWarning ()
 		{

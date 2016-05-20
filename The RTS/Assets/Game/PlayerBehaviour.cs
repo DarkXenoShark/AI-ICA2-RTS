@@ -12,10 +12,18 @@ public class PlayerBehaviour : MonoBehaviour
 {
 	[SerializeField] private bool _overridable = false;
 
+    public AgentMaster.Person _self;
+
 	private TileMap _tileMap	= null;
 	private Level _level		= null;
 	private IVector2 _position	= IVector2.zero;
 	private bool _walking		= false;
+    [SerializeField] private float _speed = 0.1f;
+
+    private void Awake()
+    {
+        _self.TheName = gameObject.name;
+    }
 
 	[UsedImplicitly] private void Start ()
 	{
@@ -26,11 +34,13 @@ public class PlayerBehaviour : MonoBehaviour
 
 		if (_tileMap == null) Debug.LogError ("TileMapBehaviour not found");
 		if (_level == null) Debug.LogError ("LevelBehaviour not found");
+
+        SetTilePosition(IVector2.one);
 	}
 
 	[UsedImplicitly] private void Update ()
 	{
-		ProcessInput();
+		//ProcessInput();
 	}
 
 	private void ProcessInput()
@@ -44,15 +54,15 @@ public class PlayerBehaviour : MonoBehaviour
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		IVector2 clicked = new IVector2((int)ray.origin.x, (int)ray.origin.y);
 		_walking = true;
-		StartCoroutine (WalkTo (clicked, .1f));
+        StartCoroutine(WalkTo(clicked, _speed));
 	}
 
 	// TODO refactor into a reusable "TileWalker" behaviour
 	private IEnumerator WalkTo(IVector2 destination, float stepIntervalSeconds)
 	{
-		if (_level.IsWalkeable (destination.x, destination.y))
+		if (Level.Self.IsWalkeable (destination.x, destination.y))
 		{
-			AStar astar				= new AStar (_level);
+            AStar astar = new AStar(Level.Self);
 			List <IVector2> path	= astar.Search (_position, destination).ToList();
 
 			if (path.Count == 0)
@@ -80,7 +90,7 @@ public class PlayerBehaviour : MonoBehaviour
 	public void SetTilePosition (IVector2 position)
 	{
 		_position = position;
-		Rect tileBounds = _tileMap.GetTileBoundsWorld (position);
+        Rect tileBounds = TileMap.Self.GetTileBoundsWorld(position);
 		transform.position = new Vector3(tileBounds.xMin, tileBounds.yMin + 1, transform.position.z);
 	}
 	

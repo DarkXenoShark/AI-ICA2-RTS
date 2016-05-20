@@ -20,7 +20,7 @@ namespace BlackTip
 		public TileMeshSettings (IVector2 tiles, int tileResolution) : this (tiles, tileResolution, 1f)
 		{ }
 
-		public TileMeshSettings (IVector2 tiles, int tileResolution, float tileSize) : this (tiles, tileResolution, tileSize, MeshMode.QuadGrid)
+		public TileMeshSettings (IVector2 tiles, int tileResolution, float tileSize) : this (tiles, tileResolution, tileSize, MeshMode.SingleQuad)
 		{ }
 
 		public TileMeshSettings (IVector2 tiles, int tileResolution, float tileSize, MeshMode meshMode) : this (tiles, tileResolution, tileSize, meshMode, TextureFormat.ARGB32)

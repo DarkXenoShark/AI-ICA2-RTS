@@ -33,11 +33,11 @@ namespace BlackTip
 				if (chunks.Count == 0)
 				{
 					// setup a single chunk
-					SetNumChunks (2, 2);
+					SetNumChunks (1, 1);
 					CreateChunk (0, 0);
-					CreateChunk (0, 1);
-					CreateChunk (1, 0);
-					CreateChunk (1, 1);
+					//CreateChunk (0, 1);
+					//CreateChunk (1, 0);
+					//CreateChunk (1, 1);
 				}
 
 				foreach (TileMesh child in chunks) child.Settings = _settings;

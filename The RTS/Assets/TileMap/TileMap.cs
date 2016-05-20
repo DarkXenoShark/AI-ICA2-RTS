@@ -14,10 +14,21 @@ namespace BlackTip
 			SetSize (v, -1);
 		}
 	}
-
+    [ExecuteInEditMode]
 	[Serializable] public class TileMap : MonoBehaviour, IEnumerable<KeyValuePair<IVector2, int>>
 	{
-		[SerializeField] private TileMapData _tileMapData			= null;
+        private static TileMap self;
+
+        public static TileMap Self
+        {
+            get
+            {
+                return self;
+            }
+        }
+        
+        [SerializeField]
+        private TileMapData _tileMapData = null;
 		[SerializeField] private TileMeshSettings _tileMeshSettings	= null;
 		[SerializeField] private TileSheet _tileSheet				= null;
 
@@ -66,8 +77,11 @@ namespace BlackTip
 		//public bool HasMesh
 		//{ get { return ChunkManager.GetChunk (0, 0) != null; } }
 
+        
 		protected virtual void Awake()
 		{
+            self = this;
+
 			if (_tileMeshSettings == null) _tileMeshSettings = new TileMeshSettings (IVector2.one, 16, 1f);
 			if (_tileSheet == null) _tileSheet = ScriptableObject.CreateInstance<TileSheet>();
 

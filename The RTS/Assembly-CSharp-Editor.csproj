@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Editor\AgentMasterInspector.cs" />
+     <Compile Include="Assets\Editor\PlayerInspector.cs" />
      <Compile Include="Assets\TileMap\Editor\TileMapInspector.cs" />
      <None Include="Assets\Resources\Doom.txt" />
      <None Include="Assets\PDDL\Metric-FF\Depend.xml" />

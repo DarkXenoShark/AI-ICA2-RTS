@@ -154,7 +154,7 @@ public class AgentMasterInspector : Editor
 				quick_goal.TheBuilding = (AgentMaster.EBuilding)property_goal_building.enumValueIndex;
 				quick_goal.TheDestination = property_goal_destination.stringValue;
 
-				AgentMaster.Write_Problem(self.Domain, self.People, self.Buildings, quick_goal);
+				AgentMaster.Write_Problem(self.Domain, self.my_resources, self.People, self.Buildings, quick_goal);
 			}
 
 			if (GUILayout.Button ("Start Task Planner"))
