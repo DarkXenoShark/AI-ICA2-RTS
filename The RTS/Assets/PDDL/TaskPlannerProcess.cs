@@ -16,6 +16,7 @@ public class TaskPlannerProcess : MonoBehaviour {
 	private string PDDLprbFileName = ""; // name without .pddl extension
 	private string solutionFilename = "";
 	public string parsedSolution = "";
+	public string[] todoList;
 	public int actionsFound = 0;
 
 	// generic instantiation and initialisation
@@ -23,10 +24,11 @@ public class TaskPlannerProcess : MonoBehaviour {
 	{
 		PProcessPlanner = new Process();
 
-		workingDirectory = Application.dataPath + @"/Planner";
+		//workingDirectory = Application.dataPath + @"/Planner";
+		workingDirectory = Application.dataPath + @"/PDDL/Metric-FF";
 		plannerFilename = workingDirectory + @"/metric-ff.exe";
-		PDDLdomFileName = @"coconut-domain"; // name without .pddl extension
-		PDDLprbFileName = @"coconut-problem"; // name without .pddl extension
+		PDDLdomFileName = @"rts-domain"; // name without .pddl extension
+		PDDLprbFileName = @"rts-problem"; // name without .pddl extension
 		solutionFilename = workingDirectory + @"/ffSolution.soln";
 	}
 
@@ -37,6 +39,7 @@ public class TaskPlannerProcess : MonoBehaviour {
 		PProcessPlanner.StartInfo.WorkingDirectory = workingDirectory;
 		// metric-ff needs to run using the full explicit path ...
 		PProcessPlanner.StartInfo.FileName = plannerFilename;
+		UnityEngine.Debug.Log (plannerFilename);
 		PProcessPlanner.StartInfo.Arguments = string.Format("-o {0}.pddl -f {1}.pddl", PDDLdomFileName, PDDLprbFileName);
 		PProcessPlanner.StartInfo.CreateNoWindow = true;
 		PProcessPlanner.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
@@ -61,6 +64,7 @@ public class TaskPlannerProcess : MonoBehaviour {
 		
 		// show the first action parsed in the editor window
 		parsedSolution = result.ToList ()[0].ToString ();
+		todoList = result.ToList ().ToArray();
 		
 		// delete the solution file, so you don't get to read it again next time you generate a new solution
 		File.Delete (solutionFilename);

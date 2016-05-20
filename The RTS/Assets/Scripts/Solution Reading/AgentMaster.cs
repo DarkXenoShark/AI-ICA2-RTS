@@ -405,9 +405,10 @@ public class AgentMaster : MonoBehaviour
 		//This will probably hold a list of conditions
 		foreach (string rep_line in its_goal.Write_Goal())
 		{
-			its_stream.WriteLine("\t\t(" + rep_line + ")");
+			its_stream.WriteLine("\t\t\t(" + rep_line + ")");
 		}
 
+		its_stream.WriteLine("\t\t\t)");
 		its_stream.WriteLine("\t\t)");
 		its_stream.WriteLine("");
 

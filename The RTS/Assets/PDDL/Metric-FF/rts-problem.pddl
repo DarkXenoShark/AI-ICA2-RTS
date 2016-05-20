@@ -1,48 +1,49 @@
 (define (problem rts-prob1)
-  (:domain rts)
-  	
-  (:objects
-	labourer0 - person
-	labourer1 - person
-	labourer2 - person
-	
-	tree1 tree2 tree3 tree4 - forest
-	stone1 - stone
-	locationOre1 locationCoal1 - miningResource
-	
-	location1 location2 location3 - location)
+	(:domain rts)
 
-  (:init 	
-			(is-labourer labourer0)
-			(is-labourer labourer1)
-			(is-labourer labourer2)
-			(has-timber tree1)
-			(has-timber tree2)
-			(has-timber tree3)
-			(has-timber tree4)
-			(at labourer0 tree2)
-			(at labourer1 tree1)
-			(at labourer2 tree1)
-			(has-stone stone1)
-			(has-ore locationOre1)
-			(has-coal locationCoal1)
-			(=(labourCost) 0)
-			(=(timber) 0)
-			(=(wood) 0)
-			(=(stone) 0)
-			(=(coal) 0)
-			(=(ore) 0)
-			(=(iron) 0)
-			(=(population)0)
-	)
-  
-  (:goal 	
-  ;; dont forget the (and ) block to enclose everything together
+	(:objects
+		Test - person
+		Guy - person
+		MikeHaggar - person
+		Cody - person
+		Tree1 - forest
+		Tree2 - forest
+		Coal1 - miningResource
+		Coal2 - miningResource
+		Location1 - location
+		Location2 - location
+		Location3 - location
+		)
+
+	(:init
+		(is-labourer Test)
+		(at Test Location3)
+		(is-labourer Guy)
+		(at Guy Location1)
+		(is-labourer MikeHaggar)
+		(at MikeHaggar Tree2)
+		(is-miner Cody)
+		(at Cody Coal1)
+		(has-timber Tree1)
+		(has-timber Tree2)
+		(has-coal Coal1)
+		(has-coalMine Coal2)
+		(has-coal Coal2)
+		(has-turfhut Location1)
+		(=(labourCost) 0)
+		(=(timber) 2)
+		(=(wood) 8)
+		(=(stone) 1)
+		(=(coal) 0)
+		(=(ore) 5)
+		(=(iron) 6)
+		(=(population) 4)
+		)
+
+	(:goal
 		(and
-			;(=(population)5)
-			(has-school location1)
+			(has-school Location2)
 			)
-	)
-	
-	;(:metric minimize (labourCost))
+		)
+
 )
