@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using SandTiger;
 using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
-
-using SandTiger;
 
 namespace BlackTip
 {
@@ -49,8 +48,6 @@ namespace BlackTip
 
 		public override void OnInspectorGUI ()
 		{
-            //base.OnInspectorGUI();
-
             serializedObject.Update();
 
 			_showTileGrid = EditorGUILayout.Toggle ("TileMap Grid", _showTileGrid);
@@ -100,9 +97,8 @@ namespace BlackTip
 
 				List <int> ids = _tileSheet.Ids.ToList();
 				ids.Sort();
-				foreach (int t in ids)
+				foreach (Sprite sprite in ids.Select(t => _tileSheet.Get(t)))
 				{
-					Sprite sprite = _tileSheet.Get(t);
 					ShowSprite(sprite);
 
 					/*if (i < ids.Count - 1) */GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));

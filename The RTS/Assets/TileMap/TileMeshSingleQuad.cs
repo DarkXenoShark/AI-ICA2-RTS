@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Linq;
 using JetBrains.Annotations;
+using SandTiger;
 using UnityEngine;
-
 // TODO: Max texture2D varies around: 64 resolution TileMap maxed at 64X64
 // 2048x2048
 // 4096x4096
 // 8192x8192
-
-using SandTiger;
 
 namespace BlackTip
 {

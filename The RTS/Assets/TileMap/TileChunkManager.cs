@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SandTiger;
 using UnityEngine;
 using Object = UnityEngine.Object;
-
-using SandTiger;
 
 namespace BlackTip
 {
@@ -58,7 +57,6 @@ namespace BlackTip
 			{
 				Transform child = _parent.transform.GetChild (i);
 
-				// TODO should children of the TileMap thats not chunks be allowed?
 				if (!child.name.StartsWith("Mesh")) continue;
 				Object.DestroyImmediate(child.gameObject);
 			}
@@ -103,8 +101,7 @@ namespace BlackTip
 				break;
 
 				case MeshMode.QuadGrid:
-					type = typeof (TileMeshQuadGrid);
-				break;
+					throw new NotImplementedException ("I'm lazy so meh.");
 
 				default:
 					throw new InvalidOperationException (string.Concat ("Mesh mode not implemented: ", _settings.MeshMode));

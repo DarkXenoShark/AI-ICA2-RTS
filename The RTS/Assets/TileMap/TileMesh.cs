@@ -1,8 +1,7 @@
 ﻿using System;
+using SandTiger;
 using UnityEngine;
 using UnityEngine.Rendering;
-
-using SandTiger;
 
 namespace BlackTip
 {

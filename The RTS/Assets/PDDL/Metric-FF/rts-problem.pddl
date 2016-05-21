@@ -2,33 +2,33 @@
 	(:domain rts)
 
 	(:objects
-		BasePlayer_TheGuy - person
-		BasePlayer_TheGuy1 - person
-		BasePlayer_TheGuyCasted - person
-		BasePlayer_TheGuyWithAHat - person
-		CoalLocation - miningResource
-		CoalLocation1 - miningResource
-		CoalLocation2 - forest
-		CoalLocation3 - stone
-		CoalLocation4 - location
-		CoalLocation5 - location
-		CoalLocation6 - location
-		CoalLocation7 - location
+		BASEPLAYER_THEGUY - person
+		BASEPLAYER_THEGUY1 - person
+		BASEPLAYER_THEGUYCASTED - person
+		BASEPLAYER_THEGUYWITHAHAT - person
+		COALLOCATION - miningResource
+		COALLOCATION1 - miningResource
+		COALLOCATION2 - forest
+		COALLOCATION3 - stone
+		COALLOCATION4 - location
+		COALLOCATION5 - location
+		COALLOCATION6 - location
+		COALLOCATION7 - location
 		)
 
 	(:init
-		(is-labourer BasePlayer_TheGuy)
-		(at BasePlayer_TheGuy CoalLocation)
-		(is-labourer BasePlayer_TheGuy1)
-		(at BasePlayer_TheGuy1 CoalLocation)
-		(is-labourer BasePlayer_TheGuyCasted)
-		(at BasePlayer_TheGuyCasted CoalLocation)
-		(is-labourer BasePlayer_TheGuyWithAHat)
-		(at BasePlayer_TheGuyWithAHat CoalLocation)
-		(has-coal CoalLocation)
-		(has-ore CoalLocation1)
-		(has-timber CoalLocation2)
-		(has-stone CoalLocation3)
+		(is-labourer BASEPLAYER_THEGUY)
+		(at BASEPLAYER_THEGUY CoalLocation)
+		(is-labourer BASEPLAYER_THEGUY1)
+		(at BASEPLAYER_THEGUY1 CoalLocation)
+		(is-labourer BASEPLAYER_THEGUYCASTED)
+		(at BASEPLAYER_THEGUYCASTED CoalLocation)
+		(is-labourer BASEPLAYER_THEGUYWITHAHAT)
+		(at BASEPLAYER_THEGUYWITHAHAT CoalLocation)
+		(has-coal COALLOCATION)
+		(has-ore COALLOCATION1)
+		(has-timber COALLOCATION2)
+		(has-stone COALLOCATION3)
 		(=(labourCost) 0)
 		(=(timber) 0)
 		(=(wood) 2)
@@ -41,7 +41,7 @@
 
 	(:goal
 		(and
-			(has-storage CoalLocation4)
+			(has-storage COALLOCATION4)
 			)
 		)
 

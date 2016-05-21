@@ -1,42 +1,19 @@
-﻿using UnityEngine;
-using System.Collections;
-
-using BlackTip;
+﻿using BlackTip;
 using SandTiger;
+using UnityEngine;
 
 public class Location : MonoBehaviour
 {
     public AgentMaster.Building TheSelf;
-    private int my_alliance;
 
-    private IVector2 _position = IVector2.zero;
+	private IVector2 _position = IVector2.zero;
 
-    public int TheAlliance
+    public int TheAlliance { get; private set; }
+
+	void Awake()
     {
-        get
-        {
-            return my_alliance;
-        }
+        TheSelf.TheName = gameObject.name.ToUpper();
     }
-    
-    void Awake()
-    {
-        TheSelf.TheName = gameObject.name;
-        //SetTilePosition(new IVector2((int) gameObject.transform.position.x,(int)gameObject.transform.position.y));
-    }
-
-	// Use this for initialization
-	void Start () 
-    {
-	    
-	}
-	
-	// Update is called once per frame
-	void Update () 
-    {
-	
-	}
-
 
     public void SetTilePosition(IVector2 position)
     {

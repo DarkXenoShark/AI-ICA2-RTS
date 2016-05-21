@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using JetBrains.Annotations;
-using UnityEngine;
-
-// Custom namespace
 using BlackTip;
+using JetBrains.Annotations;
 using SandTiger;
+using UnityEngine;
+using Debug = UnityEngine.Debug;
+// Custom namespace
 
 public class Level : MonoBehaviour
 {
@@ -61,7 +62,7 @@ public class Level : MonoBehaviour
 	[UsedImplicitly] private void Start ()
 	{
 		// TODO: It takes about 3.5-4 Seconds for Aged.txt :'(
-		System.Diagnostics.Stopwatch watch = new System.Diagnostics.Stopwatch();
+		Stopwatch watch = new Stopwatch();
 		watch.Start();
 
 		// Does some basic stuff.

@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public struct Agent
+﻿public struct Agent
 {
 	public delegate void Event_Mission_Action(string[] its_actions);
 	public delegate bool Event_Mission_Check(string[] its_actions);

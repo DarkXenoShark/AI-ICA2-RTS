@@ -1,9 +1,9 @@
-﻿using UnityEngine;
-using UnityEditor;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System;
+using System.Linq;
+using JetBrains.Annotations;
+using UnityEngine;
 
 public class AgentMaster : MonoBehaviour
 {
@@ -88,30 +88,16 @@ public class AgentMaster : MonoBehaviour
 
     public static Building[] Convert_Locations_To_Building(Location[] its_locations)
     {
-        List<Building> returner = new List<Building>();
-
-        foreach (Location rep_location in its_locations)
-        {
-            returner.Add(rep_location.TheSelf);
-        }
-
-        return returner.ToArray();
+	    return its_locations.Select(repLocation => repLocation.TheSelf).ToArray();
     }
 
     public static Person[] Convert_PlayerBehaviour_To_People(PlayerBehaviour[] its_people)
     {
-        List<Person> returner = new List<Person>();
-
-        foreach (PlayerBehaviour rep_person in its_people)
-        {
-            returner.Add(rep_person._self);
-        }
-
-        return returner.ToArray();
+	    return its_people.Select(repPerson => repPerson._self).ToArray();
     }
 
 	private List<Agent> my_active_agents;
-	private TaskPlannerProcess my_planner;
+	[UsedImplicitly] private TaskPlannerProcess my_planner;
 
 	[Serializable]
 	public struct Person
@@ -176,51 +162,26 @@ public class AgentMaster : MonoBehaviour
 	}
 
 	public enum EResource
-	{
-		None,
-		Timber,
-		Coal,
-		Ore,
-		Stone
-	}
-
+	{ None, Timber, Coal, Ore, Stone }
 
 	/// <summary>
 	/// Converts an EJob to a string representation
 	/// </summary>
 	/// <returns>A string of the given EJob</returns>
-	/// <param name="its_job">The job type to be converted to a string</param>
-	public static string Job_To_String(EJob its_job)
+	/// <param name="its">The job type to be converted to a string</param>
+	public static string Job_To_String(EJob its)
 	{
-		switch (its_job)
-		{
-		case EJob.Labourer:
-			return "labourer";
-		case EJob.Carpenter:
-			return "carpenter";
-		case EJob.Lumberjack:
-			return "lumberjack";
-		case EJob.Miner:
-			return "miner";
-		case EJob.Blacksmith:
-			return "blacksmith";
-		case EJob.Teacher:
-			return "teacher";
-		}
-		
-		//It should not reach this point
-		return "errorjob";
+		return its.ToString().ToLower();
 	}
-	
 	
 	/// <summary>
 	/// Converts an EBuilding to a string representation
 	/// </summary>
 	/// <returns>A string of the given EBuilding</returns>
-	/// <param name="its_job">The building type to be converted to a string</param>
-	public static string Building_To_String(EBuilding its_building)
+	/// <param name="its">The building type to be converted to a string</param>
+	public static string Building_To_String(EBuilding its)
 	{
-		switch (its_building)
+		switch (its)
 		{
 		case EBuilding.Turfhut:
 			return "turfhut";
@@ -252,22 +213,9 @@ public class AgentMaster : MonoBehaviour
 		return "errorbuilding";
 	}
 	
-	public static string Resource_To_String(EResource its_resource)
+	public static string Resource_To_String(EResource its)
 	{
-		switch (its_resource)
-		{
-		case EResource.Timber:
-			return "timber";
-		case EResource.Coal:
-			return "coal";
-		case EResource.Ore:
-			return "ore";
-		case EResource.Stone:
-			return "stone";
-		}
-
-		//It should not reach this point
-		return "location";
+		return its.ToString().ToLower();
 	}
 
 	public static string Location_To_String(EResource its_resource)

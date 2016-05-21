@@ -1,14 +1,12 @@
-﻿using UnityEngine;
-using System.Collections;
-
-// required
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Threading;
 using System.Linq;
+using UnityEngine;
+using Debug = UnityEngine.Debug;
 
-public class TaskPlannerProcess : MonoBehaviour {
-
+public class TaskPlannerProcess : MonoBehaviour
+{
 	private Process PProcessPlanner;
 	public string workingDirectory = "";
 	private string plannerFilename = "";
@@ -39,7 +37,7 @@ public class TaskPlannerProcess : MonoBehaviour {
 		PProcessPlanner.StartInfo.WorkingDirectory = workingDirectory;
 		// metric-ff needs to run using the full explicit path ...
 		PProcessPlanner.StartInfo.FileName = plannerFilename;
-		UnityEngine.Debug.Log (plannerFilename);
+		Debug.Log (plannerFilename);
 		PProcessPlanner.StartInfo.Arguments = string.Format("-o {0}.pddl -f {1}.pddl", PDDLdomFileName, PDDLprbFileName);
 		PProcessPlanner.StartInfo.CreateNoWindow = true;
 		PProcessPlanner.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
@@ -52,7 +50,7 @@ public class TaskPlannerProcess : MonoBehaviour {
 	{
 		InstantiatePlanner();
 		ProcessStart();
-		UnityEngine.Debug.Log ("SOLUTION FOUND");
+		Debug.Log ("SOLUTION FOUND");
 		
 		// (sorry I couldn't resist to add this):
 		// using Linq, extract all the lines containing ':', 
@@ -60,24 +58,15 @@ public class TaskPlannerProcess : MonoBehaviour {
 		var result = File.ReadAllLines (solutionFilename).Where(s => s.Contains(":"));
 		
 		// just to show how many actions have been found (*debug*)
-		actionsFound = result.Count();
+		IEnumerable<string> enumerable = result as string[] ?? result.ToArray();
+		actionsFound = enumerable.Count();
 		
 		// show the first action parsed in the editor window
-		parsedSolution = result.ToList ()[0].ToString ();
-		todoList = result.ToList ().ToArray();
+		parsedSolution = enumerable.ToList ()[0];
+		todoList = enumerable.ToArray();
 		
 		// delete the solution file, so you don't get to read it again next time you generate a new solution
 		File.Delete (solutionFilename);
-		UnityEngine.Debug.Log ("FILE DELETED");
-	}
-
-	// Use this for initialization
-	void Start () {
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+		Debug.Log ("FILE DELETED");
 	}
 }

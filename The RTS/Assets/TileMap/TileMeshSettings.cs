@@ -1,7 +1,6 @@
 ﻿using System;
-using UnityEngine;
-
 using SandTiger;
+using UnityEngine;
 
 namespace BlackTip
 {

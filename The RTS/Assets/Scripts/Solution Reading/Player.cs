@@ -1,37 +1,22 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     public List<PlayerBehaviour> my_people;
-
     public AgentMaster.Resources TheResources;
 
-    private int my_alliance;
+	public int TheAlliance { get; set; }
 
-    public int TheAlliance
+	public string Get_First_Empty_Loaction()
     {
-        get
-        {
-            return my_alliance;
-        }
+        Location[] quickLocations = GameMaster.Get_Locations_Of_Player(TheAlliance);
 
-        set
+        foreach (Location repLocation in quickLocations.Where(repLocation => repLocation.TheSelf.TheResource == AgentMaster.EResource.None &&
+                                                                                repLocation.TheSelf.TheType == AgentMaster.EBuilding.None))
         {
-            my_alliance = value;
-        }
-    }
-
-    public string Get_First_Empty_Loaction()
-    {
-        Location[] quick_locations = GameMaster.Get_Locations_Of_Player(my_alliance);
-
-        foreach (Location rep_location in quick_locations)
-        {
-            if (rep_location.TheSelf.TheResource == AgentMaster.EResource.None &&
-                rep_location.TheSelf.TheType == AgentMaster.EBuilding.None)
-                return rep_location.TheSelf.TheName;
+	        return repLocation.TheSelf.TheName;
         }
 
         //If it reaches this point, there is no empty location registered
@@ -40,10 +25,12 @@ public class Player : MonoBehaviour
 
 	public void Set_New_Goal()
 	{
-		AgentMaster.BuildingGoal quick_goal = new AgentMaster.BuildingGoal();
-		quick_goal.TheBuilding = (AgentMaster.EBuilding.Storage);
-		quick_goal.TheDestination = Get_First_Empty_Loaction();
-		
+		AgentMaster.BuildingGoal quick_goal = new AgentMaster.BuildingGoal
+		{
+			TheBuilding = (AgentMaster.EBuilding.Storage),
+			TheDestination = Get_First_Empty_Loaction()
+		};
+
 		AgentMaster.Write_Problem(
 			"rts", 
 			TheResources,
@@ -58,17 +45,5 @@ public class Player : MonoBehaviour
 
 		Agent[] quick_commands = AgentMaster.Get_Agent_Batch(AgentMaster.Get_Generated_Plan());
 		AgentMaster.Add_Agent_Batch(quick_commands);
-	}
-
-	// Use this for initialization
-	void Start () 
-    {
-	
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-	
 	}
 }

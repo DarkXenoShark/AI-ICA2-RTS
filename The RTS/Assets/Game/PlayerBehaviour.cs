@@ -2,11 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
-
 using BlackTip;
 using JetBrains.Annotations;
 using SandTiger;
+using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -22,10 +21,10 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Awake()
     {
-        _self.TheName = gameObject.name;
+        _self.TheName = gameObject.name.ToUpper();
     }
 
-	[UsedImplicitly] private void Start ()
+	 [UsedImplicitly] private void Start ()
 	{
 		GameObject tileMapGameObject = GameObject.Find("TileMap");
 
@@ -34,31 +33,17 @@ public class PlayerBehaviour : MonoBehaviour
 
 		if (_tileMap == null) Debug.LogError ("TileMapBehaviour not found");
 		if (_level == null) Debug.LogError ("LevelBehaviour not found");
-
-        SetTilePosition(IVector2.one);
 	}
 
-	[UsedImplicitly] private void Update ()
+	public void Go (IVector2 destination)
 	{
-		//ProcessInput();
-	}
-
-	private void ProcessInput()
-	{
-		if (_walking && !_overridable) return;
-		if (!Input.GetMouseButtonDown (0)) return;
-
-		// we can make this assumption since the TileMap is on position 0, 0
-		// TODO create a world coordinate to tile coordinate lookup
-
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		IVector2 clicked = new IVector2((int)ray.origin.x, (int)ray.origin.y);
+		if (_walking) return;
 		_walking = true;
-        StartCoroutine(WalkTo(clicked, _speed));
+        StartCoroutine (WalkTo (destination, _speed));
 	}
 
 	// TODO refactor into a reusable "TileWalker" behaviour
-	private IEnumerator WalkTo(IVector2 destination, float stepIntervalSeconds)
+	private IEnumerator WalkTo (IVector2 destination, float stepIntervalSeconds)
 	{
 		if (Level.Self.IsWalkeable (destination.x, destination.y))
 		{
@@ -82,10 +67,10 @@ public class PlayerBehaviour : MonoBehaviour
 		_walking = false;
 	}
 
-	//private void TryMoveTo (int x, int y)
-	//{
-	//	if (_level.IsWalkeable (x, y)) SetTilePosition (x, y);
-	//}
+	public bool IsPathing ()
+	{
+		return _walking;
+	}
 
 	public void SetTilePosition (IVector2 position)
 	{
@@ -94,7 +79,6 @@ public class PlayerBehaviour : MonoBehaviour
 		transform.position = new Vector3(tileBounds.xMin, tileBounds.yMin + 1, transform.position.z);
 	}
 	
-	// TODO move this class to outer scope and refine logic specifically for grid
 	private class AStarGrid : IAStar<IVector2>
 	{
 		public virtual int HeuristicCostEstimate(IVector2 a, IVector2 b)
@@ -114,17 +98,17 @@ public class PlayerBehaviour : MonoBehaviour
 
 	private class AStar : AStarGrid
 	{
-		private readonly Level m_levelBehaviour;
+		private readonly Level _mLevelBehaviour;
 
 		public AStar(Level levelBehaviour)
 		{
-			m_levelBehaviour = levelBehaviour;
+			_mLevelBehaviour = levelBehaviour;
 		}
 
 		public override IEnumerable<IVector2> GetNeighbourNodes(IVector2 node)
 		{
 			// only return neighbour tiles that are walk-able
-			return base.GetNeighbourNodes(node).Where(x => m_levelBehaviour.IsWalkeable(x.x, x.y));
+			return base.GetNeighbourNodes(node).Where(x => _mLevelBehaviour.IsWalkeable(x.x, x.y));
 		}
 	}
 }

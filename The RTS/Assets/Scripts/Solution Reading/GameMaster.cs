@@ -1,25 +1,22 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-using System.Collections;
+﻿using System.Collections.Generic;
 using System.Linq;
-
-using SandTiger;
+using UnityEngine;
 
 public class GameMaster : MonoBehaviour
 {
-    private static GameMaster self;
+    private static GameMaster _self;
 
     [SerializeField] private List<Player> my_players;
     [SerializeField] private List<Location> my_locations;
 
-    public static void Register_Player(Player its_player)
+    public static void Register_Player(Player itsPlayer)
     {
-        self.my_players.Add(its_player);
+        _self.my_players.Add(itsPlayer);
     }
 
-    public static void Register_Location(Location its_location)
+    public static void Register_Location(Location itsLocation)
     {
-        self.my_locations.Add(its_location);
+        _self.my_locations.Add(itsLocation);
     }
     public static Location[] Get_Locations_Of_Neutral()
     {
@@ -29,57 +26,33 @@ public class GameMaster : MonoBehaviour
     /// <summary>
     /// Obtains all the locations that are of neutral alliance or of the player's alliance
     /// </summary>
-    /// <param name="its_player"></param>
+    /// <param name="itsPlayer"></param>
     /// <returns></returns>
-    public static Location[] Get_Locations_Of_Player(int its_player)
+    public static Location[] Get_Locations_Of_Player(int itsPlayer)
     {
-        List<Location> returner = new List<Location>();
-
-        foreach (Location rep_location in self.my_locations)
-        {
-            if (rep_location.TheAlliance == -1 || rep_location.TheAlliance == its_player)
-                returner.Add(rep_location);
-        }
-
-        return returner.ToArray();
+	    return _self.my_locations.Where(repLocation => repLocation.TheAlliance == -1 || repLocation.TheAlliance == itsPlayer).ToArray();
     }
 
     void Awake()
     {
-        self = this;
+        _self = this;
 
         Set_Players();
     }
 
-	// Use this for initialization
-	void Start ()
-    {
-	    
-	}
-	
-	// Update is called once per frame
-	void Update () 
-    {
-	
-	}
-
     private void Set_Players()
     {
-        for (int rep_player = 0; rep_player < my_players.Count; rep_player++)
+        for (int repPlayer = 0; repPlayer < my_players.Count; repPlayer++)
         {
-            my_players[rep_player].TheAlliance = rep_player;
+            my_players[repPlayer].TheAlliance = repPlayer;
         }
     }
 
     public static PlayerBehaviour Get_Person_By_Name(string its_name)
     {
-        foreach (Player rep_player in self.my_players)
+        foreach (PlayerBehaviour repPerson in _self.my_players.SelectMany(repPlayer => repPlayer.my_people.Where(repPerson => repPerson._self.TheName == its_name)))
         {
-            foreach (PlayerBehaviour rep_person in rep_player.my_people)
-            {
-                if (rep_person._self.TheName == its_name)
-                    return rep_person;
-            }
+	        return repPerson;
         }
 
         Debug.LogError("Person " + its_name + " does not exist!");
@@ -88,10 +61,9 @@ public class GameMaster : MonoBehaviour
 
     public static Location Get_Location_By_Name(string its_name)
     {
-        foreach (Location rep_location in self.my_locations)
+        foreach (Location repLocation in _self.my_locations.Where(repLocation => repLocation.TheSelf.TheName == its_name))
         {
-            if (rep_location.TheSelf.TheName == its_name)
-                return rep_location;
+	        return repLocation;
         }
 
         Debug.LogError("Location "+ its_name + " does not exist!");
