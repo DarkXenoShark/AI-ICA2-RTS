@@ -298,6 +298,7 @@ public class AgentMaster : MonoBehaviour
 		my_active_agents = new List<Agent>();
 		my_planner = GetComponent<TaskPlannerProcess>();
         my_running_agent_batches = new List<List<Agent>>();
+		my_agent_types = new Dictionary<string, Agent>();
 
 		/*serialised_person_names = new List<string>();
 		serialised_person_jobs = new List<EJob>();

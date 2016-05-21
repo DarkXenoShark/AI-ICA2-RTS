@@ -18,7 +18,12 @@ namespace BlackTip
 			ClearData();
 		}
 
-		public static void LoadFromFile (string name, string extension = ".txt", string relativeLocation = "Resources")
+		public static void LoadFromFile (string name)
+		{
+			LoadFromFile (name, ".txt", "Resources");
+		}
+
+		public static void LoadFromFile (string name, string extension, string relativeLocation)
 		{
 			// The complete path of the file including its relative directory and extension!
 			string path = string.Concat (Application.dataPath, "/", relativeLocation, "/", name, extension);

@@ -60,7 +60,7 @@ public class AgentCommandCompilation : MonoBehaviour
             Agent_TrainTeacher_Start,
             Agent_TrainTeacher_Update,
             Agent_TrainTeacher_End,
-            Agent_TrainTacher_CompletedCheck
+            Agent_TrainTeacher_CompletedCheck
             );
 		AgentMaster.Register_Agent_Type(quick_agent, "TRAINTEACHER");
 		
@@ -301,7 +301,7 @@ public class AgentCommandCompilation : MonoBehaviour
 	/*void Update () {
 	
 	}*/
-	//----------------SIMPLETRAIN----------------//
+	#region SIMPLETRAIN
     private void Agent_Simpletrain_Start(string[] its_string)
     {
 
@@ -314,14 +314,16 @@ public class AgentCommandCompilation : MonoBehaviour
 
     private void Agent_Simpletrain_End(string[] its_string)
     {
-
+		Debug.Log ("Trained " + its_string[1] + " by " + its_string[0] + " at " + its_string[2]);
     }
 
     private bool Agent_Simpletrain_CompletedCheck(string[] its_string)
     {
         return true;
     }
-	//----------------SCHOOLTRAIN----------------//
+	#endregion
+
+	#region SCHOOLTRAIN
 	 private void Agent_SchoolTrain_Start(string[] its_string)
     {
 
@@ -335,13 +337,17 @@ public class AgentCommandCompilation : MonoBehaviour
     private void Agent_SchoolTrain_End(string[] its_string)
     {
 
-    }
+		Debug.Log ("Trained " + its_string[1] + " by " + its_string[0] + " at " + its_string[2]);
+	}
 
     private bool Agent_SchoolTrain_CompletedCheck(string[] its_string)
     {
         return true;
     }
-//----------------TRAINCARPENTER----------------//
+
+	#endregion 
+
+	#region TRAINCARPENTER
 	 private void Agent_TrainCarpenter_Start(string[] its_string)
     {
 
@@ -355,14 +361,17 @@ public class AgentCommandCompilation : MonoBehaviour
     private void Agent_TrainCarpenter_End(string[] its_string)
     {
 
-    }
+		Debug.Log ("Trained " + its_string[0] + " to be a carpenter");
+	}
 
     private bool Agent_TrainCarpenter_CompletedCheck(string[] its_string)
     {
         return true;
     }
-	
-	//----------------TRAINLUMBERJACK----------------//
+
+	#endregion 
+
+	#region TRAINLUMBERJACK
 	 private void Agent_TrainLumberjack_Start(string[] its_string)
     {
 
@@ -376,14 +385,17 @@ public class AgentCommandCompilation : MonoBehaviour
     private void Agent_TrainLumberjack_End(string[] its_string)
     {
 
-    }
+		Debug.Log ("Trained " + its_string[0] + " to be a lumberjack");
+	}
 
     private bool Agent_TrainLumberjack_CompletedCheck(string[] its_string)
     {
         return true;
     }
 
-		//----------------TRAINMINER----------------//
+	#endregion 
+
+	#region TRAINMINER
 	 private void Agent_TrainMiner_Start(string[] its_string)
     {
 
@@ -397,14 +409,17 @@ public class AgentCommandCompilation : MonoBehaviour
     private void Agent_TrainMiner_End(string[] its_string)
     {
 
-    }
+		Debug.Log ("Trained " + its_string[0] + " to be a miner");
+	}
 
     private bool Agent_TrainMiner_CompletedCheck(string[] its_string)
     {
         return true;
     }	
-	
-		//----------------TRAINBLACKSMITH----------------//
+
+	#endregion 
+
+	#region TRAINBLACKSMITH
 	 private void Agent_TrainBlacksmith_Start(string[] its_string)
     {
 
@@ -418,14 +433,16 @@ public class AgentCommandCompilation : MonoBehaviour
     private void Agent_TrainBlacksmith_End(string[] its_string)
     {
 
-    }
+		Debug.Log ("Trained " + its_string[0] + " to be a blacksmith");
+	}
 
     private bool Agent_TrainBlacksmith_CompletedCheck(string[] its_string)
     {
         return true;
     }	
-	
-			//----------------TRAINTEACHER----------------//
+	#endregion 
+
+	#region TRAINTEACHER
 	 private void Agent_TrainTeacher_Start(string[] its_string)
     {
 
@@ -439,14 +456,16 @@ public class AgentCommandCompilation : MonoBehaviour
     private void Agent_TrainTeacher_End(string[] its_string)
     {
 
-    }
+		Debug.Log ("Trained " + its_string[0] + " to be a teacher");
+	}
 
     private bool Agent_TrainTeacher_CompletedCheck(string[] its_string)
     {
         return true;
     }	
-	
-				//----------------TRAINRIFLEMAN----------------//
+	#endregion
+
+	#region TRAINRIFLEMAN
 	 private void Agent_TrainRifleman_Start(string[] its_string)
     {
 
@@ -460,14 +479,18 @@ public class AgentCommandCompilation : MonoBehaviour
     private void Agent_TrainRifleman_End(string[] its_string)
     {
 
-    }
+		Debug.Log ("Trained " + its_string[0] + " to be a riflemans");
+	}
 
     private bool Agent_TrainRifleman_CompletedCheck(string[] its_string)
     {
         return true;
     }	
-	
-				//----------------MOVE----------------//
+
+	#endregion 
+
+			
+	#region MOVE
 	 private void Agent_Move_Start(string[] its_string)
     {
 		
@@ -481,14 +504,17 @@ public class AgentCommandCompilation : MonoBehaviour
     private void Agent_Move_End(string[] its_string)
     {
 
-    }
+		Debug.Log ("Moved " + its_string[0] + " to " + its_string[1]);
+	}
 
     private bool Agent_Move_CompletedCheck(string[] its_string)
     {
         return true;
     }	
-	
-				//----------------CUTTREE----------------//
+
+	#endregion 
+
+	#region CUTTREE
 	 private void Agent_CutTree_Start(string[] its_string)
     {
 		
@@ -502,14 +528,16 @@ public class AgentCommandCompilation : MonoBehaviour
     private void Agent_CutTree_End(string[] its_string)
     {
 
-    }
+		Debug.Log ("Cut down " + its_string[1] + " by " + its_string[0]);
+	}
 
     private bool Agent_CutTree_CompletedCheck(string[] its_string)
     {
         return true;
     }	
-	
-					//----------------SIMPLEMINEORE----------------//
+	#endregion 
+
+	#region SIMPLEMINEORE
 	 private void Agent_SimpleMineOre_Start(string[] its_string)
     {
 		
@@ -523,14 +551,16 @@ public class AgentCommandCompilation : MonoBehaviour
     private void Agent_SimpleMineOre_End(string[] its_string)
     {
 
-    }
+		Debug.Log ("Ored mine at " + its_string[1] + " by " + its_string[0]);
+	}
 
     private bool Agent_SimpleMineOre_CompletedCheck(string[] its_string)
     {
         return true;
     }	
-	
-						//----------------SIMPLEMINECOAL----------------//
+	#endregion 
+
+	#region SIMPLEMINECOAL
 	 private void Agent_SimpleMineCoal_Start(string[] its_string)
     {
 		
@@ -544,14 +574,16 @@ public class AgentCommandCompilation : MonoBehaviour
     private void Agent_SimpleMineCoal_End(string[] its_string)
     {
 
-    }
+		Debug.Log ("Stone mine at " + its_string[1] + " by " + its_string[0]);
+	}
 
     private bool Agent_SimpleMineCoal_CompletedCheck(string[] its_string)
     {
         return true;
     }	
-	
-							//----------------MINEOREWITHMINE----------------//
+	#endregion 
+
+	#region MINEOREWITHMINE
 	 private void Agent_MineOreWithMine_Start(string[] its_string)
     {
 		
@@ -564,15 +596,16 @@ public class AgentCommandCompilation : MonoBehaviour
 
     private void Agent_MineOreWithMine_End(string[] its_string)
     {
-
-    }
+		Debug.Log ("Stone ored mine at " + its_string[1] + " by " + its_string[0]);
+	}
 
     private bool Agent_MineOreWithMine_CompletedCheck(string[] its_string)
     {
         return true;
     }	
-	
-							//----------------MINECOALWITHMINE----------------//
+	#endregion 
+
+	#region MINECOALWITHMINE
 	 private void Agent_MineCoalWithMine_Start(string[] its_string)
     {
 		
@@ -586,14 +619,16 @@ public class AgentCommandCompilation : MonoBehaviour
     private void Agent_MineCoalWithMine_End(string[] its_string)
     {
 
-    }
+		Debug.Log ("Stone mined mine at " + its_string[1] + " by " + its_string[0]);
+	}
 
     private bool Agent_MineCoalWithMine_CompletedCheck(string[] its_string)
     {
         return true;
     }	
-	
-							//----------------QUARRYSTONE----------------//
+	#endregion 
+
+	#region QUARRYSTONE
 	 private void Agent_QuarryStone_Start(string[] its_string)
     {
 		
@@ -607,14 +642,16 @@ public class AgentCommandCompilation : MonoBehaviour
     private void Agent_QuarryStone_End(string[] its_string)
     {
 
-    }
+		Debug.Log ("Quarried stone at " + its_string[1] + " by " + its_string[0]);
+	}
 
     private bool Agent_QuarryStone_CompletedCheck(string[] its_string)
     {
         return true;
     }	
-	
-								//----------------SAWTIMBERATSAWMILL----------------//
+	#endregion
+
+	#region SAWTIMBERATSAWMILL
 	 private void Agent_SawTimberAtSawmill_Start(string[] its_string)
     {
 		
@@ -628,14 +665,16 @@ public class AgentCommandCompilation : MonoBehaviour
     private void Agent_SawTimberAtSawmill_End(string[] its_string)
     {
 
-    }
+		Debug.Log ("Quarried stone at " + its_string[1] + " by " + its_string[0]);
+	}
 
     private bool Agent_SawTimberAtSawmill_CompletedCheck(string[] its_string)
     {
         return true;
     }	
-	
-								//----------------SMELTOREATSMELTER----------------//
+	#endregion
+
+	#region SMELTOREATSMELTER
 	 private void Agent_SmeltOreAtSmelter_Start(string[] its_string)
     {
 		
@@ -655,8 +694,9 @@ public class AgentCommandCompilation : MonoBehaviour
     {
         return true;
     }	
-	
-								//----------------MULTIPLYSINGLE----------------//
+	#endregion
+
+	#region MULTIPLYSINGLE
 	 private void Agent_MultipleSingle_Start(string[] its_string)
     {
 		
@@ -676,8 +716,9 @@ public class AgentCommandCompilation : MonoBehaviour
     {
         return true;
     }	
-	
-									//----------------MULTIPLYDOUBLE----------------//
+	#endregion 
+
+	#region MULTIPLYDOUBLE
 	 private void Agent_MultiplyDouble_Start(string[] its_string)
     {
 		
@@ -697,8 +738,9 @@ public class AgentCommandCompilation : MonoBehaviour
     {
         return true;
     }	
-	
-									//----------------STORETIMBER----------------//
+	#endregion 
+
+	#region STORETIMBER
 	 private void Agent_GotTimber_Start(string[] its_string)
     {
 		
@@ -718,8 +760,9 @@ public class AgentCommandCompilation : MonoBehaviour
     {
         return true;
     }	
-	
-										//----------------STOREWOOD----------------//
+	#endregion 
+
+	#region STOREWOOD
 	 private void Agent_GotWood_Start(string[] its_string)
     {
 		
@@ -739,8 +782,9 @@ public class AgentCommandCompilation : MonoBehaviour
     {
         return true;
     }	
-	
-										//----------------STORESTONE----------------//
+	#endregion 
+
+	#region STORESTONE
 	 private void Agent_GotStone_Start(string[] its_string)
     {
 		
@@ -760,8 +804,9 @@ public class AgentCommandCompilation : MonoBehaviour
     {
         return true;
     }	
-	
-										//----------------STOREORE----------------//
+	#endregion 
+
+	#region STOREORE
 	 private void Agent_GotOre_Start(string[] its_string)
     {
 		
@@ -781,8 +826,9 @@ public class AgentCommandCompilation : MonoBehaviour
     {
         return true;
     }	
-	
-											//----------------STORECOAL----------------//
+	#endregion 
+
+	#region STORECOAL
 	 private void Agent_GotCoal_Start(string[] its_string)
     {
 		
@@ -802,8 +848,9 @@ public class AgentCommandCompilation : MonoBehaviour
     {
         return true;
     }	
-	
-											//----------------STOREIRON----------------//
+	#endregion 
+
+	#region STOREIRON
 	 private void Agent_GotIron_Start(string[] its_string)
     {
 		
@@ -823,8 +870,9 @@ public class AgentCommandCompilation : MonoBehaviour
     {
         return true;
     }	
-	
-												//----------------BUILDTURFHUT----------------//
+	#endregion 
+
+	#region BUILDTURFHUT
 	 private void Agent_BuildHut_Start(string[] its_string)
     {
 		
@@ -844,8 +892,9 @@ public class AgentCommandCompilation : MonoBehaviour
     {
         return true;
     }	
-	
-													//----------------BUILDHOUSE----------------//
+	#endregion 
+
+	#region BUILDHOUSE
 	 private void Agent_BuildHouse_Start(string[] its_string)
     {
 		
@@ -865,8 +914,9 @@ public class AgentCommandCompilation : MonoBehaviour
     {
         return true;
     }	
-	
-													//----------------BUILDSCHOOL----------------//
+	#endregion 
+
+	#region BUILDSCHOOL
 	 private void Agent_BuildSchool_Start(string[] its_string)
     {
 		
@@ -886,8 +936,9 @@ public class AgentCommandCompilation : MonoBehaviour
     {
         return true;
     }	
-	
-													//----------------BUILDBARRACKS----------------//
+	#endregion 
+
+	#region BUILDBARRACKS
 	 private void Agent_BuildBarracks_Start(string[] its_string)
     {
 		
@@ -907,8 +958,9 @@ public class AgentCommandCompilation : MonoBehaviour
     {
         return true;
     }
+	#endregion 
 
-												//----------------BUILDSTORAGE----------------//
+	#region BUILDSTORAGE
 	 private void Agent_BuildStorage_Start(string[] its_string)
     {
 		
@@ -928,8 +980,9 @@ public class AgentCommandCompilation : MonoBehaviour
     {
         return true;
     }
+	#endregion 
 
-												//----------------BUILDCOALMINE----------------//
+	#region BUILDCOALMINE
 	 private void Agent_BuildCoalMine_Start(string[] its_string)
     {
 		
@@ -949,14 +1002,15 @@ public class AgentCommandCompilation : MonoBehaviour
     {
         return true;
     }			
-	
-												//----------------BUILDOREMINE----------------//
+	#endregion 
+
+	#region BUILDOREMINE
 	 private void Agent_BuildOreMine_Start(string[] its_string)
     {
 		
     }
 
-    private void Agent_BuildCoalMine_Update(string[] its_string)
+    private void Agent_BuildOreMine_Update(string[] its_string)
     {
 
     }
@@ -970,8 +1024,9 @@ public class AgentCommandCompilation : MonoBehaviour
     {
         return true;
     }	
+	#endregion
 
-												//----------------BUILDSMELTER----------------//
+	#region BUILDSMELTER
 	 private void Agent_BuildSmelter_Start(string[] its_string)
     {
 		
@@ -991,8 +1046,9 @@ public class AgentCommandCompilation : MonoBehaviour
     {
         return true;
     }	
+	#endregion 
 
-											//----------------BUILDQUARRY----------------//
+	#region BUILDQUARRY
 	 private void Agent_BuildQuarry_Start(string[] its_string)
     {
 		
@@ -1012,8 +1068,9 @@ public class AgentCommandCompilation : MonoBehaviour
     {
         return true;
     }	
+	#endregion 
 
-										//----------------BUILDSAWMILL----------------//
+	#region BUILDSAWMILL
 	 private void Agent_BuildSawMill_Start(string[] its_string)
     {
 		
@@ -1033,8 +1090,9 @@ public class AgentCommandCompilation : MonoBehaviour
     {
         return true;
     }	
+	#endregion 
 
-									//----------------BUILDREFINERY----------------//
+	#region BUILDREFINERY
 	 private void Agent_BuildRefinery_Start(string[] its_string)
     {
 		
@@ -1054,4 +1112,5 @@ public class AgentCommandCompilation : MonoBehaviour
     {
         return true;
     }		
+	#endregion 
 }
