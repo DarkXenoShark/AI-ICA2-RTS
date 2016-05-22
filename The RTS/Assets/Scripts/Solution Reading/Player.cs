@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
 
 	public void Set_New_Goal()
 	{
-		AgentMaster.BuildingGoal[] quick_goals = new AgentMaster.BuildingGoal[TheGoal.Length];
+		/*AgentMaster.BuildingGoal[] quick_goals = new AgentMaster.BuildingGoal[TheGoal.Length];
 		for (int rep_goal = 0; rep_goal < TheGoal.Length; rep_goal++)
 		{
 			quick_goals[rep_goal]= new AgentMaster.BuildingGoal
@@ -74,8 +74,17 @@ public class Player : MonoBehaviour
 			TheDestination = Get_Empty_Loaction_Index(rep_goal+1)
 		};
 
-		}
+		}*/
+		AgentMaster.OrGoal[] quick_goals = new AgentMaster.OrGoal[TheGoal.Length];
 
+		for (int rep_goal = 0; rep_goal < TheGoal.Length; rep_goal++)
+		{
+			quick_goals[rep_goal] = new AgentMaster.OrGoal
+			{
+				TheBuilding = TheGoal[rep_goal],
+				TheDestinations = AgentMaster.Convert_Locations_To_Building(GameMaster.Get_Locations_Of_Player(TheAlliance))
+			};
+		}
 
 		AgentMaster.Write_Problem(
 			"rts", 

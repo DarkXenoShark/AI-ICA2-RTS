@@ -45,6 +45,27 @@ public class AgentMaster : MonoBehaviour
 		}
 	}
 
+	[Serializable] public class OrGoal: IGoal
+	{
+		public EBuilding TheBuilding;
+		public Building[] TheDestinations;
+
+		public string[] Write_Goal()
+		{
+			List<string> returner = new List<string>();
+
+			foreach (Building rep_building in TheDestinations)
+			{
+				if (rep_building.TheResource == EResource.None && rep_building.TheType == EBuilding.None)
+				{
+					returner.Add("has-" + Building_To_String(TheBuilding) + " " + rep_building.TheName);
+				}
+			}
+
+			return returner.ToArray();
+		}
+	}
+
     public static Building[] Convert_Locations_To_Building(Location[] its_locations)
     {
 	    return its_locations.Select(repLocation => repLocation.TheSelf).ToArray();
@@ -362,10 +383,12 @@ public class AgentMaster : MonoBehaviour
 		//This will probably hold a list of conditions
 		foreach (IGoal rep_goal in its_goal)
 		{
+			its_stream.WriteLine("\t\t\t(or");
 			foreach (string rep_line in rep_goal.Write_Goal())
 			{
-				its_stream.WriteLine("\t\t\t(" + rep_line + ")");
+				its_stream.WriteLine("\t\t\t\t(" + rep_line + ")");
 			}
+			its_stream.WriteLine("\t\t\t)");
 		}
 
 
