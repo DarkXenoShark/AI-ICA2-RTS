@@ -9,15 +9,8 @@ public class AgentMaster : MonoBehaviour
 {
 	public static AgentMaster self;
 
+	[SerializeField] private bool my_optimise;
 	[SerializeField] private string my_domain_name;
-
-	[SerializeField] private List<Person> my_people;
-	[SerializeField] private List<Building> my_buildings;
-
-	[SerializeField] public Resources my_resources;
-
-	[SerializeField] private EBuilding serialized_goal_building;
-	[SerializeField] private string serialized_goal_destination;
 
     public Dictionary<string, Agent> my_agent_types;
     public List<List<Agent>> my_running_agent_batches;
@@ -49,26 +42,6 @@ public class AgentMaster : MonoBehaviour
 
 			returner[0] = ("has-" + Building_To_String(TheBuilding) + " " + TheDestination);
 			return returner;
-		}
-	}
-
-	/// <summary> Converts the serialised information into a struct array for reading </summary>
-	/// <value>The people.</value>
-	public Person[] People
-	{
-		get
-		{
-			return my_people.ToArray();
-		}
-	}
-
-	/// <summary> Converts the serialised information into a struct array for reading </summary>
-	/// <value>The buildings.</value>
-	public Building[] Buildings
-	{
-		get
-		{
-			return my_buildings.ToArray();
 		}
 	}
 
@@ -281,7 +254,7 @@ public class AgentMaster : MonoBehaviour
 	///  It adds together several splits between the phases of writing a problem and
 	/// combines them into a string to save as a separate file.
 	/// </summary>
-	public static void Write_Problem(string its_file, Resources its_resources, Person[] its_scoped_people, Building[] its_scoped_buildings, IGoal its_goal)
+	public static void Write_Problem(string its_file, Resources its_resources, Person[] its_scoped_people, Building[] its_scoped_buildings, IGoal[] its_goal)
 	{
 		//using (StreamWriter quick_writer = File.CreateText(Application.dataPath + "/Resources/" + its_file + "-problem.pddl"))
 		using (StreamWriter quick_writer = File.CreateText(Application.dataPath + "/PDDL/Metric-FF/" + its_file + "-problem.pddl"))
@@ -327,9 +300,10 @@ public class AgentMaster : MonoBehaviour
 		//Go through each location listed in the list of locations
 		for (int rep_building = 0; rep_building < its_scoped_buildings.Count; rep_building++)
 		{
-			//its_stream.WriteLine("\t\t" + its_scoped_buildings[rep_building].TheName + " - " + Resource_To_String(its_scoped_buildings[rep_building].TheResource));
 			its_stream.WriteLine("\t\t" + its_scoped_buildings[rep_building].TheName + " - " + Location_To_String(its_scoped_buildings[rep_building].TheResource));
 		}
+
+		//its_stream.WriteLine("\t\t" + "X" + " - " + Location_To_String(EResource.None));
 
 		its_stream.WriteLine("\t\t)");
 		its_stream.WriteLine("");
@@ -380,19 +354,29 @@ public class AgentMaster : MonoBehaviour
 	/// Writes the static header for problem files to the stream
 	/// </summary>
 	/// <param name="its_stream">The given stream to write to.</param>
-	private static void Problem_Writing_Goal(StreamWriter its_stream, IGoal its_goal)
+	private static void Problem_Writing_Goal(StreamWriter its_stream, IGoal[] its_goal)
 	{
 		its_stream.WriteLine("\t(:goal");
 		its_stream.WriteLine("\t\t(and");
 
 		//This will probably hold a list of conditions
-		foreach (string rep_line in its_goal.Write_Goal())
+		foreach (IGoal rep_goal in its_goal)
 		{
-			its_stream.WriteLine("\t\t\t(" + rep_line + ")");
+			foreach (string rep_line in rep_goal.Write_Goal())
+			{
+				its_stream.WriteLine("\t\t\t(" + rep_line + ")");
+			}
 		}
 
+
 		its_stream.WriteLine("\t\t\t)");
+
 		its_stream.WriteLine("\t\t)");
+		its_stream.WriteLine("");
+
+		if (self.my_optimise)
+			its_stream.WriteLine("\t\t(:metric minimize (labourCost))");
+
 		its_stream.WriteLine("");
 
 	}

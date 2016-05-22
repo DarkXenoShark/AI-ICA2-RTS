@@ -505,7 +505,8 @@ public class AgentCommandCompilation : MonoBehaviour
 
 	private static void Agent_Move_End(string[] its)
 	{
-		Debug.Log ("Moved " + its[0] + " to " + its[1]);
+		GameMaster.Get_Person_By_Name(its[0])._self.TheLocation = its[2];
+		Debug.Log ("Moved " + its[0] + " to " + its[2]);
 	}
 
 	private static bool Agent_Move_CompletedCheck(string[] its)
@@ -519,7 +520,7 @@ public class AgentCommandCompilation : MonoBehaviour
 	 private static void Agent_CutTree_Start(string[] its_string)
 	 {
 		 GameMaster.Get_Person_By_Name(its_string[0]).Get_Resource(AgentMaster.EResource.Timber);
-		 GameMaster.Get_Location_By_Name(its_string[1]).TheSelf.TheResource = AgentMaster.EResource.None;
+		 GameMaster.Get_Location_By_Name(its_string[1]).SetResource(AgentMaster.EResource.None);
 	 }
 
 	private static void Agent_CutTree_Update(string[] its_string)
@@ -863,242 +864,249 @@ public class AgentCommandCompilation : MonoBehaviour
 	#endregion 
 
 	#region BUILDTURFHUT
-	 private void Agent_BuildHut_Start(string[] its_string)
+	private static void Agent_BuildHut_Start(string[] its_string)
+	{ }
+
+	private static void Agent_BuildHut_Update(string[] its_string)
+	{ }
+
+	private static void Agent_BuildHut_End(string[] its_string)
 	{
-		
+		GameMaster.Get_Location_By_Name(its_string[1]).TheAlliance = GameMaster.Get_Person_By_Name(its_string[0])._alliance;
+		GameMaster.Get_Location_By_Name(its_string[1]).SetBuilding(AgentMaster.EBuilding.Turfhut);
+
 	}
 
-	private void Agent_BuildHut_Update(string[] its_string)
-	{
-
-	}
-
-	private void Agent_BuildHut_End(string[] its_string)
-	{
-
-	}
-
-	private bool Agent_BuildHut_CompletedCheck(string[] its_string)
+	private static bool Agent_BuildHut_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}	
 	#endregion 
 
 	#region BUILDHOUSE
-	 private void Agent_BuildHouse_Start(string[] its_string)
+	private static void Agent_BuildHouse_Start(string[] its_string)
+	{ }
+
+	private static void Agent_BuildHouse_Update(string[] its_string)
+	{ }
+
+	private static void Agent_BuildHouse_End(string[] its_string)
 	{
-		
+		GameMaster.Get_Location_By_Name(its_string[2]).TheAlliance = GameMaster.Get_Person_By_Name(its_string[0])._alliance;
+		GameMaster.Get_Location_By_Name(its_string[2]).SetBuilding(AgentMaster.EBuilding.House);
+
+		Player quick_player = GameMaster.Get_Player(GameMaster.Get_Person_By_Name(its_string[0])._alliance);
+		quick_player.TheResources.TheWood--;
+		quick_player.TheResources.TheStone--;
 	}
 
-	private void Agent_BuildHouse_Update(string[] its_string)
-	{
-
-	}
-
-	private void Agent_BuildHouse_End(string[] its_string)
-	{
-
-	}
-
-	private bool Agent_BuildHouse_CompletedCheck(string[] its_string)
+	private static bool Agent_BuildHouse_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}	
 	#endregion 
 
 	#region BUILDSCHOOL
-	 private void Agent_BuildSchool_Start(string[] its_string)
+	private static void Agent_BuildSchool_Start(string[] its_string)
+	{ }
+
+	private static void Agent_BuildSchool_Update(string[] its_string)
+	{ }
+
+	private static void Agent_BuildSchool_End(string[] its_string)
 	{
-		
+		GameMaster.Get_Location_By_Name(its_string[2]).TheAlliance = GameMaster.Get_Person_By_Name(its_string[0])._alliance;
+		GameMaster.Get_Location_By_Name(its_string[2]).SetBuilding(AgentMaster.EBuilding.School);
+
+		Player quick_player = GameMaster.Get_Player(GameMaster.Get_Person_By_Name(its_string[0])._alliance);
+		quick_player.TheResources.TheWood--;
+		quick_player.TheResources.TheStone--;
 	}
 
-	private void Agent_BuildSchool_Update(string[] its_string)
-	{
-
-	}
-
-	private void Agent_BuildSchool_End(string[] its_string)
-	{
-
-	}
-
-	private bool Agent_BuildSchool_CompletedCheck(string[] its_string)
+	private static bool Agent_BuildSchool_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}	
 	#endregion 
 
 	#region BUILDBARRACKS
-	 private void Agent_BuildBarracks_Start(string[] its_string)
+	private static void Agent_BuildBarracks_Start(string[] its_string)
+	{ }
+
+	private static void Agent_BuildBarracks_Update(string[] its_string)
+	{ }
+
+	private static void Agent_BuildBarracks_End(string[] its_string)
 	{
-		
+		GameMaster.Get_Location_By_Name(its_string[2]).TheAlliance = GameMaster.Get_Person_By_Name(its_string[0])._alliance;
+		GameMaster.Get_Location_By_Name(its_string[2]).SetBuilding(AgentMaster.EBuilding.Barracks);
+
+		Player quick_player = GameMaster.Get_Player(GameMaster.Get_Person_By_Name(its_string[0])._alliance);
+		quick_player.TheResources.TheWood--;
+		quick_player.TheResources.TheStone--;
 	}
 
-	private void Agent_BuildBarracks_Update(string[] its_string)
-	{
-
-	}
-
-	private void Agent_BuildBarracks_End(string[] its_string)
-	{
-
-	}
-
-	private bool Agent_BuildBarracks_CompletedCheck(string[] its_string)
+	private static bool Agent_BuildBarracks_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}
 	#endregion 
 
 	#region BUILDSTORAGE
-	 private void Agent_BuildStorage_Start(string[] its_string)
+	private static void Agent_BuildStorage_Start(string[] its_string)
+	{ }
+
+	private static void Agent_BuildStorage_Update(string[] its_string)
+	{ }
+
+	private static void Agent_BuildStorage_End(string[] its_string)
 	{
-		
+		GameMaster.Get_Location_By_Name(its_string[2]).TheAlliance = GameMaster.Get_Person_By_Name(its_string[0])._alliance;
+		GameMaster.Get_Location_By_Name(its_string[2]).SetBuilding(AgentMaster.EBuilding.Storage);
+
+		for (int rep_person = 0; rep_person < 2; rep_person++)
+		{
+			GameMaster.Get_Person_By_Name(its_string[rep_person]).Store_Resource(AgentMaster.EResource.Wood);
+			GameMaster.Get_Person_By_Name(its_string[rep_person]).Store_Resource(AgentMaster.EResource.Stone);
+		}
 	}
 
-	private void Agent_BuildStorage_Update(string[] its_string)
-	{
-
-	}
-
-	private void Agent_BuildStorage_End(string[] its_string)
-	{
-
-	}
-
-	private bool Agent_BuildStorage_CompletedCheck(string[] its_string)
+	private static bool Agent_BuildStorage_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}
 	#endregion 
 
 	#region BUILDCOALMINE
-	 private void Agent_BuildCoalMine_Start(string[] its_string)
+	private static void Agent_BuildCoalMine_Start(string[] its_string)
+	{ }
+
+	private static void Agent_BuildCoalMine_Update(string[] its_string)
+	{ }
+
+	private static void Agent_BuildCoalMine_End(string[] its_string)
 	{
-		
+		GameMaster.Get_Location_By_Name(its_string[3]).TheAlliance = GameMaster.Get_Person_By_Name(its_string[0])._alliance;
+		GameMaster.Get_Location_By_Name(its_string[3]).SetBuilding(AgentMaster.EBuilding.Coalmine);
+
+		Player quick_player = GameMaster.Get_Player(GameMaster.Get_Person_By_Name(its_string[0])._alliance);
+		quick_player.TheResources.TheWood--;
+		quick_player.TheResources.TheIron--;
 	}
 
-	private void Agent_BuildCoalMine_Update(string[] its_string)
-	{
-
-	}
-
-	private void Agent_BuildCoalMine_End(string[] its_string)
-	{
-
-	}
-
-	private bool Agent_BuildCoalMine_CompletedCheck(string[] its_string)
+	private static bool Agent_BuildCoalMine_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}			
 	#endregion 
 
 	#region BUILDOREMINE
-	 private void Agent_BuildOreMine_Start(string[] its_string)
+	private static void Agent_BuildOreMine_Start(string[] its_string)
+	{ }
+
+	private static void Agent_BuildOreMine_Update(string[] its_string)
+	{ }
+
+	private static void Agent_BuildOreMine_End(string[] its_string)
 	{
-		
-	}
+		GameMaster.Get_Location_By_Name(its_string[3]).TheAlliance = GameMaster.Get_Person_By_Name(its_string[0])._alliance;
+		GameMaster.Get_Location_By_Name(its_string[3]).SetBuilding(AgentMaster.EBuilding.Oremine);
+	
+		Player quick_player = GameMaster.Get_Player(GameMaster.Get_Person_By_Name(its_string[0])._alliance);
+		quick_player.TheResources.TheWood--;
+		quick_player.TheResources.TheIron--;
+}
 
-	private void Agent_BuildOreMine_Update(string[] its_string)
-	{
-
-	}
-
-	private void Agent_BuildOreMine_End(string[] its_string)
-	{
-
-	}
-
-	private bool Agent_BuildOreMine_CompletedCheck(string[] its_string)
+	private static bool Agent_BuildOreMine_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}	
 	#endregion
 
 	#region BUILDSMELTER
-	 private void Agent_BuildSmelter_Start(string[] its_string)
+	private static void Agent_BuildSmelter_Start(string[] its_string)
+	{ }
+
+	private static void Agent_BuildSmelter_Update(string[] its_string)
+	{ }
+
+	private static void Agent_BuildSmelter_End(string[] its_string)
 	{
-		
+		GameMaster.Get_Location_By_Name(its_string[1]).TheAlliance = GameMaster.Get_Person_By_Name(its_string[0])._alliance;
+		GameMaster.Get_Location_By_Name(its_string[1]).SetBuilding(AgentMaster.EBuilding.Smelter);
+
+		Player quick_player = GameMaster.Get_Player(GameMaster.Get_Person_By_Name(its_string[0])._alliance);
+		quick_player.TheResources.TheStone--;
 	}
 
-	private void Agent_BuildSmelter_Update(string[] its_string)
-	{
-
-	}
-
-	private void Agent_BuildSmelter_End(string[] its_string)
-	{
-
-	}
-
-	private bool Agent_BuildSmelter_CompletedCheck(string[] its_string)
+	private static bool Agent_BuildSmelter_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}	
 	#endregion 
 
 	#region BUILDQUARRY
-	 private void Agent_BuildQuarry_Start(string[] its_string)
+	private static void Agent_BuildQuarry_Start(string[] its_string)
+	{ }
+
+	private static void Agent_BuildQuarry_Update(string[] its_string)
+	{ }
+
+	private static void Agent_BuildQuarry_End(string[] its_string)
 	{
-		
+		GameMaster.Get_Location_By_Name(its_string[1]).TheAlliance = GameMaster.Get_Person_By_Name(its_string[0])._alliance;
+		GameMaster.Get_Location_By_Name(its_string[1]).SetBuilding(AgentMaster.EBuilding.Quary);
 	}
 
-	private void Agent_BuildQuarry_Update(string[] its_string)
-	{
-
-	}
-
-	private void Agent_BuildQuarry_End(string[] its_string)
-	{
-
-	}
-
-	private bool Agent_BuildQuarry_CompletedCheck(string[] its_string)
+	private static bool Agent_BuildQuarry_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}	
 	#endregion 
 
 	#region BUILDSAWMILL
-	 private void Agent_BuildSawMill_Start(string[] its_string)
+	private static void Agent_BuildSawMill_Start(string[] its_string)
+	{ }
+
+	private static void Agent_BuildSawMill_Update(string[] its_string)
+	{ }
+
+	private static void Agent_BuildSawMill_End(string[] its_string)
 	{
-		
+		GameMaster.Get_Location_By_Name(its_string[1]).TheAlliance = GameMaster.Get_Person_By_Name(its_string[0])._alliance;
+		GameMaster.Get_Location_By_Name(its_string[1]).SetBuilding(AgentMaster.EBuilding.Sawmill);
+
+		Player quick_player = GameMaster.Get_Player(GameMaster.Get_Person_By_Name(its_string[0])._alliance);
+		quick_player.TheResources.TheTimber--;
+		quick_player.TheResources.TheIron--;
+		quick_player.TheResources.TheStone--;
 	}
 
-	private void Agent_BuildSawMill_Update(string[] its_string)
-	{
-
-	}
-
-	private void Agent_BuildSawMill_End(string[] its_string)
-	{
-
-	}
-
-	private bool Agent_BuildSawMill_CompletedCheck(string[] its_string)
+	private static bool Agent_BuildSawMill_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}	
 	#endregion 
 
 	#region BUILDREFINERY
-	 private void Agent_BuildRefinery_Start(string[] its_string)
+	private static void Agent_BuildRefinery_Start(string[] its_string)
+	{ }
+
+	private static void Agent_BuildRefinery_Update(string[] its_string)
+	{ }
+
+	private static void Agent_BuildRefinery_End(string[] its_string)
 	{
-		
+		GameMaster.Get_Location_By_Name(its_string[1]).TheAlliance = GameMaster.Get_Person_By_Name(its_string[0])._alliance;
+		GameMaster.Get_Location_By_Name(its_string[1]).SetBuilding(AgentMaster.EBuilding.Refinery);
+
+		Player quick_player = GameMaster.Get_Player(GameMaster.Get_Person_By_Name(its_string[0])._alliance);
+		quick_player.TheResources.TheTimber--;
+		quick_player.TheResources.TheStone--;
+		quick_player.TheResources.TheIron--;
 	}
 
-	private void Agent_BuildRefinery_Update(string[] its_string)
-	{
-
-	}
-
-	private void Agent_BuildRefinery_End(string[] its_string)
-	{
-
-	}
-
-	private bool Agent_BuildRefinery_CompletedCheck(string[] its_string)
+	private static bool Agent_BuildRefinery_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}		

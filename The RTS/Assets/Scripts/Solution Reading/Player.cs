@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 {
     public List<PlayerBehaviour> my_people;
     public AgentMaster.Resources TheResources;
-	public AgentMaster.EBuilding TheGoal;
+	public AgentMaster.EBuilding[] TheGoal;
 
 	public GameObject AttachedPerson;
 
@@ -36,6 +36,21 @@ public class Player : MonoBehaviour
         //If it reaches this point, there is no empty location registered
         return "Error";
     }
+	public string Get_Empty_Loaction_Index(int its_empty)
+    {
+        Location[] quickLocations = GameMaster.Get_Locations_Of_Player(TheAlliance);
+
+        foreach (Location repLocation in quickLocations.Where(repLocation => repLocation.TheSelf.TheResource == AgentMaster.EResource.None &&
+                                                                                repLocation.TheSelf.TheType == AgentMaster.EBuilding.None))
+        {
+	        its_empty--;
+			if (its_empty <= 0)
+				return repLocation.TheSelf.TheName;
+        }
+
+        //If it reaches this point, there is no empty location registered
+        return "Error";
+    }
 
 	public void Create_Person(string its_location)
 	{
@@ -50,18 +65,24 @@ public class Player : MonoBehaviour
 
 	public void Set_New_Goal()
 	{
-		AgentMaster.BuildingGoal quick_goal = new AgentMaster.BuildingGoal
+		AgentMaster.BuildingGoal[] quick_goals = new AgentMaster.BuildingGoal[TheGoal.Length];
+		for (int rep_goal = 0; rep_goal < TheGoal.Length; rep_goal++)
 		{
-			TheBuilding = TheGoal,
-			TheDestination = Get_First_Empty_Loaction()
+			quick_goals[rep_goal]= new AgentMaster.BuildingGoal
+		{
+			TheBuilding = TheGoal[rep_goal],
+			TheDestination = Get_Empty_Loaction_Index(rep_goal+1)
 		};
+
+		}
+
 
 		AgentMaster.Write_Problem(
 			"rts", 
 			TheResources,
 			AgentMaster.Convert_PlayerBehaviour_To_People(my_people.ToArray()), 
 			AgentMaster.Convert_Locations_To_Building(GameMaster.Get_Locations_Of_Player(TheAlliance)), 
-			quick_goal);
+			quick_goals);
 		AgentMaster.Call_Start();
 		foreach (AgentMaster.AgentCommands rep_string in AgentMaster.Get_Generated_Plan())
 		{

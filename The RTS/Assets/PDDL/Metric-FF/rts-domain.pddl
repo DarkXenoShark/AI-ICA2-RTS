@@ -287,7 +287,7 @@
 	(:action buildSmelter
 			:parameters (?person - person ?location - location)
 			:precondition (and (is-labourer ?person) (>=(stone)1) (at ?person ?location) (not (has-building ?location)))
-			:effect (and (has-building ?location)(has-smelter ?location)(increase (labourCost) 20)(decrease (stone) 1)(not(got-stone ?person))))
+			:effect (and (has-building ?location)(has-smelter ?location)(increase (labourCost) 20)(decrease (stone) 1)))
 	
 	(:action buildQuarry
 			:parameters (?person - person ?place - stone)
@@ -304,7 +304,7 @@
 			:parameters (?person - person ?location - location)
 			:precondition (and (is-labourer ?person) (at ?person ?location)(>=(stone)1) (>= (iron)1)(>= (timber)1)(not (has-building ?location)))
 			:effect (and (has-building ?location)(has-refinery ?location)
-					(decrease (stone) 1)(decrease (iron) 1)(decrease (timber) 1)(increase (labourCost) 10) (not(got-timber ?person))))
+					(decrease (stone) 1)(decrease (iron) 1)(decrease (timber) 1)(increase (labourCost) 10) ))
 			
 	;(:action buildMarket
 		;	:parameters (?person - person ?location - location)

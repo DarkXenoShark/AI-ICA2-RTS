@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using BlackTip;
-using JetBrains.Annotations;
 using SandTiger;
 using UnityEngine;
 
@@ -33,18 +32,13 @@ public class PlayerBehaviour : MonoBehaviour
 		Rifleman
 	}
 
-	private ESkill _skill;
+	public ESkill Skill { get; private set; }
 
-	public ESkill Skill
-	{
-		get { return _skill; }
-	}
-
-	public void SetSkill(ESkill its_skill)
+	public void SetSkill (ESkill its_skill)
 	{
 		if (SkillPoints > 0)
 		{
-			_skill = its_skill;
+			Skill = its_skill;
 			SkillPoints--;
 		}
 		else
@@ -60,13 +54,18 @@ public class PlayerBehaviour : MonoBehaviour
     private void Awake()
     {
         _self.TheName = gameObject.name.ToUpper();
+        _self.TheLocation = _self.TheLocation.ToUpper();
 		_self.TheJob = AgentMaster.EJob.Labourer;
-		_skill = ESkill.None;
+		Skill = ESkill.None;
 		_holding = new List<AgentMaster.EResource>();
 	    SkillPoints = 0;
-
-	    GetComponent<SpriteRenderer>().sortingOrder = 1;
     }
+
+	private void Start()
+	{
+
+		SetTilePosition(new IVector2(GameMaster.Get_Location_By_Name(_self.TheLocation).transform.position));
+	}
 
 	public void Store_Resources()
 	{
@@ -159,8 +158,6 @@ public class PlayerBehaviour : MonoBehaviour
 
 	public void Remove_Resource(AgentMaster.EResource its_resource)
 	{
-		Player quick_player = GameMaster.Get_Player(_alliance);
-
 		for (int rep_resource = 0; rep_resource < _holding.Count; rep_resource++)
 		{
 			if (_holding[rep_resource] != its_resource) 
@@ -193,6 +190,7 @@ public class PlayerBehaviour : MonoBehaviour
 
 	private IEnumerator WalkTo (IVector2 destination, float stepIntervalSeconds)
 	{
+
 		if (Level.Self.IsWalkeable (destination.x, destination.y))
 		{
             AStar astar = new AStar(Level.Self);

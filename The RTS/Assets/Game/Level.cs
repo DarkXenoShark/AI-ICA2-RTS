@@ -101,6 +101,12 @@ public class Level : MonoBehaviour
 		return _tiles.GetType (_tileMap[x, y]);
 	}
 
+	public bool SetTile (int x, int y, TileType type)
+	{
+		_tileMap[x, y] = _tiles.GetId(type);
+		return true;
+	}
+
 	// Returns true if the player can walk on this tile.
 	public bool IsWalkeable (int x, int y)
 	{
