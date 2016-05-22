@@ -90,9 +90,9 @@ namespace BlackTip
 
 		private void CreateTexture (bool keepData)
 		{
-			Debug.Log (new Vector2 (base.Settings.Tiles.x, base.Settings.Tiles.y));
-			Debug.Log (base.Settings.TileResolution);
-			Debug.Log (new Vector2 (base.Settings.Tiles.x * base.Settings.TileResolution, base.Settings.Tiles.y * base.Settings.TileResolution));
+			//Debug.Log (new Vector2 (base.Settings.Tiles.x, base.Settings.Tiles.y));
+			//Debug.Log (base.Settings.TileResolution);
+			//Debug.Log (new Vector2 (base.Settings.Tiles.x * base.Settings.TileResolution, base.Settings.Tiles.y * base.Settings.TileResolution));
 
 			Texture2D texture = new Texture2D (
 				base.Settings.Tiles.x * base.Settings.TileResolution,

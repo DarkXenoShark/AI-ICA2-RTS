@@ -297,31 +297,31 @@ public class AgentCommandCompilation : MonoBehaviour
 	}
 	
 	#region SIMPLETRAIN
-	private void Agent_Simpletrain_Start(string[] its_string)
+	private static void Agent_Simpletrain_Start(string[] its_string)
+	{
+		GameMaster.Get_Person_By_Name(its_string[1]).SkillPoints++;
+	}
+
+	private static void Agent_Simpletrain_Update(string[] its_string)
 	{
 
 	}
 
-	private void Agent_Simpletrain_Update(string[] its_string)
+	private static void Agent_Simpletrain_End(string[] its_string)
 	{
-
+		Debug.Log ("Added skill point to " + its_string[1] + " by " + its_string[0] + " at " + its_string[2]);
 	}
 
-	private void Agent_Simpletrain_End(string[] its_string)
-	{
-		Debug.Log ("Trained " + its_string[1] + " by " + its_string[0] + " at " + its_string[2]);
-	}
-
-	private bool Agent_Simpletrain_CompletedCheck(string[] its_string)
+	private static bool Agent_Simpletrain_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}
 	#endregion
 
 	#region SCHOOLTRAIN
-	 private void Agent_SchoolTrain_Start(string[] its_string)
+	 private static void Agent_SchoolTrain_Start(string[] its_string)
 	{
-
+		 GameMaster.Get_Person_By_Name(its_string[0]).Set_Job(AgentMaster.EJob.Teacher);
 	}
 
 	private void Agent_SchoolTrain_Update(string[] its_string)
@@ -329,13 +329,13 @@ public class AgentCommandCompilation : MonoBehaviour
 
 	}
 
-	private void Agent_SchoolTrain_End(string[] its_string)
+	private static void Agent_SchoolTrain_End(string[] its_string)
 	{
 
 		Debug.Log ("Trained " + its_string[1] + " by " + its_string[0] + " at " + its_string[2]);
 	}
 
-	private bool Agent_SchoolTrain_CompletedCheck(string[] its_string)
+	private static bool Agent_SchoolTrain_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}
@@ -343,23 +343,23 @@ public class AgentCommandCompilation : MonoBehaviour
 	#endregion 
 
 	#region TRAINCARPENTER
-	 private void Agent_TrainCarpenter_Start(string[] its_string)
+	 private static void Agent_TrainCarpenter_Start(string[] its_string)
+	{
+		 GameMaster.Get_Person_By_Name(its_string[0]).Set_Job(AgentMaster.EJob.Carpenter);
+	}
+
+	private static void Agent_TrainCarpenter_Update(string[] its_string)
 	{
 
 	}
 
-	private void Agent_TrainCarpenter_Update(string[] its_string)
-	{
-
-	}
-
-	private void Agent_TrainCarpenter_End(string[] its_string)
+	private static void Agent_TrainCarpenter_End(string[] its_string)
 	{
 
 		Debug.Log ("Trained " + its_string[0] + " to be a carpenter");
 	}
 
-	private bool Agent_TrainCarpenter_CompletedCheck(string[] its_string)
+	private static bool Agent_TrainCarpenter_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}
@@ -367,23 +367,23 @@ public class AgentCommandCompilation : MonoBehaviour
 	#endregion 
 
 	#region TRAINLUMBERJACK
-	 private void Agent_TrainLumberjack_Start(string[] its_string)
+	 private static void Agent_TrainLumberjack_Start(string[] its_string)
+	{
+		 GameMaster.Get_Person_By_Name(its_string[0]).Set_Job(AgentMaster.EJob.Lumberjack);
+	}
+
+	private static void Agent_TrainLumberjack_Update(string[] its_string)
 	{
 
 	}
 
-	private void Agent_TrainLumberjack_Update(string[] its_string)
-	{
-
-	}
-
-	private void Agent_TrainLumberjack_End(string[] its_string)
+	private static void Agent_TrainLumberjack_End(string[] its_string)
 	{
 
 		Debug.Log ("Trained " + its_string[0] + " to be a lumberjack");
 	}
 
-	private bool Agent_TrainLumberjack_CompletedCheck(string[] its_string)
+	private static bool Agent_TrainLumberjack_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}
@@ -391,23 +391,23 @@ public class AgentCommandCompilation : MonoBehaviour
 	#endregion 
 
 	#region TRAINMINER
-	 private void Agent_TrainMiner_Start(string[] its_string)
+	 private static void Agent_TrainMiner_Start(string[] its_string)
+	{
+		 GameMaster.Get_Person_By_Name(its_string[0]).Set_Job(AgentMaster.EJob.Miner);
+	}
+
+	private static void Agent_TrainMiner_Update(string[] its_string)
 	{
 
 	}
 
-	private void Agent_TrainMiner_Update(string[] its_string)
-	{
-
-	}
-
-	private void Agent_TrainMiner_End(string[] its_string)
+	private static void Agent_TrainMiner_End(string[] its_string)
 	{
 
 		Debug.Log ("Trained " + its_string[0] + " to be a miner");
 	}
 
-	private bool Agent_TrainMiner_CompletedCheck(string[] its_string)
+	private static bool Agent_TrainMiner_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}	
@@ -415,76 +415,75 @@ public class AgentCommandCompilation : MonoBehaviour
 	#endregion 
 
 	#region TRAINBLACKSMITH
-	 private void Agent_TrainBlacksmith_Start(string[] its_string)
+	 private static void Agent_TrainBlacksmith_Start(string[] its_string)
+	{
+		 GameMaster.Get_Person_By_Name(its_string[0]).Set_Job(AgentMaster.EJob.Blacksmith);
+	}
+
+	private static void Agent_TrainBlacksmith_Update(string[] its_string)
 	{
 
 	}
 
-	private void Agent_TrainBlacksmith_Update(string[] its_string)
-	{
-
-	}
-
-	private void Agent_TrainBlacksmith_End(string[] its_string)
+	private static void Agent_TrainBlacksmith_End(string[] its_string)
 	{
 
 		Debug.Log ("Trained " + its_string[0] + " to be a blacksmith");
 	}
 
-	private bool Agent_TrainBlacksmith_CompletedCheck(string[] its_string)
+	private static bool Agent_TrainBlacksmith_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}	
 	#endregion 
 
 	#region TRAINTEACHER
-	 private void Agent_TrainTeacher_Start(string[] its_string)
+	 private static void Agent_TrainTeacher_Start(string[] its_string)
+	{
+		 GameMaster.Get_Person_By_Name(its_string[0]).Set_Job(AgentMaster.EJob.Teacher);
+	}
+
+	private static void Agent_TrainTeacher_Update(string[] its_string)
 	{
 
 	}
 
-	private void Agent_TrainTeacher_Update(string[] its_string)
-	{
-
-	}
-
-	private void Agent_TrainTeacher_End(string[] its_string)
+	private static void Agent_TrainTeacher_End(string[] its_string)
 	{
 
 		Debug.Log ("Trained " + its_string[0] + " to be a teacher");
 	}
 
-	private bool Agent_TrainTeacher_CompletedCheck(string[] its_string)
+	private static bool Agent_TrainTeacher_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}	
 	#endregion
 
 	#region TRAINRIFLEMAN
-	 private void Agent_TrainRifleman_Start(string[] its_string)
+	 private static void Agent_TrainRifleman_Start(string[] its_string)
+	{
+		 GameMaster.Get_Person_By_Name(its_string[0]).SetSkill (PlayerBehaviour.ESkill.Rifleman);
+	}
+
+	private static void Agent_TrainRifleman_Update(string[] its_string)
 	{
 
 	}
 
-	private void Agent_TrainRifleman_Update(string[] its_string)
-	{
-
-	}
-
-	private void Agent_TrainRifleman_End(string[] its_string)
+	private static void Agent_TrainRifleman_End(string[] its_string)
 	{
 
 		Debug.Log ("Trained " + its_string[0] + " to be a riflemans");
 	}
 
-	private bool Agent_TrainRifleman_CompletedCheck(string[] its_string)
+	private static bool Agent_TrainRifleman_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}	
 
 	#endregion 
-
-			
+		
 	#region MOVE
 	private static void Agent_Move_Start (string[] its)
 	{
@@ -511,364 +510,353 @@ public class AgentCommandCompilation : MonoBehaviour
 
 	private static bool Agent_Move_CompletedCheck(string[] its)
 	{
-		return GameMaster.Get_Person_By_Name(its[0]).IsPathing();
+		return !GameMaster.Get_Person_By_Name(its[0]).IsPathing();
 	}
 
 	#endregion 
 
 	#region CUTTREE
-	 private void Agent_CutTree_Start(string[] its_string)
+	 private static void Agent_CutTree_Start(string[] its_string)
+	 {
+		 GameMaster.Get_Person_By_Name(its_string[0]).Get_Resource(AgentMaster.EResource.Timber);
+		 GameMaster.Get_Location_By_Name(its_string[1]).TheSelf.TheResource = AgentMaster.EResource.None;
+	 }
+
+	private static void Agent_CutTree_Update(string[] its_string)
 	{
-		
+
 	}
 
-	private void Agent_CutTree_Update(string[] its_string)
-	{
-
-	}
-
-	private void Agent_CutTree_End(string[] its_string)
+	private static void Agent_CutTree_End(string[] its_string)
 	{
 
 		Debug.Log ("Cut down " + its_string[1] + " by " + its_string[0]);
 	}
 
-	private bool Agent_CutTree_CompletedCheck(string[] its_string)
+	private static bool Agent_CutTree_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}	
 	#endregion 
 
 	#region SIMPLEMINEORE
-	 private void Agent_SimpleMineOre_Start(string[] its_string)
+	 private static void Agent_SimpleMineOre_Start(string[] its_string)
 	{
-		
+		GameMaster.Get_Person_By_Name(its_string[0]).Get_Resource(AgentMaster.EResource.Ore);
+		//GameMaster.Get_Location_By_Name(its_string[1]).TheSelf.TheResource = AgentMaster.EResource.None;
 	}
 
-	private void Agent_SimpleMineOre_Update(string[] its_string)
+	private static void Agent_SimpleMineOre_Update(string[] its_string)
 	{
 
 	}
 
-	private void Agent_SimpleMineOre_End(string[] its_string)
+	private static void Agent_SimpleMineOre_End(string[] its_string)
 	{
 
 		Debug.Log ("Ored mine at " + its_string[1] + " by " + its_string[0]);
 	}
 
-	private bool Agent_SimpleMineOre_CompletedCheck(string[] its_string)
+	private static bool Agent_SimpleMineOre_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}	
 	#endregion 
 
 	#region SIMPLEMINECOAL
-	 private void Agent_SimpleMineCoal_Start(string[] its_string)
+	 private static void Agent_SimpleMineCoal_Start(string[] its_string)
 	{
-		
+		GameMaster.Get_Person_By_Name(its_string[0]).Get_Resource(AgentMaster.EResource.Coal);
+		//GameMaster.Get_Location_By_Name(its_string[1]).TheSelf.TheResource = AgentMaster.EResource.None;
 	}
 
-	private void Agent_SimpleMineCoal_Update(string[] its_string)
+	private static void Agent_SimpleMineCoal_Update(string[] its_string)
 	{
 
 	}
 
-	private void Agent_SimpleMineCoal_End(string[] its_string)
+	private static void Agent_SimpleMineCoal_End(string[] its_string)
 	{
 
 		Debug.Log ("Stone mine at " + its_string[1] + " by " + its_string[0]);
 	}
 
-	private bool Agent_SimpleMineCoal_CompletedCheck(string[] its_string)
+	private static bool Agent_SimpleMineCoal_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}	
 	#endregion 
 
 	#region MINEOREWITHMINE
-	 private void Agent_MineOreWithMine_Start(string[] its_string)
-	{
-		
-	}
+	private static void Agent_MineOreWithMine_Start(string[] its_string)
+	{ }
 
-	private void Agent_MineOreWithMine_Update(string[] its_string)
-	{
+	private static void Agent_MineOreWithMine_Update(string[] its_string)
+	{ }
 
-	}
-
-	private void Agent_MineOreWithMine_End(string[] its_string)
+	private static void Agent_MineOreWithMine_End(string[] its_string)
 	{
+		GameMaster.Get_Person_By_Name(its_string[0]).Get_Resource (AgentMaster.EResource.Ore);
 		Debug.Log ("Stone ored mine at " + its_string[1] + " by " + its_string[0]);
 	}
 
-	private bool Agent_MineOreWithMine_CompletedCheck(string[] its_string)
+	private static bool Agent_MineOreWithMine_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}	
 	#endregion 
 
 	#region MINECOALWITHMINE
-	 private void Agent_MineCoalWithMine_Start(string[] its_string)
-	{
-		
-	}
+	 private static void Agent_MineCoalWithMine_Start(string[] its_string)
+	{ }
 
-	private void Agent_MineCoalWithMine_Update(string[] its_string)
+	private static void Agent_MineCoalWithMine_Update(string[] its_string)
 	{
 
 	}
 
-	private void Agent_MineCoalWithMine_End(string[] its_string)
+	private static void Agent_MineCoalWithMine_End(string[] its_string)
 	{
-
+		GameMaster.Get_Person_By_Name(its_string[0]).Get_Resource (AgentMaster.EResource.Coal);
 		Debug.Log ("Stone mined mine at " + its_string[1] + " by " + its_string[0]);
 	}
 
-	private bool Agent_MineCoalWithMine_CompletedCheck(string[] its_string)
+	private static bool Agent_MineCoalWithMine_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}	
 	#endregion 
 
 	#region QUARRYSTONE
-	 private void Agent_QuarryStone_Start(string[] its_string)
+	private static void Agent_QuarryStone_Start(string[] its_string)
+	{ }
+
+	private static void Agent_QuarryStone_Update(string[] its_string)
+	{ }
+
+	private static void Agent_QuarryStone_End(string[] its_string)
 	{
-		
-	}
-
-	private void Agent_QuarryStone_Update(string[] its_string)
-	{
-
-	}
-
-	private void Agent_QuarryStone_End(string[] its_string)
-	{
-
+		GameMaster.Get_Person_By_Name(its_string[0]).Get_Resource (AgentMaster.EResource.Stone);
 		Debug.Log ("Quarried stone at " + its_string[1] + " by " + its_string[0]);
 	}
 
-	private bool Agent_QuarryStone_CompletedCheck(string[] its_string)
+	private static bool Agent_QuarryStone_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}	
 	#endregion
 
 	#region SAWTIMBERATSAWMILL
-	 private void Agent_SawTimberAtSawmill_Start(string[] its_string)
-	{
-		
-	}
+	 private static void Agent_SawTimberAtSawmill_Start(string[] its_string)
+	 {
+		 GameMaster.Get_Person_By_Name(its_string[0]).Remove_Resource(AgentMaster.EResource.Timber);
+	 }
 
-	private void Agent_SawTimberAtSawmill_Update(string[] its_string)
-	{
-
-	}
-
-	private void Agent_SawTimberAtSawmill_End(string[] its_string)
+	private static void Agent_SawTimberAtSawmill_Update(string[] its_string)
 	{
 
-		Debug.Log ("Quarried stone at " + its_string[1] + " by " + its_string[0]);
 	}
 
-	private bool Agent_SawTimberAtSawmill_CompletedCheck(string[] its_string)
+	private static void Agent_SawTimberAtSawmill_End(string[] its_string)
+	{
+		GameMaster.Get_Person_By_Name(its_string[0]).Get_Resource (AgentMaster.EResource.Wood);
+		Debug.Log ("Sawn timber at " + its_string[1] + " by " + its_string[0]);
+	}
+
+	private static bool Agent_SawTimberAtSawmill_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}	
 	#endregion
 
 	#region SMELTOREATSMELTER
-	 private void Agent_SmeltOreAtSmelter_Start(string[] its_string)
+	 private static void Agent_SmeltOreAtSmelter_Start(string[] its_string)
 	{
-		
+		GameMaster.Get_Person_By_Name(its_string[0]).Remove_Resource(AgentMaster.EResource.Ore);
 	}
 
-	private void Agent_SmeltOreAtSmelter_Update(string[] its_string)
-	{
-
-	}
-
-	private void Agent_SmeltOreAtSmelter_End(string[] its_string)
+	private static void Agent_SmeltOreAtSmelter_Update(string[] its_string)
 	{
 
 	}
 
-	private bool Agent_SmeltOreAtSmelter_CompletedCheck(string[] its_string)
+	private static void Agent_SmeltOreAtSmelter_End(string[] its_string)
+	{
+		GameMaster.Get_Person_By_Name(its_string[0]).Get_Resource (AgentMaster.EResource.Iron);
+	}
+
+	private static bool Agent_SmeltOreAtSmelter_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}	
 	#endregion
 
 	#region MULTIPLYSINGLE
-	 private void Agent_MultipleSingle_Start(string[] its_string)
+	private static void Agent_MultipleSingle_Start(string[] its_string)
 	{
-		
+		Player quick_player = GameMaster.Get_Player(GameMaster.Get_Person_By_Name(its_string[0])._alliance);
+		 quick_player.Create_Person(its_string[2]);
 	}
 
-	private void Agent_MultipleSingle_Update(string[] its_string)
-	{
+	private static void Agent_MultipleSingle_Update(string[] its_string)
+	{ }
 
-	}
+	private static void Agent_MultipleSingle_End(string[] its_string)
+	{ }
 
-	private void Agent_MultipleSingle_End(string[] its_string)
-	{
-
-	}
-
-	private bool Agent_MultipleSingle_CompletedCheck(string[] its_string)
+	private static bool Agent_MultipleSingle_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}	
 	#endregion 
 
 	#region MULTIPLYDOUBLE
-	 private void Agent_MultiplyDouble_Start(string[] its_string)
+	private static void Agent_MultiplyDouble_Start(string[] its_string)
 	{
-		
+		Player quick_player = GameMaster.Get_Player(GameMaster.Get_Person_By_Name(its_string[0])._alliance);
+		 quick_player.Create_Person(its_string[2]);
+		 quick_player.Create_Person(its_string[2]);		
 	}
 
-	private void Agent_MultiplyDouble_Update(string[] its_string)
-	{
+	private static void Agent_MultiplyDouble_Update(string[] its_string)
+	{ }
 
-	}
+	private static void Agent_MultiplyDouble_End(string[] its_string)
+	{ }
 
-	private void Agent_MultiplyDouble_End(string[] its_string)
-	{
-
-	}
-
-	private bool Agent_MultiplyDouble_CompletedCheck(string[] its_string)
+	private static bool Agent_MultiplyDouble_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}	
 	#endregion 
 
 	#region STORETIMBER
-	 private void Agent_GotTimber_Start(string[] its_string)
+	private static void Agent_GotTimber_Start(string[] its_string)
 	{
-		
+		GameMaster.Get_Person_By_Name(its_string[0]).Store_Resource (AgentMaster.EResource.Timber);
 	}
 
-	private void Agent_GotTimber_Update(string[] its_string)
-	{
-
-	}
-
-	private void Agent_GotTimber_End(string[] its_string)
+	private static void Agent_GotTimber_Update(string[] its_string)
 	{
 
 	}
 
-	private bool Agent_GotTimber_CompletedCheck(string[] its_string)
+	private static void Agent_GotTimber_End(string[] its_string)
+	{
+
+	}
+
+	private static bool Agent_GotTimber_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}	
 	#endregion 
 
 	#region STOREWOOD
-	 private void Agent_GotWood_Start(string[] its_string)
+	private static void Agent_GotWood_Start(string[] its_string)
 	{
-		
+		GameMaster.Get_Person_By_Name(its_string[0]).Store_Resource (AgentMaster.EResource.Wood);
 	}
 
-	private void Agent_GotWood_Update(string[] its_string)
-	{
-
-	}
-
-	private void Agent_GotWood_End(string[] its_string)
+	private static void Agent_GotWood_Update(string[] its_string)
 	{
 
 	}
 
-	private bool Agent_GotWood_CompletedCheck(string[] its_string)
+	private static void Agent_GotWood_End(string[] its_string)
+	{
+
+	}
+
+	private static bool Agent_GotWood_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}	
 	#endregion 
 
 	#region STORESTONE
-	 private void Agent_GotStone_Start(string[] its_string)
+	private static void Agent_GotStone_Start(string[] its_string)
 	{
-		
+		GameMaster.Get_Person_By_Name(its_string[0]).Store_Resource (AgentMaster.EResource.Stone);
 	}
 
-	private void Agent_GotStone_Update(string[] its_string)
-	{
-
-	}
-
-	private void Agent_GotStone_End(string[] its_string)
+	private static void Agent_GotStone_Update(string[] its_string)
 	{
 
 	}
 
-	private bool Agent_GotStone_CompletedCheck(string[] its_string)
+	private static void Agent_GotStone_End(string[] its_string)
+	{
+
+	}
+
+	private static bool Agent_GotStone_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}	
 	#endregion 
 
 	#region STOREORE
-	 private void Agent_GotOre_Start(string[] its_string)
+	private static void Agent_GotOre_Start(string[] its_string)
 	{
-		
+		GameMaster.Get_Person_By_Name(its_string[0]).Store_Resource (AgentMaster.EResource.Ore);
 	}
 
-	private void Agent_GotOre_Update(string[] its_string)
-	{
-
-	}
-
-	private void Agent_GotOre_End(string[] its_string)
+	private static void Agent_GotOre_Update(string[] its_string)
 	{
 
 	}
 
-	private bool Agent_GotOre_CompletedCheck(string[] its_string)
+	private static void Agent_GotOre_End(string[] its_string)
+	{
+
+	}
+
+	private static bool Agent_GotOre_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}	
 	#endregion 
 
 	#region STORECOAL
-	 private void Agent_GotCoal_Start(string[] its_string)
+	private static void Agent_GotCoal_Start(string[] its_string)
 	{
-		
+		GameMaster.Get_Person_By_Name(its_string[0]).Store_Resource (AgentMaster.EResource.Coal);
 	}
 
-	private void Agent_GotCoal_Update(string[] its_string)
-	{
-
-	}
-
-	private void Agent_GotCoal_End(string[] its_string)
+	private static void Agent_GotCoal_Update(string[] its_string)
 	{
 
 	}
 
-	private bool Agent_GotCoal_CompletedCheck(string[] its_string)
+	private static void Agent_GotCoal_End(string[] its_string)
+	{
+
+	}
+
+	private static bool Agent_GotCoal_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}	
 	#endregion 
 
 	#region STOREIRON
-	 private void Agent_GotIron_Start(string[] its_string)
+	private static void Agent_GotIron_Start(string[] its_string)
 	{
-		
+		GameMaster.Get_Person_By_Name(its_string[0]).Store_Resource (AgentMaster.EResource.Iron);
 	}
 
-	private void Agent_GotIron_Update(string[] its_string)
-	{
-
-	}
-
-	private void Agent_GotIron_End(string[] its_string)
+	private static void Agent_GotIron_Update(string[] its_string)
 	{
 
 	}
 
-	private bool Agent_GotIron_CompletedCheck(string[] its_string)
+	private static void Agent_GotIron_End(string[] its_string)
+	{
+
+	}
+
+	private static bool Agent_GotIron_CompletedCheck(string[] its_string)
 	{
 		return true;
 	}	

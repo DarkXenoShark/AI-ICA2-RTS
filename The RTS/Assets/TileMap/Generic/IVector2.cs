@@ -29,6 +29,14 @@ namespace SandTiger
 			this.y = y;
 		}
 
+		/// <summary> Constructs a new vector with given x, y components. </summary>
+		/// <param name="x"/><param name="y"/>
+		public IVector2 (Vector2 vector)
+		{
+			this.x = (int)vector.x;
+			this.y = (int)vector.y;
+		}
+
 		/// <summary> Shorthand for writing IVector2 (0, 0). </summary>
 		public static IVector2 zero
 		{ get { return new IVector2 (0, 0); } }

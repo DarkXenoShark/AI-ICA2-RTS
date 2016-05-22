@@ -69,4 +69,9 @@ public class GameMaster : MonoBehaviour
         Debug.LogError("Location "+ its_name + " does not exist!");
         return new Location();
     }
+
+	public static Player Get_Player(int its_alliance)
+	{
+		return _self.my_players[its_alliance];
+	}
 }

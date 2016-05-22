@@ -46,14 +46,10 @@
 	public bool Call_Update()
 	{
         my_mission_action(TheActions);
-        if (my_mission_check(TheActions))
-        {
-            //Abort_Agent();
-            Call_End();
-            return true;
-        }
-
-        return false;
+	    if (!my_mission_check(TheActions)) return false;
+	    //Abort_Agent();
+	    Call_End();
+	    return true;
 	}
 	
 	public void Call_End()

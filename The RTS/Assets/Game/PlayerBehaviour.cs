@@ -9,12 +9,50 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-	[SerializeField] private bool _overridable = false;
-
     public AgentMaster.Person _self;
+	public int _alliance;
 
-	private TileMap _tileMap	= null;
-	private Level _level		= null;
+	public float SkillPoints { get; set; }
+
+	[SerializeField] private List<AgentMaster.EResource> _holding;
+
+	public void Get_Resource(AgentMaster.EResource its_resource)
+	{
+		if (_holding.Any(rep_source => rep_source == its_resource))
+		{
+			Debug.Log("Already Holding " + its_resource);
+			return;
+		}
+
+		_holding.Add(its_resource);
+	}
+
+	public enum ESkill
+	{
+		None,
+		Rifleman
+	}
+
+	private ESkill _skill;
+
+	public ESkill Skill
+	{
+		get { return _skill; }
+	}
+
+	public void SetSkill(ESkill its_skill)
+	{
+		if (SkillPoints > 0)
+		{
+			_skill = its_skill;
+			SkillPoints--;
+		}
+		else
+		{
+			Debug.Log("Not enough points to become a " + its_skill);
+		}
+	}
+
 	private IVector2 _position	= IVector2.zero;
 	private bool _walking		= false;
     [SerializeField] private float _speed = 0.1f;
@@ -22,17 +60,128 @@ public class PlayerBehaviour : MonoBehaviour
     private void Awake()
     {
         _self.TheName = gameObject.name.ToUpper();
+		_self.TheJob = AgentMaster.EJob.Labourer;
+		_skill = ESkill.None;
+		_holding = new List<AgentMaster.EResource>();
+	    SkillPoints = 0;
+
+	    GetComponent<SpriteRenderer>().sortingOrder = 1;
     }
 
-	 [UsedImplicitly] private void Start ()
+	public void Store_Resources()
 	{
-		GameObject tileMapGameObject = GameObject.Find("TileMap");
+		Player quick_player = GameMaster.Get_Player(_alliance);
 
-		_tileMap	= tileMapGameObject.GetComponent<TileMap>();
-		_level		= tileMapGameObject.GetComponent<Level>();
+		foreach (AgentMaster.EResource rep_resource in _holding)
+		{
+			switch (rep_resource)
+			{
+				case AgentMaster.EResource.None:
+				break;
 
-		if (_tileMap == null) Debug.LogError ("TileMapBehaviour not found");
-		if (_level == null) Debug.LogError ("LevelBehaviour not found");
+				case AgentMaster.EResource.Timber:
+					quick_player.TheResources.TheTimber++;
+				break;
+
+				case AgentMaster.EResource.Coal:
+					quick_player.TheResources.TheCoal++;
+				break;
+
+				case AgentMaster.EResource.Ore:
+					quick_player.TheResources.TheOre++;
+				break;
+
+				case AgentMaster.EResource.Stone:
+					quick_player.TheResources.TheStone++;
+				break;
+
+				case AgentMaster.EResource.Wood:
+					quick_player.TheResources.TheWood++;
+					break;
+
+				case AgentMaster.EResource.Iron:
+					quick_player.TheResources.TheIron++;
+					break;
+
+				default:
+					throw new ArgumentOutOfRangeException();
+			}
+		}
+
+		_holding.Clear();
+	}
+
+	public void Store_Resource(AgentMaster.EResource its_resource)
+	{
+		Player quick_player = GameMaster.Get_Player(_alliance);
+
+		for (int rep_resource = 0; rep_resource < _holding.Count; rep_resource++)
+		{
+			if (_holding[rep_resource] != its_resource) 
+				continue;
+
+			switch (its_resource)
+			{
+				case AgentMaster.EResource.None:
+					break;
+
+				case AgentMaster.EResource.Timber:
+					quick_player.TheResources.TheTimber++;
+					break;
+
+				case AgentMaster.EResource.Coal:
+					quick_player.TheResources.TheCoal++;
+					break;
+
+				case AgentMaster.EResource.Ore:
+					quick_player.TheResources.TheOre++;
+					break;
+
+				case AgentMaster.EResource.Stone:
+					quick_player.TheResources.TheStone++;
+					break;
+
+				case AgentMaster.EResource.Wood:
+					quick_player.TheResources.TheWood++;
+					break;
+
+				case AgentMaster.EResource.Iron:
+					quick_player.TheResources.TheIron++;
+					break;
+
+				default:
+					throw new ArgumentOutOfRangeException();
+			}
+			_holding.RemoveAt(rep_resource);
+			return;
+		}
+	}
+
+	public void Remove_Resource(AgentMaster.EResource its_resource)
+	{
+		Player quick_player = GameMaster.Get_Player(_alliance);
+
+		for (int rep_resource = 0; rep_resource < _holding.Count; rep_resource++)
+		{
+			if (_holding[rep_resource] != its_resource) 
+				continue;
+
+			_holding.RemoveAt(rep_resource);
+			return;
+		}
+	}
+
+	public void Set_Job(AgentMaster.EJob its_job)
+	{
+		if (SkillPoints > 0)
+		{
+			_self.TheJob = its_job;
+			SkillPoints--;
+		}
+		else
+		{
+			Debug.Log("Not enough points to become a " + its_job);
+		}
 	}
 
 	public void Go (IVector2 destination)
@@ -42,7 +191,6 @@ public class PlayerBehaviour : MonoBehaviour
         StartCoroutine (WalkTo (destination, _speed));
 	}
 
-	// TODO refactor into a reusable "TileWalker" behaviour
 	private IEnumerator WalkTo (IVector2 destination, float stepIntervalSeconds)
 	{
 		if (Level.Self.IsWalkeable (destination.x, destination.y))

@@ -41,7 +41,7 @@
 
 	(:goal
 		(and
-			(has-storage COALLOCATION4)
+			(has-school COALLOCATION4)
 			)
 		)
 

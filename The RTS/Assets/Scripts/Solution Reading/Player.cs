@@ -1,13 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
+using SandTiger;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     public List<PlayerBehaviour> my_people;
     public AgentMaster.Resources TheResources;
+	public AgentMaster.EBuilding TheGoal;
+
+	public GameObject AttachedPerson;
+
 
 	public int TheAlliance { get; set; }
+
+	[UsedImplicitly] void Start()
+	{
+		foreach (PlayerBehaviour rep_person in my_people)
+		{
+			rep_person._alliance = TheAlliance;
+		}
+	}
 
 	public string Get_First_Empty_Loaction()
     {
@@ -23,11 +37,22 @@ public class Player : MonoBehaviour
         return "Error";
     }
 
+	public void Create_Person(string its_location)
+	{
+		Location quick_location = GameMaster.Get_Location_By_Name(its_location);
+
+		PlayerBehaviour quick_person = GameObject.Instantiate(AttachedPerson).GetComponent<PlayerBehaviour>();
+		quick_person.SetTilePosition(new IVector2((int)quick_location.transform.position.x,(int)quick_location.transform.position.y));
+		quick_person._alliance = TheAlliance;
+		quick_person._self.TheLocation = its_location;
+		quick_person._self.TheJob = AgentMaster.EJob.Labourer;
+	}
+
 	public void Set_New_Goal()
 	{
 		AgentMaster.BuildingGoal quick_goal = new AgentMaster.BuildingGoal
 		{
-			TheBuilding = (AgentMaster.EBuilding.Storage),
+			TheBuilding = TheGoal,
 			TheDestination = Get_First_Empty_Loaction()
 		};
 

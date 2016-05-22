@@ -6,8 +6,6 @@ public class Location : MonoBehaviour
 {
     public AgentMaster.Building TheSelf;
 
-	private IVector2 _position = IVector2.zero;
-
     public int TheAlliance { get; private set; }
 
 	void Awake()
@@ -15,9 +13,13 @@ public class Location : MonoBehaviour
         TheSelf.TheName = gameObject.name.ToUpper();
     }
 
+	void Start()
+	{
+		SetTilePosition(new IVector2((int)transform.position.x, (int)transform.position.y));
+	}
+
     public void SetTilePosition(IVector2 position)
     {
-        _position = position;
         Rect tileBounds = TileMap.Self.GetTileBoundsWorld(position);
         transform.position = new Vector3(tileBounds.xMin, tileBounds.yMin + 1, transform.position.z);
     }
