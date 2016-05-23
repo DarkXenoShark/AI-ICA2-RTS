@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BlackTip;
 using JetBrains.Annotations;
 using SandTiger;
@@ -14,25 +13,25 @@ public class Location : MonoBehaviour
 
 	public int TheAlliance { get; set; }
 
-	[UsedImplicitly] void Awake()
+	[UsedImplicitly] private void Awake()
 	{
 		TheAlliance		= -1;
-        TheSelf.TheName	= gameObject.name.ToUpper();
+		TheSelf.TheName	= gameObject.name.ToUpper();
 
 		_SR = GetComponent<SpriteRenderer>();
 	}
 
-	void Start()
+	private void Start()
 	{
 		SetTilePosition(new IVector2(transform.position));
 		SetTileRenderer();
 	}
 
-    public void SetTilePosition (IVector2 position)
-    {
-        Rect tileBounds = TileMap.Self.GetTileBoundsWorld (position);
-        transform.position = new Vector3 (tileBounds.xMin, tileBounds.yMin + 1, transform.position.z);
-    }
+	public void SetTilePosition (IVector2 position)
+	{
+		Rect tileBounds = TileMap.Self.GetTileBoundsWorld (position);
+		transform.position = new Vector3 (tileBounds.xMin, tileBounds.yMin + 1, transform.position.z);
+	}
 
 	public void SetResource(AgentMaster.EResource its_resource)
 	{
@@ -50,7 +49,7 @@ public class Location : MonoBehaviour
 	public void SetPermeability()
 	{
 		if (TheSelf.TheType == AgentMaster.EBuilding.None &&
-		    TheSelf.TheResource == AgentMaster.EResource.None)
+			TheSelf.TheResource == AgentMaster.EResource.None)
 		{
 			Level.Self.SetTile((int) transform.position.x, (int) transform.position.y, TileType.GRASS);
 		}

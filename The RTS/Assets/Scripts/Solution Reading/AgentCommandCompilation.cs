@@ -1,10 +1,10 @@
-﻿using SandTiger;
+﻿using JetBrains.Annotations;
+using SandTiger;
 using UnityEngine;
 
 public class AgentCommandCompilation : MonoBehaviour
 {
-	// Use this for initialization
-	void Start () 
+	[UsedImplicitly] private void Start ()
 	{
 		Agent quick_agent = new Agent();
 		quick_agent.Set_Agent(
@@ -488,14 +488,13 @@ public class AgentCommandCompilation : MonoBehaviour
 	private static void Agent_Move_Start (string[] its)
 	{
 		// 0 Who. 1 WhereAt. 2 WhereToo.
-		IVector2 loc1 = (Vector2)GameMaster.Get_Location_By_Name(its[1]).transform.position;
-		IVector2 loc2 = (Vector2)GameMaster.Get_Location_By_Name(its[2]).transform.position;
+		IVector2 whereToo = (Vector2)GameMaster.Get_Location_By_Name(its[2]).transform.position;
 
-		PlayerBehaviour player = GameMaster.Get_Person_By_Name (its[0]);
-		// Basically where he should be (Teleports).
-		player.SetTilePosition (loc1);
 		// Where to send him (this will run regardless of update).
-		player.Go (loc2);
+		GameMaster.Get_Person_By_Name (its[0]).Go (whereToo);
+
+		// Basically where he should be (Teleports).
+		//player.SetTilePosition (whereAt); // We already know where we are at.
 	}
 
 	private static void Agent_Move_Update (string[] its)

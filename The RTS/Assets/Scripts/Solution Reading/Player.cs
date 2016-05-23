@@ -6,16 +6,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public List<PlayerBehaviour> my_people;
-    public AgentMaster.Resources TheResources;
+	public List<PlayerBehaviour> my_people;
+	public AgentMaster.Resources TheResources;
 	public AgentMaster.EBuilding[] TheGoal;
 
 	public GameObject AttachedPerson;
-
-
+	
 	public int TheAlliance { get; set; }
 
-	[UsedImplicitly] void Start()
+	[UsedImplicitly] private void Start()
 	{
 		foreach (PlayerBehaviour rep_person in my_people)
 		{
@@ -24,33 +23,32 @@ public class Player : MonoBehaviour
 	}
 
 	public string Get_First_Empty_Loaction()
-    {
-        Location[] quickLocations = GameMaster.Get_Locations_Of_Player(TheAlliance);
+	{
+		Location[] quickLocations = GameMaster.Get_Locations_Of_Player(TheAlliance);
 
-        foreach (Location repLocation in quickLocations.Where(repLocation => repLocation.TheSelf.TheResource == AgentMaster.EResource.None &&
-                                                                                repLocation.TheSelf.TheType == AgentMaster.EBuilding.None))
-        {
-	        return repLocation.TheSelf.TheName;
-        }
+		foreach (Location repLocation in quickLocations.Where(repLocation => repLocation.TheSelf.TheResource == AgentMaster.EResource.None &&
+																				repLocation.TheSelf.TheType == AgentMaster.EBuilding.None))
+		{
+			return repLocation.TheSelf.TheName;
+		}
 
-        //If it reaches this point, there is no empty location registered
-        return "Error";
-    }
+		//If it reaches this point, there is no empty location registered
+		return "Error";
+	}
 	public string Get_Empty_Loaction_Index(int its_empty)
-    {
-        Location[] quickLocations = GameMaster.Get_Locations_Of_Player(TheAlliance);
+	{
+		Location[] quickLocations = GameMaster.Get_Locations_Of_Player(TheAlliance);
 
-        foreach (Location repLocation in quickLocations.Where(repLocation => repLocation.TheSelf.TheResource == AgentMaster.EResource.None &&
-                                                                                repLocation.TheSelf.TheType == AgentMaster.EBuilding.None))
-        {
-	        its_empty--;
-			if (its_empty <= 0)
-				return repLocation.TheSelf.TheName;
-        }
+		foreach (Location repLocation in quickLocations.Where(repLocation => repLocation.TheSelf.TheResource == AgentMaster.EResource.None &&
+																				repLocation.TheSelf.TheType == AgentMaster.EBuilding.None))
+		{
+			its_empty--;
+			if (its_empty <= 0) return repLocation.TheSelf.TheName;
+		}
 
-        //If it reaches this point, there is no empty location registered
-        return "Error";
-    }
+		//If it reaches this point, there is no empty location registered
+		return "Error";
+	}
 
 	public void Create_Person(string its_location)
 	{

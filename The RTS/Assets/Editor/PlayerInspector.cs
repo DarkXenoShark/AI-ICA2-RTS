@@ -4,27 +4,27 @@ using UnityEngine;
 [CustomEditor(typeof(Player))]
 public class PlayerInspector : Editor
 {
-    Player self;
+	private Player self;
 
-    void OnEnable()
-    {
-        self = (Player)target;
-    }
+	private void OnEnable()
+	{
+		self = (Player)target;
+	}
 
-    public override void OnInspectorGUI()
-    {
-        // Show original GUI.
-        base.OnInspectorGUI();
-        serializedObject.Update();
+	public override void OnInspectorGUI()
+	{
+		// Show original GUI.
+		base.OnInspectorGUI();
+		serializedObject.Update();
 
-        if (Application.isPlaying)
-        {
-            if (GUILayout.Button("Do...Something"))
-            {
+		if (Application.isPlaying)
+		{
+			if (GUILayout.Button("Do...Something"))
+			{
 				self.Set_New_Goal();
-            }
-        }
-        
-        serializedObject.ApplyModifiedProperties ();
+			}
+		}
+		
+		serializedObject.ApplyModifiedProperties ();
 	}
 }
