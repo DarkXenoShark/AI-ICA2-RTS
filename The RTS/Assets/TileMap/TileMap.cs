@@ -72,11 +72,7 @@ namespace BlackTip
 				return _chunkManager;
 			}
 		}
-
-		//public bool HasMesh
-		//{ get { return ChunkManager.GetChunk (0, 0) != null; } }
-
-        
+		
 		protected virtual void Awake()
 		{
             self = this;
